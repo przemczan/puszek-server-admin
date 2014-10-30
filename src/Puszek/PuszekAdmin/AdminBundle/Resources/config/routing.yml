@@ -1,0 +1,12 @@
+puszek_puszek_admin_admin_clients_create:
+    path:     /clients/create
+    defaults: { _controller: PuszekPuszekAdminAdminBundle:Clients:create }
+
+puszek_puszek_admin_admin_clients_delete:
+    path:     /clients/delete/{client}
+    defaults: { _controller: PuszekPuszekAdminAdminBundle:Clients:delete }
+    requirements: { client: \w+ }
+
+puszek_puszek_admin_admin_homepage:
+    path:     /
+    defaults: { _controller: PuszekPuszekAdminAdminBundle:Default:index }

@@ -1,0 +1,10 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    Puszek Admin
+    <ul>
+        {% for client in clientsList %}
+            <li>{{ client.name }} <a href="{{ path('puszek_puszek_admin_admin_clients_delete', { 'client': client.id }) }}">usuń</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
