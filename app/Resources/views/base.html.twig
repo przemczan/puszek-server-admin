@@ -2,22 +2,53 @@
 <html>
 <head>
 
-    <title>Bootstrap 101 Template</title>
+    <title>Puszek Server Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/css/*'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
     <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
     {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
 
 </head>
 
-<body>
-    {% block body %}{% endblock %}
+<body data-ng-app="puszekApp" data-ng-controller="mainController as main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" data-static-include="views/commons/mainMenu.html"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" data-ng-view></div>
+        </div>
+    </div>
     {% block javascripts %}
-        <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
-        <script src="{{ asset('js/jquery.js') }}"></script>
-        <!-- Include all JavaScripts, compiled by Assetic -->
-        <script src="{{ asset('js/bootstrap.js') }}"></script>
+        {% javascripts
+            'js/jquery.js'
+            'bundles/fosjsrouting/js/router.js'
+            'js/fos_js_routes.js'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/vendor/*'
+
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/app.js'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/service/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/mainMenu/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/clients/*'
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <script>
+            angular.module('puszekApp').constant('Config', {
+                user: {{ app.user ? 1 : 0 }},
+                baseUrl: '{{ app.request.baseUrl }}',
+                basePath: '{{ app.request.basePath }}'
+            });
+        </script>
     {% endblock %}
 </body>
 </html>

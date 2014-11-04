@@ -1,0 +1,7 @@
+users:
+    type:     rest
+    resource: Puszek\PuszekAdmin\AdminBundle\Controller\UsersController
+    
+clients:
+    type:     rest
+    resource: Puszek\PuszekAdmin\AdminBundle\Controller\ClientsController

@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [PuszekPuszekAdminAdminBundle]
     #java: /usr/bin/java
     filters:
         scssphp: ~
@@ -88,3 +88,6 @@ braincrafted_bootstrap:
         assetic: true
         twig: true
     less_filter: none
+
+fos_js_routing:
+    routes_to_expose: [.*]

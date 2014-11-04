@@ -1,4 +1,17 @@
+login:
+    path: /login
+    defaults: { _controller: PuszekPuszekAdminAdminBundle:Security:login }
+
+logout:
+    path: /logout
+
+login_check:
+    path: /login_check
+
 puszek_puszek_admin_admin:
     resource: "@PuszekPuszekAdminAdminBundle/Resources/config/routing.yml"
     prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
