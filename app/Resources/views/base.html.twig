@@ -35,8 +35,8 @@
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/vendor/*'
 
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/app.js'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/service/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/main/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/mainMenu/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/clients/*'
         %}
@@ -44,7 +44,6 @@
         {% endjavascripts %}
         <script>
             angular.module('puszekApp').constant('Config', {
-                user: {{ app.user ? 1 : 0 }},
                 baseUrl: '{{ app.request.baseUrl }}',
                 basePath: '{{ app.request.basePath }}'
             });
