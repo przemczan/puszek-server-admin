@@ -9,13 +9,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Puszek</a>
+                <a class="navbar-brand" data-ui-sref="homepage">Puszek</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse ng-cloak" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" data-ng-if="User">
-                    <li class="{{ app.request.pathInfo matches '#^/clients#' ? 'active' : '' }}"><a href="#clients">Clients</a></li>
+                    <li class="{{ app.request.pathInfo matches '#^/clients#' ? 'active' : '' }}"><a data-ui-sref="clients">Clients</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li data-ng-if="User">

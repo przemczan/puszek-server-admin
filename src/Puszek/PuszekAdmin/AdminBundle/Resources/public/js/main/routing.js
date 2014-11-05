@@ -1,8 +1,8 @@
 angular.module('puszekApp')
-    .config(['$routeProvider', 'Config', function($routeProvider, Config) {
-        $routeProvider
-            .when('/', {
-                templateUrl: Config.basePath + '/views/dashboard/index.html',
-                controller: 'mainMenuController'
+    .config(function($stateProvider, Config) {
+        $stateProvider
+            .state('homepage', {
+                url: '/',
+                templateUrl: Config.basePath + '/views/dashboard/index.html'
             });
-    }]);
+    });

@@ -5,5 +5,5 @@ angular.module('puszekApp')
         });
     })
     .factory('RestApiMe', function (RestApi) {
-        return RestApi.one('users', 'me').get().$object;
+        return RestApi.one('users', 'me');
     });
