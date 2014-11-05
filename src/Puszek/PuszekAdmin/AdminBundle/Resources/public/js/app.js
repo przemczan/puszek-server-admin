@@ -3,6 +3,5 @@ angular.module('puszekApp', ['ngRoute', 'ui.bootstrap', 'restangular', 'ui.route
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
     })
     .run(function($rootScope, RestApiMe) {
-        $rootScope.Routing = Routing;
         $rootScope.User = RestApiMe.get().$object;
     });

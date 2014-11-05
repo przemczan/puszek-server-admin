@@ -41,6 +41,9 @@ angular.module('puszekApp')
             function configure(_config) {
                 config = jQuery.extend(true, config, _config);
 
+                if (typeof config.restangular == 'function') {
+                    config.restangular = config.restangular.call(self);
+                }
                 RestApi = _config.restangular || Restangular;
 
                 if (typeof config.configureRestangular == 'function') {

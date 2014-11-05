@@ -1,5 +1,7 @@
 angular.module('puszekApp')
-    .config(function($stateProvider, Config) {
+    .config(function($stateProvider, $urlRouterProvider, Config) {
+        $urlRouterProvider.otherwise("/");
+
         $stateProvider
             .state('homepage', {
                 url: '/',

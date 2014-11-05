@@ -90,6 +90,3 @@ braincrafted_bootstrap:
         assetic: true
         twig: true
     less_filter: none
-
-fos_js_routing:
-    routes_to_expose: [.*]
