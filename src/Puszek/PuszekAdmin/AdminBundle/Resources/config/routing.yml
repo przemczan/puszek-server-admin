@@ -2,6 +2,10 @@ api:
     prefix: /api
     resource: @PuszekPuszekAdminAdminBundle/Resources/config/api_routing.yml
 
+security_me:
+    path:     /auth/me
+    defaults: { _controller: PuszekPuszekAdminAdminBundle:Security:me }
+
 puszek_admin_homepage:
     path:     /
     defaults: { _controller: PuszekPuszekAdminAdminBundle:Dashboard:index }

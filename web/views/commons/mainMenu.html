@@ -14,15 +14,15 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse ng-cloak" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav" data-ng-if="User">
+                <ul class="nav navbar-nav" data-ng-if="User.isLoggedIn()">
                     <li class="{{ app.request.pathInfo matches '#^/clients#' ? 'active' : '' }}"><a data-ui-sref="clients">Clients</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li data-ng-if="User">
+                    <li data-ng-if="User.isLoggedIn()">
                         <p class="navbar-text navbar-right">Signed in as [[ User.username ]]</p>
                     </li>
-                    <li data-ng-if="User"><a href="">Logout</a></li>
-                    <li data-ng-if="!User"><a href="">Login</a></li>
+                    <li data-ng-if="User.isLoggedIn()"><a data-ui-sref="auth_logout">Logout</a></li>
+                    <li data-ng-if="!User.isLoggedIn()"><a data-ui-sref="auth_login">Login</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

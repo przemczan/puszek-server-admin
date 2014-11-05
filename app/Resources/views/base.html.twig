@@ -28,15 +28,17 @@
         </div>
     </div>
     {% block javascripts %}
-        {% javascripts
+        {% javascripts output="js/compiled/main.js"
             'js/jquery.js'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/vendor/*'
 
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/app.js'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/auth/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/crud/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/main/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/mainMenu/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/dashboard/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/clients/*'
         %}
         <script src="{{ asset_url }}"></script>

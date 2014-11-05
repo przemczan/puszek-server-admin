@@ -44,7 +44,7 @@ angular.module('puszekApp')
                 if (typeof config.restangular == 'function') {
                     config.restangular = config.restangular.call(self);
                 }
-                RestApi = _config.restangular || Restangular;
+                RestApi = config.restangular || Restangular;
 
                 if (typeof config.configureRestangular == 'function') {
                     config.configureRestangular.call(self, RestApi);

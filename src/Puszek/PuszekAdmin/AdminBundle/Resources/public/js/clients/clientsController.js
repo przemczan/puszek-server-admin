@@ -1,9 +1,11 @@
 angular.module('puszekApp')
-    .controller('clientsController', function($scope, RestApiCRUDFactoryGUI) {
+    .controller('clientsController', function($scope, Singleton, RestApiCRUDFactoryGUI) {
 
-        $scope.crud = RestApiCRUDFactoryGUI.create({
-            crud: {
-                elementRoute: 'clients'
-            }
+        $scope.crud = Singleton.get('clients.crud', function() {
+            return RestApiCRUDFactoryGUI.create({
+                crud: {
+                    elementRoute: 'clients'
+                }
+            });
         });
     });

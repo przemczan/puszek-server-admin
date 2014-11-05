@@ -1,0 +1,14 @@
+<div class="well">
+    <div class="alert alert-danger" data-ng-if="error">[[ error.message ]]</div>
+    <form role="form" data-ng-submit="loginForm.$valid && doLogin()" name="loginForm">
+        <div class="form-group">
+            <label for="login_username">Email address</label>
+            <input type="text" class="form-control" id="login_username" placeholder="Enter email" data-ng-model="loginFormData._username">
+        </div>
+        <div class="form-group">
+            <label for="login_password">Email address</label>
+            <input type="password" class="form-control" id="login_password" placeholder="Enter email" data-ng-model="loginFormData._password">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
