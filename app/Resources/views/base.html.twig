@@ -18,28 +18,10 @@
 
 <body data-ng-app="puszekApp" data-ng-controller="mainController as main" layout="horizontal">
 
-    <md-sidenav role="navigation" layout="vertical" class="md-sidenav-left md-whiteframe-z2" is-locked-open="$media('md')">
-        <div data-ng-controller="mainMenuController as mainMenu">
-            <md-toolbar class="md-medium-tall md-default-theme">
-                <h1 class="md-toolbar-tools">
-                    <a data-ui-sref="homepage">Puszek Server Admin</a><br />
-                    [[ User.getFullName() ]]
-                </h1>
-            </md-toolbar>
-
-            <md-content>
-                <section layout-align="center center" layout="vertical" ng-if="User.isLoggedIn()">
-                    <md-button flex class="md-primary"><a data-ui-sref="clients">Clients</a></md-button>
-                </section>
-                <section layout-align="center center" layout="vertical">
-                    <md-button data-ng-if="User.isLoggedIn()"><a data-ui-sref="auth_logout">Logout</a></md-button>
-                    <md-button data-ng-if="!User.isLoggedIn()"><a data-ui-sref="auth_login">Login</a></md-button>
-                </section>
-            </md-content>
-        </div>
+    <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2" is-locked-open="$media('md')"
+                static-include="/views/commons/mainMenu.html">
     </md-sidenav>
-
-    <div data-ui-view layout="vertical"></div>
+    <div layout="vertical" layout-fill ui-view></div>
 
     {% block javascripts %}
         {% javascripts output="assets/compiled/main.js"

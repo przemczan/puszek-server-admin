@@ -1,1 +1,18 @@
+<div data-ng-controller="mainMenuController as mainMenu">
+    <md-toolbar class="md-medium-tall md-default-theme">
+        <h1 class="md-toolbar-tools">
+            <a data-ui-sref="homepage">Puszek Server Admin</a><br />
+            [[ User.getFullName() ]]
+        </h1>
+    </md-toolbar>
 
+    <md-content>
+        <section layout="vertical" ng-if="User.isLoggedIn()">
+            <md-button flex class="md-primary" data-ui-sref="clients">Clients</md-button>
+        </section>
+        <section layout="vertical">
+            <md-button data-ng-if="User.isLoggedIn()" data-ui-sref="auth_logout">Logout</md-button>
+            <md-button data-ng-if="!User.isLoggedIn()" data-ui-sref="auth_login">Login</md-button>
+        </section>
+    </md-content>
+</div>
