@@ -25,7 +25,8 @@
         "jquery/jquery":  "1.10.*",
         "leafo/scssphp": "0.0.12",
         "jms/serializer-bundle": "~0.13",
-        "friendsofsymfony/rest-bundle": "~1.4"
+        "friendsofsymfony/rest-bundle": "~1.4",
+        "sp/bower-bundle": "~0.11"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -41,7 +42,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install"
+            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install",
+            "Sp\\BowerBundle\\Composer\\ScriptHandler::bowerInstall"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -50,7 +52,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install"
+            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install",
+            "Sp\\BowerBundle\\Composer\\ScriptHandler::bowerInstall"
         ]
     },
     "repositories": [

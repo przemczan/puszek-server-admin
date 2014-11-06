@@ -24,7 +24,7 @@ angular.module('puszekApp')
             open: open
         };
     })
-    .directive('clickConfirm', function (ModalConfirm) {
+    /*.directive('clickConfirm', function (ModalConfirm) {
         return {
             restrict: 'A',
             compile: function(element, attr) {
@@ -45,4 +45,4 @@ angular.module('puszekApp')
                 }
             }
         };
-    });
+    })*/;

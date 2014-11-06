@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .run(function($rootScope, $state, AuthUser) {
+    .run(function($rootScope, $state, AuthUser, $log) {
 
         /**
          * @param _access
@@ -49,14 +49,15 @@ angular.module('puszekApp')
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
             if (!authorize(toState.data ? toState.data.access || {} : {})) {
                 event.preventDefault();
-                console.log('state not authorized:', toState);
+                $log.log('state not authorized:', toState);
                 if (!AuthUser.isLoaded() && fromState.url === '^') {
-                    console.log('user not loaded, saving state');
+                    $log.log('user not loaded, saving state');
                     AuthUser.onLoad = function() {
-                        console.log('user loaded, going to:', toState.name);
+                        $log.log('user loaded, going to:', toState.name);
                         $state.go(toState.name);
                     };
                 } else {
+                    $log.log('logged in status:', AuthUser.isLoggedIn());
                     if (AuthUser.isLoggedIn())
                         $state.go('homepage');
                     else {

@@ -14,7 +14,7 @@ angular.module('puszekApp')
             })
             .state('auth_logout', {
                 url: '/auth/logout',
-                controller: function($http, AuthUser) {
+                controller: function($http, AuthUser, $state) {
                     $http.get(Config.baseUrl + '/logout')
                         .success(function() {
                             AuthUser.reload();

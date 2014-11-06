@@ -1,4 +1,4 @@
-angular.module('puszekApp', ['ngRoute', 'ui.bootstrap', 'restangular', 'ui.router'])
+angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial'])
     .config(function($interpolateProvider){
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
     })

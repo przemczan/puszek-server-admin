@@ -25,13 +25,14 @@ angular.module('puszekApp')
          */
         function reload() {
             angular.copy(emptyUser, userData);
+            userData.isLoaded = false;
 
             $http.post(Config.baseUrl + '/auth/me', {
                     roles: systemRoles
                 })
                 .success(function (_data) {
                     $log.log('me response:', _data);
-                    if (angular.isArray(_data)) {
+                    if (angular.isObject(_data)) {
                         userData.user = _data.user || false;
                         userData.roles = _data.roles || [];
                     }

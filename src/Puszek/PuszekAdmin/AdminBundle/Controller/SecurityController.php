@@ -7,10 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class SecurityController extends Controller
+class SecurityController extends AbstractController
 {
     /**
      *
@@ -34,11 +35,11 @@ class SecurityController extends Controller
             }
         }
 
-        return new Response($this->get('jms_serializer')->serialize($data, 'json'));
+        return $this->restify($data);
     }
 
     /**
-     * @Extra\Template
+     *
      */
     public function loginAction(Request $request)
     {
@@ -59,11 +60,9 @@ class SecurityController extends Controller
         // last username entered by the user
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
 
-        $form = $this->createForm(new LoginType());
-        return [
-            'last_username' => $lastUsername,
-            'error'         => $error,
-            'form' => $form->createView()
-        ];
+        return $this->restify([
+                'authenticated' => $this->getUser() instanceof UserInterface,
+                'error'         => $error ? $error->getMessage() : '',
+            ]);
     }
 }

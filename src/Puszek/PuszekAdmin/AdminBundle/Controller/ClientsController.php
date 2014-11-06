@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ClientsController extends Controller
+class ClientsController extends AbstractController
 {
     /**
      * @var EntityRepository
@@ -27,15 +27,6 @@ class ClientsController extends Controller
         parent::setContainer($container);
         $em = $this->get('doctrine_mongodb')->getManager();
         $this->repository = $em->getRepository('Puszek\PuszekAdmin\AdminBundle\Document\Client');
-    }
-
-    /**
-     * @param $data
-     * @param string $format
-     */
-    protected function restify($data, $format = 'json')
-    {
-        return new Response($this->get('jms_serializer')->serialize($data, $format));
     }
 
     /**

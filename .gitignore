@@ -13,3 +13,6 @@
 /web/css/*
 /web/js/*
 /web/fonts/*
+/web/assets/*
+/web/assetic/*
+/src/Puszek/PuszekAdmin/AdminBundle/Resources/public/components/*

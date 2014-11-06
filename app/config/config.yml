@@ -90,3 +90,10 @@ braincrafted_bootstrap:
         assetic: true
         twig: true
     less_filter: none
+
+sp_bower:
+    bundles:
+        PuszekPuszekAdminAdminBundle: ~
+    install_on_warmup: true
+    assetic:
+        nest_dependencies: false
