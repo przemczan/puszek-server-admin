@@ -7,7 +7,7 @@
     {% block stylesheets %}
         {% stylesheets filter='cssrewrite' output="assets/compiled/main.css"
             '@angular_material_css'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/components/angular-material/themes/default-theme.css'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/components/angular-material/themes/*.css'
             '@PuszekPuszekAdminAdminBundle/Resources/public/css/*'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
@@ -21,7 +21,12 @@
     <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2" is-locked-open="$media('md')"
                 static-include="/views/commons/mainMenu.html">
     </md-sidenav>
-    <div layout="vertical" layout-fill ui-view></div>
+    <div layout="vertical" layout-fill>
+        <md-toolbar class="md-medium-tall md-default-theme">
+            <h2 class="md-toolbar-tools" ui-view="contentHeader"></h2>
+        </md-toolbar>
+        <md-content scroll-y flex ui-view="content"></md-content>
+    </div>
 
     {% block javascripts %}
         {% javascripts output="assets/compiled/main.js"

@@ -4,8 +4,13 @@ angular.module('puszekApp')
         $stateProvider
             .state('auth_login', {
                 url: '/auth/login',
-                templateUrl: Config.basePath + '/views/auth/login.html',
-                controller: 'authController',
+                views: {
+                    contentHeader: { template: 'Login' },
+                    content: {
+                        templateUrl: Config.basePath + '/views/auth/login.html',
+                        controller: 'authController'
+                    }
+                },
                 data: {
                     access: {
                         loggedIn: false
@@ -14,7 +19,7 @@ angular.module('puszekApp')
             })
             .state('auth_logout', {
                 url: '/auth/logout',
-                controller: function($http, AuthUser, $state) {
+                onEnter: function($http, AuthUser, $state) {
                     $http.get(Config.baseUrl + '/logout')
                         .success(function() {
                             AuthUser.reload();

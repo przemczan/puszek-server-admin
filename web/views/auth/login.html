@@ -1,14 +1,14 @@
-<div class="well">
+<md-content layout-padding>
     <div class="alert alert-danger" data-ng-if="error">[[ error.message ]]</div>
-    <form role="form" data-ng-submit="loginForm.$valid && doLogin()" name="loginForm">
-        <div class="form-group">
-            <label for="login_username">Email address</label>
-            <input type="text" class="form-control" id="login_username" placeholder="Enter email" data-ng-model="loginFormData._username">
+    <form role="form" ng-submit="loginForm.$valid && doLogin()" name="loginForm">
+        <div class="row">
+            <md-text-float type="text" id="login_username" label="E-mail" ng-model="loginFormData._username"></md-text-float>
         </div>
-        <div class="form-group">
-            <label for="login_password">Email address</label>
-            <input type="password" class="form-control" id="login_password" placeholder="Enter email" data-ng-model="loginFormData._password">
+        <div class="row">
+            <md-text-float type="password" id="login_password" label="Password" ng-model="loginFormData._password"></md-text-float>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <div class="row">
+            <md-button class="md-raised md-primary" type="submit">Submit</md-button>
+        </div>
     </form>
-</div>
+</md-content>

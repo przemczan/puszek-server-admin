@@ -1,30 +1,12 @@
-<md-toolbar class="md-medium-tall">
-        <h2 class="md-toolbar-tools">Grid System</h2>
-</md-toolbar>
-
-<md-content scroll-y flex class="md-padding md-default-theme">
-    <div layout="vertical" layout-fill class="layout-content">
-
-        <div class="btn-toolbar">
-            <a class="btn btn-default" data-ng-click="crud.new()">New client</a>
-        </div>
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-            <tr data-ng-repeat="item in crud.getItems()">
-                <td>
-                    [[ item.name ]]
-                </td>
-                <td>
-                    <div class="btn-group">
-                        <a class="btn btn-danger" data-ng-click="crud.delete(item)" data-click-confirm="Delete this client?" >usuń</a>
-                        <a class="btn btn-default" data-ng-click="crud.edit(item)">edytuj</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
+<div layout="vertical">
+    <md-whiteframe class="md-whiteframe-z1" layout="horizontal" layout-padding>
+        <md-button ui-sref="clients_create">New client</md-button>
+    </md-whiteframe>
+    <br />
+    <div layout-padding layout>
+        <md-card ng-repeat="item in crud.getList()" >
+            item
+        </md-card>
     </div>
-</md-content>
+
+</div>

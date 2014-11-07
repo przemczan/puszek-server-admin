@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('AuthUser', function(Config, $state, $http, $log) {
+    .factory('AuthUser', function(Config, $state, $http, $log, $stateParams) {
 
         var emptyUser = {
                 user: false,
@@ -38,6 +38,9 @@ angular.module('puszekApp')
                     }
                     userData.isLoaded = true;
                     (service.onLoad || angular.noop)();
+                    $state.transitionTo($state.current, $stateParams, {
+                        reload: true, inherit: false, notify: true
+                    });
                 })
                 .error(function() {
                     $log.log('me error:', arguments);

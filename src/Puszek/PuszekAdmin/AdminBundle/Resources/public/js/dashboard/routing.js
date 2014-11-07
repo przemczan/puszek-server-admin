@@ -4,7 +4,10 @@ angular.module('puszekApp')
         $stateProvider
             .state('homepage', {
                 url: '/',
-                templateUrl: Config.basePath + '/views/dashboard/index.html',
+                views: {
+                    contentHeader: { template: 'Dashboard' },
+                    content: { templateUrl: Config.basePath + '/views/dashboard/index.html' }
+                },
                 data: {
                     access: {
                         all: ['ROLE_USER']
