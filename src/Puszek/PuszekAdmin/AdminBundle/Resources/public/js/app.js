@@ -1,8 +1,10 @@
-angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial'])
-    .config(function($interpolateProvider){
+angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial', 'ng.httpLoader'])
+    .config(function($interpolateProvider, httpMethodInterceptorProvider){
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
+        httpMethodInterceptorProvider.whitelistDomain('');
     })
-    .run(function($rootScope, AuthUser, $state) {
+    .run(function($rootScope, AuthUser, $state, Config) {
+        $rootScope.Config = Config;
         $rootScope.User = AuthUser;
         $rootScope.State = $state;
     })
@@ -23,5 +25,15 @@ angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial'
                     }
                 });
             }
+        };
+    })
+    .filter('path', function(Config) {
+        return function(_path) {
+            return Config.basePath + _path;
+        };
+    })
+    .filter('url', function(Config) {
+        return function(_path) {
+            return Config.baseUrl + _path;
         };
     });

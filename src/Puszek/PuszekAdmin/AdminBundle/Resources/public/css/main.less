@@ -1,0 +1,61 @@
+form {
+    padding: 0 20px;
+
+    div.submit {
+        padding: 10px 0;
+    }
+}
+
+md-button .md-button-inner {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+md-input-group label, md-input-group input {
+    padding-left: 2px;
+    width: 250px;
+}
+md-input-group label {
+    padding-bottom: 2px;
+}
+
+.panel {
+    &.panel-lg {
+        width: 850px;
+    }
+    &.panel-md {
+        width: 600px;
+    }
+    &.panel-sm {
+        width: 350px;
+    }
+}
+
+.http-loader__wrapper {
+    .mask {
+        top: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        background: black;
+        z-index: 999998;
+    }
+    .content {
+        left: 0;
+        top: 0;
+        position: fixed;
+        z-index: 999999;
+        width: 100%;
+        height: 100%;
+
+        > div {
+            text-align: center;
+
+            img {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}

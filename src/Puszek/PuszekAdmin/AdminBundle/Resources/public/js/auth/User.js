@@ -38,9 +38,11 @@ angular.module('puszekApp')
                     }
                     userData.isLoaded = true;
                     (service.onLoad || angular.noop)();
-                    $state.transitionTo($state.current, $stateParams, {
-                        reload: true, inherit: false, notify: true
-                    });
+                    if ($state.current.name !== '') {
+                        $state.transitionTo($state.current.name, $stateParams, {
+                            reload: true, inherit: false, notify: true
+                        });
+                    }
                 })
                 .error(function() {
                     $log.log('me error:', arguments);
