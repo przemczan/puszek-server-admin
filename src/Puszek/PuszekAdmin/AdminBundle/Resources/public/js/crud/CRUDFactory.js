@@ -36,6 +36,12 @@ angular.module('puszekApp')
 
             /**
              *
+             * @type {Object}
+             */
+            var collection = null;
+
+            /**
+             *
              * @param _config
              */
             function configure(_config) {
@@ -56,17 +62,27 @@ angular.module('puszekApp')
                 } else {
                     parentElement = RestApi;
                 }
-                parentElement.all(config.elementRoute).getList().then(function(_records) {
-                    records = _records;
-                });
+                collection = parentElement.all(config.elementRoute);
+                self.refresh();
             }
+
+            /**
+             *
+             */
+            this.refresh = function(_callback) {
+                collection.getList().then(function(_records) {
+                    records = _records;
+                    (_callback || angular.noop)(_records);
+                });
+            };
 
             /**
              *
              */
             this.new = function() {
                 var item = {};
-                Restangular.restangularizeElement(parentElement, item, config.elementRoute);
+                //item[config.elementPk] = 0;                console.log(parentElement);
+                //RestApi.restangularizeElement(parentElement, item, config.elementRoute);
 
                 return item;
             };
@@ -94,13 +110,9 @@ angular.module('puszekApp')
              * @param _item
              */
             this.save = function(_item) {
-                _item.save().then(
-                    function (_savedItem) {
-                        parentElement.one(config.elementRoute, _savedItem[config.elementPk]).get().then(function (_realItem) {
-                            RestApi.copy(_realItem, _item);
-                        });
-                    }
-                );
+                collection.post(_item).then(function() {
+                    self.refresh();
+                });
             };
 
             /**
@@ -108,15 +120,9 @@ angular.module('puszekApp')
              * @param _item
              */
             this.delete = function(_item) {
-                _item.remove().then(
-                    function () {
-                        var index = records.indexOf(_item);
-                        if (index >= 0) {
-                            records.splice(index, 1);
-                        }
-                    }
-                );
-
+                _item.remove().then(function() {
+                    self.refresh();
+                });
             };
 
             /**

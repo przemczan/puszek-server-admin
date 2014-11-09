@@ -1,12 +1,12 @@
 <div layout="vertical">
     <md-whiteframe class="md-whiteframe-z1" layout="horizontal" layout-padding>
-        <md-button ui-sref="clients_create">New client</md-button>
+        <md-button ng-click="crudGUI.new()">New client</md-button>
     </md-whiteframe>
     <br />
-    <div layout-padding layout>
-        <md-card ng-repeat="item in crud.getList()" >
-            item
+    <div layout-padding layout="vertical">
+        <md-card ng-repeat="item in crudGUI.getItems()">
+            [[ item.name ]] | [[ item.private_key ]]
+            <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?">Delete</md-button>
         </md-card>
     </div>
-
 </div>

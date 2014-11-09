@@ -6,6 +6,13 @@ form {
     }
 }
 
+.ng-dirty .ng-invalid label {
+    color: red !important;
+}
+.ng-pristine .error {
+    display: none;
+}
+
 md-button .md-button-inner {
     padding-left: 15px;
     padding-right: 15px;
@@ -55,6 +62,59 @@ md-input-group label {
 
             img {
                 margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+md-backdrop {
+    z-index: 999990
+}
+
+.md-dialog-container {
+    z-index: 999991;
+
+    md-dialog.modal {
+        width: 95%;
+        max-width: 95%;
+
+        md-content {
+            padding: 25px 25px 10px 25px;
+        }
+    }
+}
+
+.page-lg {
+    md-dialog.modal {
+        width: 650px;
+    }
+
+    md-dialog.modal.modal-window {
+        width: 50%;
+    }
+}
+.page-md {
+    md-dialog.modal {
+        width: 70%;
+    }
+
+    md-dialog.modal.modal-window {
+        width: 65%;
+    }
+}
+
+#notification {
+    md-toast {
+        max-height: none;
+        height: auto;
+        margin-top: 5px;
+        padding-bottom: 8px;
+
+        div {
+            margin: 8px 8px 0 8px;
+
+            &.notification-error {
+                color: #F08080;
             }
         }
     }

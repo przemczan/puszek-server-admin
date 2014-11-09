@@ -18,6 +18,11 @@ class ClientsController extends AbstractController
      */
     protected $repository;
 
+    /**
+     * @var EntityManager
+     */
+    protected $em;
+
 
     /**
      * @param ContainerInterface $container
@@ -25,8 +30,8 @@ class ClientsController extends AbstractController
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);
-        $em = $this->get('doctrine_mongodb')->getManager();
-        $this->repository = $em->getRepository('Puszek\PuszekAdmin\AdminBundle\Document\Client');
+        $this->em = $this->get('doctrine_mongodb')->getManager();
+        $this->repository = $this->em->getRepository('Puszek\PuszekAdmin\AdminBundle\Document\Client');
     }
 
     /**
@@ -117,8 +122,34 @@ class ClientsController extends AbstractController
      * @param $slug
      * @return Response
      */
-    public function getClientAction($slug)
+    public function deleteClientsAction($slug)
     {
-        return $this->restify($this->repository->find($slug));
+        $client = $this->repository->find($slug);
+        if ($client) {
+            $this->em->remove($client);
+            $this->em->flush();
+        }
+
+        return new Response();
+    }
+
+    /**
+     * @return Response
+     */
+    public function postClientsAction(Request $request)
+    {
+        $form = $this->createForm(new ClientType());
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $client = $form->getData();
+            $client->setPrivateKey(sha1(microtime() . rand(1, 999999999)));
+            $this->em->persist($client);
+            $this->em->flush();
+
+            return $this->restify($client);
+        }
+
+        return new Response($form->getErrors());
     }
 }

@@ -1,0 +1,7 @@
+<div ng-controller="NotificationController">
+    <md-toast class="md-default-theme" ng-if="Notification.getMessages().length" layout="vertical" ng-init="Notification.redraw()">
+        <div ng-repeat="msg in Notification.getMessages()" class="notification-[[ msg.getType() ]]">
+            [[ msg.getMessage() ]]
+        </div>
+    </md-toast>
+</div>

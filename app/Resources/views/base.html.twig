@@ -20,10 +20,11 @@
 
 </head>
 
-<body data-ng-app="puszekApp" data-ng-controller="mainController as main" layout="horizontal">
+<body data-ng-app="puszekApp" data-ng-controller="mainController as main" layout="horizontal"
+      ng-class="{ 'page-lg': $mdMedia('lg'), 'page-md': $mdMedia('md') && !$mdMedia('lg'), 'page-sm': $mdMedia('sm') && !$mdMedia('md') && !$mdMedia('lg') }">
 
     <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2"
-                is-locked-open="$media('md')" static-include="/views/commons/mainMenu.html"
+                is-locked-open="$mdMedia('md')" static-include="/views/commons/mainMenu.html"
                 md-theme="blue-grey"></md-sidenav>
 
     <div layout="vertical" layout-fill md-theme="blue-grey">
@@ -34,6 +35,7 @@
     </div>
 
     <div data-ng-http-loader data-template="{{ app.request.basePath }}/views/commons/loader.html"></div>
+    <div id="notification" ng-include="'{{ app.request.basePath }}/views/commons/notification.html'"></div>
 
     {% block javascripts %}
         {% javascripts output="assets/compiled/main.js"
@@ -50,6 +52,7 @@
             '@angular_http_loader_js'
 
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/app.js'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/modal/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/auth/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/crud/*'

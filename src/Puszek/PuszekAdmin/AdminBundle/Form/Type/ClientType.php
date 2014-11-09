@@ -19,7 +19,6 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('privateKey')
             ->add('submit', 'submit');
     }
 
@@ -29,7 +28,8 @@ class ClientType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-                'data_class' => 'Puszek\PuszekAdmin\AdminBundle\Document\Client'
+                'data_class' => 'Puszek\PuszekAdmin\AdminBundle\Document\Client',
+                'csrf_protection' => false,
             ]);
     }
 
@@ -40,6 +40,6 @@ class ClientType extends AbstractType
      */
     public function getName()
     {
-        return 'client';
+        return '';
     }
 }
