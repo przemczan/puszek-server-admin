@@ -19,11 +19,18 @@ angular.module('puszekApp')
              * create new item
              */
             this.new = function() {
-                var item = crud.new();
+                self.edit(crud.new());
+            };
+
+            /**
+             * create new item
+             */
+            this.edit = function(_item) {
+                var actionConfig = _config[_item.fromServer ? 'edit' : 'new'];
                 ModalWindow.open(function($scope, $mdDialog) {
-                    $scope.title = _config.new.title;
-                    $scope.contentTemplateUrl = _config.new.templateUrl;
-                    $scope.item = item;
+                    $scope.title = actionConfig.title;
+                    $scope.contentTemplateUrl = actionConfig.templateUrl;
+                    $scope.item = _item;
                     $scope.$mdDialog = $mdDialog;
 
                     $scope.save = function(_form) {
@@ -51,7 +58,7 @@ angular.module('puszekApp')
             /**
              * save item
              */
-            this.save = function(_form, _item) {
+            this.save = function(_item) {
                 return crud.save(_item);
             };
 

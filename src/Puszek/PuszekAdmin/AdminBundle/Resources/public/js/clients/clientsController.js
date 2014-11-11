@@ -10,6 +10,10 @@ angular.module('puszekApp')
                 'new' : {
                     title: 'New client',
                     templateUrl: Config.basePath + '/views/clients/new.html'
+                },
+                'edit' : {
+                    title: 'Edit client',
+                    templateUrl: Config.basePath + '/views/clients/edit.html'
                 }
             });
         });

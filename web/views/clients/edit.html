@@ -1,0 +1,13 @@
+<md-content>
+    <form role="form" name="form">
+        <div class="row">
+            <md-text-float type="text" id="name" label="Client name" ng-model="item.name" name="name" disabled></md-text-float>
+            <md-text-float type="text" id="private_key" label="Private Key" ng-model="item.private_key" name="private_key" required class="long"></md-text-float>
+            <div class="error" ng-if="!form.private_key.$valid">This field is required</div>
+        </div>
+    </form>
+</md-content>
+<div class="md-actions">
+    <md-button ng-click="save(form)">Save</md-button>
+    <md-button ng-click="$mdDialog.cancel()">Cancel</md-button>
+</div>

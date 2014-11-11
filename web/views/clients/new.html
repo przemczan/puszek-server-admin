@@ -1,12 +1,12 @@
 <md-content>
-    <form role="form" name="loginForm">
+    <form role="form" name="form">
         <div class="row">
-            <md-text-float type="email" id="login_username" label="E-mail" ng-model="item.name" name="name" required></md-text-float>
-            <div class="error" ng-if="!loginForm.name.$valid">[[ loginForm.name.$error ]]</div>
+            <md-text-float type="text" id="login_username" label="Client name" ng-model="item.name" name="name" required></md-text-float>
+            <div class="error" ng-if="!form.name.$valid">This field is required</div>
         </div>
     </form>
 </md-content>
 <div class="md-actions">
-    <md-button ng-click="save(loginForm)">Save</md-button>
+    <md-button ng-click="save(form)">Save</md-button>
     <md-button ng-click="$mdDialog.cancel()">Cancel</md-button>
 </div>
