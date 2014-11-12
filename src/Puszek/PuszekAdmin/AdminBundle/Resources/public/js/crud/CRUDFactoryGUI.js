@@ -52,7 +52,7 @@ angular.module('puszekApp')
              * cancel creation/edit
              */
             this.cancel = function() {
-                ModalWindow.cancel();
+                ModalWindow.hide();
             };
 
             /**

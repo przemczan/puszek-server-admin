@@ -80,11 +80,7 @@ angular.module('puszekApp')
              *
              */
             this.new = function() {
-                var item = {};
-                //item[config.elementPk] = 0;                console.log(parentElement);
-                //RestApi.restangularizeElement(parentElement, item, config.elementRoute);
-
-                return item;
+                return {};
             };
 
             /**
@@ -102,14 +98,12 @@ angular.module('puszekApp')
              *
              * @param _item
              */
-            this.cancel = function (_item) {
-            };
-
-            /**
-             *
-             * @param _item
-             */
             this.save = function(_item) {
+                if (_item.fromServer) {
+                    return _item.save().then(function() {
+                        self.refresh();
+                    });
+                }
                 return collection.post(_item).then(function() {
                     self.refresh();
                 });

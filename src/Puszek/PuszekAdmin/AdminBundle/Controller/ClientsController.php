@@ -150,6 +150,32 @@ class ClientsController extends AbstractController
             return $this->restify($client);
         }
 
-        return new Response($form->getErrors());
+        return new Response($form->getErrors(), 500);
+    }
+
+    /**
+     * @param Request $request
+     * @param $slug
+     * @return Response
+     */
+    public function putClientsAction(Request $request, $slug)
+    {
+        $client = $this->repository->find($slug);
+        if (!$client instanceof Client) {
+            return new Response('Resource not found', 500);
+        }
+
+        $form = $this->createForm(new ClientType(), $client);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $client = $form->getData();
+            $this->em->persist($client);
+            $this->em->flush();
+
+            return $this->restify($client);
+        }
+
+        return $this->restify($form->getErrors(true), null, 500);
     }
 }

@@ -19,6 +19,7 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('privateKey')
             ->add('submit', 'submit');
     }
 
