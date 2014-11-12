@@ -5,7 +5,6 @@ namespace Puszek\PuszekAdmin\AdminBundle\Controller;
 use Doctrine\ORM\EntityRepository;
 use Puszek\PuszekAdmin\AdminBundle\Document\Client;
 use Puszek\PuszekAdmin\AdminBundle\Form\Type\ClientType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -163,8 +162,10 @@ class ClientsController extends AbstractController
         $client = $this->repository->find($slug);
         if (!$client instanceof Client) {
             return new Response('Resource not found', 500);
+
         }
 
+        $request->setMethod('POST');
         $form = $this->createForm(new ClientType(), $client);
         $form->handleRequest($request);
 

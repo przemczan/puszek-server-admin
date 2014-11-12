@@ -23,10 +23,11 @@ angular.module('puszekApp')
             };
 
             /**
-             * create new item
+             * edit item
              */
             this.edit = function(_item) {
                 var actionConfig = _config[_item.fromServer ? 'edit' : 'new'];
+
                 ModalWindow.open(function($scope, $mdDialog) {
                     $scope.title = actionConfig.title;
                     $scope.contentTemplateUrl = actionConfig.templateUrl;
@@ -36,15 +37,13 @@ angular.module('puszekApp')
                     $scope.save = function(_form) {
                         _form.$setDirty();
                         if (_form.$valid) {
-                            self.save($scope.item).then(function() {
+                            crud.save($scope.item).then(function() {
                                 ModalWindow.hide();
                             });
                         }
                     };
 
-                    $scope.cancel = function() {
-                        self.cancel();
-                    };
+                    $scope.cancel = self.cancel;
                 });
             };
 
@@ -53,13 +52,6 @@ angular.module('puszekApp')
              */
             this.cancel = function() {
                 ModalWindow.hide();
-            };
-
-            /**
-             * save item
-             */
-            this.save = function(_item) {
-                return crud.save(_item);
             };
 
             /**

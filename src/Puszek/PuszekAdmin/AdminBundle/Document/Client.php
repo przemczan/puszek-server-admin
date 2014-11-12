@@ -3,6 +3,7 @@
 namespace Puszek\PuszekAdmin\AdminBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @MongoDB\Document(collection="client")
@@ -22,6 +23,7 @@ class Client
 
     /**
      * @MongoDB\String
+     * @Serializer\SerializedName("privateKey")
      */
     protected $privateKey;
 
