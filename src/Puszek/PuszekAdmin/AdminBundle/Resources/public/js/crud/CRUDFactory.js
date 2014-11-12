@@ -110,7 +110,7 @@ angular.module('puszekApp')
              * @param _item
              */
             this.save = function(_item) {
-                collection.post(_item).then(function() {
+                return collection.post(_item).then(function() {
                     self.refresh();
                 });
             };
@@ -120,7 +120,7 @@ angular.module('puszekApp')
              * @param _item
              */
             this.delete = function(_item) {
-                _item.remove().then(function() {
+                return _item.remove().then(function() {
                     self.refresh();
                 });
             };

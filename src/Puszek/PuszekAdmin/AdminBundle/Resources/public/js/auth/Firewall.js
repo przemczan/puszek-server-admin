@@ -47,6 +47,7 @@ angular.module('puszekApp')
          * on state change
          */
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+            $log.log('state change started to:', toState.name);
             if (!authorize(toState.data ? toState.data.access || {} : {})) {
                 event.preventDefault();
                 $log.log('state not authorized:', toState);

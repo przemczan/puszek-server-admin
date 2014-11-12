@@ -9,6 +9,9 @@ angular.module('puszekApp')
         }
 
         return  {
-            open: open
+            open: open,
+            hide: function() {
+                return $mdDialog.hide();
+            }
         };
     });
