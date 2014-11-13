@@ -3,18 +3,20 @@ angular.module('puszekApp')
 
         RestApi.one('clients', 1);
         $scope.crudGUI = Singleton.get('clients.crud', function() {
-            return RestApiCRUDFactoryGUI.create({
-                crud: {
-                    elementRoute: 'clients'
-                },
-                'new' : {
-                    title: 'New client',
-                    templateUrl: Config.basePath + '/views/clients/new.html'
-                },
-                'edit' : {
-                    title: 'Edit client',
-                    templateUrl: Config.basePath + '/views/clients/edit.html'
-                }
-            });
+            return {
+                object: RestApiCRUDFactoryGUI.create({
+                    crud: {
+                        elementRoute: 'clients'
+                    },
+                    'new': {
+                        title: 'New client',
+                        templateUrl: Config.basePath + '/views/clients/new.html'
+                    },
+                    'edit': {
+                        title: 'Edit client',
+                        templateUrl: Config.basePath + '/views/clients/edit.html'
+                    }
+                })
+            };
         });
     });

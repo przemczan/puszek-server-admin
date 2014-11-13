@@ -1,15 +1,18 @@
 angular.module('puszekApp')
-    .factory('Singleton', function () {
-        var objects = {};
+    .factory('Singleton', function ($rootScope) {
+        var objects = {},
+            $scope = $rootScope.$new();
 
         return {
-            get: function(_key, _constructor, _repeater) {
+            get: function(_key, _constructor) {
+
                 if (typeof objects[_key] == 'undefined') {
-                    objects[_key] = {
-                        object: _constructor()
-                    };
-                } else if (typeof _repeater == 'function') {
-                    _repeater(objects[_key].object);
+                    objects[_key] = _constructor();
+                    if (objects[_key].removeOnLogout || true) {
+                        $scope.$on('auth.logout', function() {
+                            delete objects[_key];
+                        });
+                    }
                 }
 
                 return objects[_key].object;

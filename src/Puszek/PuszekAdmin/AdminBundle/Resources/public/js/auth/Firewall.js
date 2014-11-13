@@ -53,10 +53,10 @@ angular.module('puszekApp')
                 $log.log('state not authorized:', toState);
                 if (!AuthUser.isLoaded() && fromState.url === '^') {
                     $log.log('user not loaded, saving state');
-                    AuthUser.onLoad = function() {
+                    AuthUser.one('onload', function() {
                         $log.log('user loaded, going to:', toState.name);
                         $state.go(toState.name);
-                    };
+                    });
                 } else {
                     $log.log('logged in status:', AuthUser.isLoggedIn());
                     if (AuthUser.isLoggedIn())

@@ -19,10 +19,11 @@ angular.module('puszekApp')
             })
             .state('auth_logout', {
                 url: '/auth/logout',
-                onEnter: function($http, AuthUser, $state) {
+                onEnter: function($rootScope, $http, AuthUser, $state) {
                     $http.get(Config.baseUrl + '/logout')
                         .success(function() {
                             AuthUser.reload();
+                            $rootScope.$broadcast('auth.logout');
                             $state.go('homepage');
                         })
                 },

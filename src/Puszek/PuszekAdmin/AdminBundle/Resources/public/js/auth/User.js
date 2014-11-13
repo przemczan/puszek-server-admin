@@ -37,7 +37,7 @@ angular.module('puszekApp')
                         userData.roles = _data.roles || [];
                     }
                     userData.isLoaded = true;
-                    (service.onLoad || angular.noop)();
+                    $service.trigger('onload');
                     if ($state.current.name !== '') {
                         $state.transitionTo($state.current.name, $stateParams, {
                             reload: true, inherit: false, notify: true
@@ -52,28 +52,39 @@ angular.module('puszekApp')
         reload();
 
         var service = {
-            isLoggedIn: function() {
-                return !!userData.user;
-            },
+                isLoggedIn: function() {
+                    return !!userData.user;
+                },
 
-            getFullName: function() {
-                return userData.user ? userData.user.fullName : '';
-            },
+                getFullName: function() {
+                    return userData.user ? userData.user.fullName : '';
+                },
 
-            hasRole: function(_role) {
-                return !!userData.roles[_role];
-            },
+                hasRole: function(_role) {
+                    return !!userData.roles[_role];
+                },
 
-            isLoaded: function() {
-                return userData.isLoaded;
-            },
+                isLoaded: function() {
+                    return userData.isLoaded;
+                },
 
-            reload: function() {
-                reload();
-            },
+                reload: function() {
+                    reload();
+                },
 
-            onLoad: null
-        };
+                on: function() {
+                    return $service.on.apply($service, arguments);
+                },
+
+                one: function() {
+                    return $service.one.apply($service, arguments);
+                },
+
+                off: function() {
+                    return $service.off.apply($service, arguments);
+                }
+            },
+            $service = $(service);
 
         return service;
     });

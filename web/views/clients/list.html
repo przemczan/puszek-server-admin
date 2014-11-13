@@ -1,8 +1,9 @@
 <div layout="vertical">
-    <md-whiteframe class="md-whiteframe-z1" layout="horizontal" layout-padding>
-        <md-button ng-click="crudGUI.new()">New client</md-button>
-    </md-whiteframe>
-    <br />
+
+    <md-button class="md-fab md-primary actions-button" md-theme="cyan" aria-label="Actions" ng-click="crudGUI.new()">
+        <md-icon icon="https://google.github.io/material-design-icons/navigation/svg/ic_menu_24px.svg" />
+    </md-button>
+
     <md-list class="main-content">
         <md-item ng-repeat="item in crudGUI.getItems()">
             <md-item-content>
@@ -15,7 +16,7 @@
                 </div>
                 <div class="md-tile-right">
                     <md-button ng-click="crudGUI.edit(item)">Edit</md-button>
-                    <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?">Delete</md-button>
+                    <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?" class="md-warn">Delete</md-button>
                 </div>
             </md-item-content>
             <md-divider inset ng-if="!$last"></md-divider>

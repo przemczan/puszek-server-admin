@@ -23,15 +23,15 @@
 <body data-ng-app="puszekApp" data-ng-controller="mainController as main" layout="horizontal"
       ng-class="{ 'page-lg': $mdMedia('lg'), 'page-md': $mdMedia('md') && !$mdMedia('lg'), 'page-sm': $mdMedia('sm') && !$mdMedia('md') && !$mdMedia('lg') }">
 
-    <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2"
-                is-locked-open="$mdMedia('md')" static-include="/views/commons/mainMenu.html"
-                md-theme="blue-grey"></md-sidenav>
-
     <div layout="vertical" layout-fill md-theme="blue-grey">
-        <md-toolbar class="md-medium-tall">
+        <md-toolbar class="md-whiteframe-z1">
             <h2 class="md-toolbar-tools" ui-view="contentHeader"></h2>
         </md-toolbar>
-        <md-content scroll-y flex ui-view="content"></md-content>
+        <section layout="horizontal" flex>
+            <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2"
+                        is-locked-open="true" static-include="/views/commons/mainMenu.html"></md-sidenav>
+            <md-content scroll-y flex ui-view="content"></md-content>
+        </section>
     </div>
 
     <div data-ng-http-loader data-template="{{ app.request.basePath }}/views/commons/loader.html"></div>
