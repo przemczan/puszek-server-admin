@@ -16,7 +16,7 @@ angular.module('puszekApp')
              * Self reference
              * @type {CRUDController}
              */
-            var self = this, $self = $(this);
+            var self = this;
 
             /**
              * Restangular instance
@@ -78,35 +78,13 @@ angular.module('puszekApp')
 
             /**
              *
-             */
-            this.new = function() {
-                return {};
-            };
-
-            /**
-             *
-             * @param _item
-             */
-            this.edit = function(_item) {
-                var editedItem = {};
-                RestApi.copy(_item, editedItem);
-
-                return editedItem;
-            };
-
-            /**
-             *
              * @param _item
              */
             this.save = function(_item) {
                 if (_item.fromServer) {
-                    return _item.save().then(function() {
-                        self.refresh();
-                    });
+                    return _item.save();
                 }
-                return collection.post(_item).then(function() {
-                    self.refresh();
-                });
+                return collection.post(_item);
             };
 
             /**
@@ -125,6 +103,14 @@ angular.module('puszekApp')
              */
             this.getItems = function() {
                 return records;
+            };
+
+            /**
+             * Restangular object
+             * @returns {*}
+             */
+            this.getRestApi = function() {
+                return RestApi;
             };
 
 

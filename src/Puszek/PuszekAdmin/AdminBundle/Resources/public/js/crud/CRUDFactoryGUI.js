@@ -16,28 +16,28 @@ angular.module('puszekApp')
             var crud = CRUDFactory.create(_config.crud || {});
 
             /**
-             * create new item
+             *
+             * @param _item
              */
-            this.new = function() {
-                self.edit(crud.new());
-            };
-
-            /**
-             * edit item
-             */
-            this.edit = function(_item) {
-                var actionConfig = _config[_item.fromServer ? 'edit' : 'new'];
+            function openItemForm(_item) {
+                var _model = _item.fromServer ? crud.getRestApi().copy(_item) : _item,
+                    actionConfig = _config[_item.fromServer ? 'edit' : 'new'];
 
                 ModalWindow.open(function($scope, $mdDialog) {
                     $scope.title = actionConfig.title;
                     $scope.contentTemplateUrl = actionConfig.templateUrl;
-                    $scope.item = _item;
+                    $scope.item = _model;
                     $scope.$mdDialog = $mdDialog;
 
                     $scope.save = function(_form) {
                         _form.$setDirty();
                         if (_form.$valid) {
-                            crud.save($scope.item).then(function() {
+                            crud.save($scope.item).then(function(_savedItem) {
+                                if (_item.fromServer) {
+                                    crud.getRestApi().copy(_savedItem, _item);
+                                } else {
+                                    crud.refresh();
+                                }
                                 ModalWindow.hide();
                             });
                         }
@@ -45,6 +45,20 @@ angular.module('puszekApp')
 
                     $scope.cancel = self.cancel;
                 });
+            }
+
+            /**
+             * create new item
+             */
+            this.new = function() {
+                openItemForm({});
+            };
+
+            /**
+             * edit item
+             */
+            this.edit = function(_item) {
+                openItemForm(_item);
             };
 
             /**

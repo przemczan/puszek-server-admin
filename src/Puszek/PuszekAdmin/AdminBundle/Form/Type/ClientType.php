@@ -15,24 +15,15 @@ class ClientType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('id')
-            //->add('name')
-            //->add('privateKey')
-        ;
-
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $client = $event->getData();
-            $form = $event->getForm();
-
-            if (!$client or null === $client->getId()) {
-                $form->add('name');
-                //$form->remove('privateKey');
-            } else {
-                $form->add('privateKey');
-                //$form->remove('name');
+                $client = $event->getData();
+                $form = $event->getForm();
+                $isNew = !$client or null === $client->getId();
+                $form->add('id', null, ['mapped' => false]);
+                $form->add('name', null, ['mapped' => $isNew]);
+                $form->add('privateKey', null, ['mapped' => !$isNew]);
             }
-        });
+        );
     }
 
     /**
@@ -44,6 +35,7 @@ class ClientType extends AbstractType
                 'data_class' => 'Puszek\PuszekAdmin\AdminBundle\Document\Client',
                 'csrf_protection' => false,
                 'allow_extra_fields' => true,
+                'ignore_extra_fields' => true,
             ]);
     }
 

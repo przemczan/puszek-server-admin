@@ -1,8 +1,17 @@
 <md-content>
     <form role="form" name="form">
         <div class="row">
-            <md-text-float type="text" id="name" label="Client name" ng-model="item.name" name="name" disabled></md-text-float>
-            <md-text-float type="text" id="privateKey" label="Private Key" ng-model="item.privateKey" name="privateKey" required class="long"></md-text-float>
+                <md-text-float type="text" id="name" label="Client name" ng-model="item.name" name="name" disabled></md-text-float>
+        </div>
+        <div class="row">
+            <div class="cell">
+                <md-text-float type="text" id="privateKey" label="Private Key" ng-model="item.privateKey" name="privateKey" required class="long"></md-text-float>
+            </div>
+            <div class="cell">
+                <md-button>Regenarte</md-button>
+            </div>
+        </div>
+        <div class="row">
             <div class="error" ng-if="!form.privateKey.$valid">This field is required</div>
         </div>
     </form>
