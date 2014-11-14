@@ -1,21 +1,19 @@
-<md-content layout-padding layout-align="center" md-theme="red">
-    <div flex="50" offset="25">
-        <md-toolbar>
-            <h2 class="md-toolbar-tools">Login</h2>
-        </md-toolbar>
-        <md-whiteframe class="md-whiteframe-z1" layout="horizontal" layout-padding layout-align="center">
-            <div class="alert alert-danger" ng-if="error">[[ error ]]</div>
-            <form role="form" ng-submit="loginForm.$valid && doLogin()" name="loginForm">
-                <div class="row">
-                    <md-text-float type="text" id="login_username" label="E-mail" ng-model="loginFormData._username"></md-text-float>
-                </div>
-                <div class="row">
-                    <md-text-float type="password" id="login_password" label="Password" ng-model="loginFormData._password"></md-text-float>
-                </div>
-                <div class="submit">
-                    <md-button class="md-raised md-primary" type="submit">Submit</md-button>
-                </div>
-            </form>
-        </md-whiteframe>
-    </div>
+<md-content layout-padding layout-align="center" md-theme="red" class="main-content">
+    <md-toolbar>
+        <h2 class="md-toolbar-tools">Login</h2>
+    </md-toolbar>
+    <md-whiteframe class="md-whiteframe-z1" layout="horizontal" layout-padding layout-align="center">
+        <div class="alert alert-danger" ng-if="error">[[ error ]]</div>
+        <form role="form" ng-submit="loginForm.$valid && doLogin()" name="loginForm">
+            <div class="row">
+                <md-text-float type="text" id="login_username" label="E-mail" ng-model="loginFormData._username"></md-text-float>
+            </div>
+            <div class="row">
+                <md-text-float type="password" id="login_password" label="Password" ng-model="loginFormData._password"></md-text-float>
+            </div>
+            <div class="submit">
+                <md-button class="md-raised md-primary" type="submit">Submit</md-button>
+            </div>
+        </form>
+    </md-whiteframe>
 </md-content>
