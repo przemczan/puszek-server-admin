@@ -1,4 +1,4 @@
-<div data-ng-controller="mainMenuController as mainMenu">
+<div data-ng-controller="mainMenuController as mainMenu" ng-click="$media('max-width: 700px') && main.menuToggle()">
     <md-content layout="vertical" class="main-menu">
         <md-list layout="vertical" ng-if="User.isLoggedIn()">
             <md-list-item ink-ripple ui-sref="homepage" ui-sref-active="active">
