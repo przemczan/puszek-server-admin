@@ -172,6 +172,7 @@ md-backdrop {
     position: fixed;
     right: 50px;
     bottom: 40px;
+    z-index: 10000;
 
     .actions-button {
 
@@ -200,6 +201,15 @@ md-backdrop {
             left: 16px;
         }
 
+        .mask {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
         .md-icon.first {
             opacity: 1;
             transform: rotate(0);
@@ -217,12 +227,12 @@ md-backdrop {
         .actions-button {
             .md-icon.first {
                 opacity: 0;
-                transform: rotate(270deg) translate(0, 4px);
+                transform: rotate(-270deg) translate(0, 4px);
             }
 
             .md-icon.second {
                 opacity: 1;
-                transform: rotate(540deg) translate(0, 0);
+                transform: rotate(0deg) translate(0, 0);
             }
         }
     }

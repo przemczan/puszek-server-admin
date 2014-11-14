@@ -1,20 +1,21 @@
 <div layout="vertical">
 
     <div class="actions-menu" ng-controller="actionsMenuController as actionsMenuCtrl">
-        <div class="actions-items" ng-show="actionsMenuCtrl.open">
-            <md-button class="md-fab" ng-click="crudGUI.new()" aria-label="New">
-                <md-icon icon="https://google.github.io/material-design-icons/content/svg/ic_add_24px.svg" />
-            </md-button>
-        </div>
-        <md-button class="md-fab md-primary actions-button" md-theme="cyan" aria-label="Actions">
-            <object class="md-icon first" data="https://google.github.io/material-design-icons/navigation/svg/ic_menu_24px.svg" />
-            <object class="md-icon second" data="https://google.github.io/material-design-icons/hardware/svg/ic_keyboard_arrow_up_24px.svg" />
+        <!--<div class="actions-items" ng-show="actionsMenuCtrl.open">-->
+            <!--<md-button class="md-fab md-primary" md-theme="deep-orange" aria-label="New">-->
+                <!--<md-icon icon="https://google.github.io/material-design-icons/content/svg/ic_add_24px.svg" />-->
+            <!--</md-button>-->
+        <!--</div>-->
+        <md-button class="md-fab md-primary actions-button" md-theme="default" aria-label="Actions" ng-click="crudGUI.new()">
+            <object class="md-icon first" data="https://google.github.io/material-design-icons/content/svg/ic_add_24px.svg" />
+            <object class="md-icon second" data="https://google.github.io/material-design-icons/content/svg/ic_create_24px.svg" />
+            <div class="mask"></div>
         </md-button>
     </div>
 
     <md-list class="main-content">
         <md-item ng-repeat="item in crudGUI.getItems()" layout-padding>
-            <md-item-content class="md-whiteframe-z1">
+            <md-item-content>
                 <!--<div class="md-tile-left">-->
 
                 <!--</div>-->
@@ -27,7 +28,7 @@
                     <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?" class="md-warn">Delete</md-button>
                 </div>
             </md-item-content>
-            <md-divider inset ng-if="!$last"></md-divider>
+            <md-divider ng-if="!$last"></md-divider>
         </md-item>
     </md-list>
 </div>
