@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('authController', function($scope, $http, Config, AuthUser, $log) {
+    .controller('authController', function($rootScope, $scope, $http, Config, AuthUser, $log) {
 
         $scope.loginFormData = {};
         $scope.error = '';
@@ -10,7 +10,9 @@ angular.module('puszekApp')
                     $log.log('login response:', _response);
                     if (angular.isObject(_response)) {
                         if (_response.authenticated) {
-                            AuthUser.reload();
+                            AuthUser.reload().success(function() {
+                                $rootScope.$broadcast('auth.login');
+                            });
                         } else {
                             $scope.error = _response.error;
                         }

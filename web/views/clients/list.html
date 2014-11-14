@@ -1,15 +1,23 @@
 <div layout="vertical">
 
-    <md-button class="md-fab md-primary actions-button" md-theme="cyan" aria-label="Actions" ng-click="crudGUI.new()">
-        <md-icon icon="https://google.github.io/material-design-icons/navigation/svg/ic_menu_24px.svg" />
-    </md-button>
+    <div class="actions-menu" ng-controller="actionsMenuController as actionsMenuCtrl">
+        <div class="actions-items" ng-show="actionsMenuCtrl.open">
+            <md-button class="md-fab" ng-click="crudGUI.new()" aria-label="New">
+                <md-icon icon="https://google.github.io/material-design-icons/content/svg/ic_add_24px.svg" />
+            </md-button>
+        </div>
+        <md-button class="md-fab md-primary actions-button" md-theme="cyan" aria-label="Actions">
+            <object class="md-icon first" data="https://google.github.io/material-design-icons/navigation/svg/ic_menu_24px.svg" />
+            <object class="md-icon second" data="https://google.github.io/material-design-icons/hardware/svg/ic_keyboard_arrow_up_24px.svg" />
+        </md-button>
+    </div>
 
     <md-list class="main-content">
-        <md-item ng-repeat="item in crudGUI.getItems()">
-            <md-item-content>
-                <div class="md-tile-left">
+        <md-item ng-repeat="item in crudGUI.getItems()" layout-padding>
+            <md-item-content class="md-whiteframe-z1">
+                <!--<div class="md-tile-left">-->
 
-                </div>
+                <!--</div>-->
                 <div class="md-tile-content">
                     <h3>[[ item.name ]]</h3>
                     <h4>[[ item.privateKey ]]</h4>

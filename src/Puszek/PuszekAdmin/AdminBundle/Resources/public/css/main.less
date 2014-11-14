@@ -116,7 +116,7 @@ md-backdrop {
     }
 
     .main-content {
-        width: 900px;
+        width: 880px;
     }
 }
 .page-md {
@@ -168,8 +168,62 @@ md-backdrop {
     }
 }
 
-.actions-button {
+.actions-menu {
     position: fixed;
     right: 50px;
     bottom: 40px;
+
+    .actions-button {
+
+    }
+
+    .actions-items {
+        text-align: center;
+
+        md-button, md-button:hover {
+            margin-bottom: 5px;
+            opacity: 1;
+            transition: all .2s ease-in-out;
+            transform: scale(.7);
+        }
+
+        &.ng-hide md-button {
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+
+    .actions-button {
+        .md-icon {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+        }
+
+        .md-icon.first {
+            opacity: 1;
+            transform: rotate(0);
+            transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9);
+        }
+
+        .md-icon.second {
+            opacity: 0;
+            transform: rotate(270deg) translate(0, -4px);
+            transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9);
+        }
+    }
+
+    &:hover {
+        .actions-button {
+            .md-icon.first {
+                opacity: 0;
+                transform: rotate(270deg) translate(0, 4px);
+            }
+
+            .md-icon.second {
+                opacity: 1;
+                transform: rotate(540deg) translate(0, 0);
+            }
+        }
+    }
 }

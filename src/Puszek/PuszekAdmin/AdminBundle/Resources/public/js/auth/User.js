@@ -9,6 +9,9 @@ angular.module('puszekApp')
             userData = {},
             systemRoles = [];
 
+        /**
+         * Gather all used roles in all states
+         */
         angular.forEach($state.get(), function (_state) {
             if (_state.data && _state.data.access) {
                 if (angular.isArray(_state.data.access.all)) {
@@ -27,7 +30,7 @@ angular.module('puszekApp')
             angular.copy(emptyUser, userData);
             userData.isLoaded = false;
 
-            $http.post(Config.baseUrl + '/auth/me', {
+            return $http.post(Config.baseUrl + '/auth/me', {
                     roles: systemRoles
                 })
                 .success(function (_data) {
