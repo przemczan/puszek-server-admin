@@ -24,12 +24,17 @@
       ng-class="{ 'page-lg': $mdMedia('lg'), 'page-md': $mdMedia('md') && !$mdMedia('lg'), 'page-sm': $mdMedia('sm') && !$mdMedia('md') && !$mdMedia('lg') }">
 
     <div layout="vertical" layout-fill md-theme="default">
-        <md-toolbar class="md-whiteframe-z1">
+        <md-toolbar class="md-whiteframe-z1 main-header">
+            <md-button class="md-fab" ng-click="main.menuToggle()">
+                <p-icon src="/views/icons/ic_menu_24px.svg"></p-icon>
+            </md-button>
             <h2 class="md-toolbar-tools" ui-view="contentHeader"></h2>
         </md-toolbar>
         <section layout="horizontal" flex>
             <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2"
-                        is-locked-open="true" static-include="/views/commons/mainMenu.html"></md-sidenav>
+                        p-include="/views/commons/mainMenu.html" is-locked-open="main.menuOpen"
+                        component-id="mainMenu">
+            </md-sidenav>
             <md-content scroll-y flex ui-view="content"></md-content>
         </section>
     </div>

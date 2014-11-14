@@ -1,12 +1,27 @@
 <div data-ng-controller="mainMenuController as mainMenu">
-    <md-content layout="vertical" layout-padding>
-        <md-list layout="vertical" ng-if="User.isLoggedIn()" layout-padding>
-            <md-button ui-sref-active="md-primary" ui-sref="clients">Clients</md-button>
+    <md-content layout="vertical" class="main-menu">
+        <md-list layout="vertical" ng-if="User.isLoggedIn()">
+            <md-list-item ink-ripple ui-sref="homepage" ui-sref-active="active">
+                <p-icon src="/views/icons/ic_dashboard_24px.svg"></p-icon>
+                <label>Dashboard</label>
+            </md-list-item>
+            <md-list-item ink-ripple ui-sref="clients" ui-sref-active="active">
+                <p-icon src="/views/icons/ic_person_24px.svg"></p-icon>
+                <label>Clients</label>
+            </md-list-item>
         </md-list>
-        <br />
-        <section layout="vertical" layout-padding ng-if="User.isLoaded()">
-            <md-button data-ng-if="User.isLoggedIn()" ui-sref="auth_logout">Logout</md-button>
-            <md-button ui-sref-active="md-primary" ng-if="!User.isLoggedIn()" ui-sref="auth_login">Login</md-button>
-        </section>
+
+        <md-divider></md-divider>
+
+        <md-list layout="vertical">
+            <md-list-item ink-ripple ui-sref="auth_logout" ui-sref-active="active" ng-if="User.isLoggedIn()">
+                <p-icon src="/views/icons/ic_settings_power_24px.svg"></p-icon>
+                <label>Logout</label>
+            </md-list-item>
+            <md-list-item ink-ripple ui-sref="auth_login" ui-sref-active="active" ng-if="!User.isLoggedIn()">
+                <p-icon src="/views/icons/ic_exit_to_app_24px.svg"></p-icon>
+                <label>Log in</label>
+            </md-list-item>
+        </md-list>
     </md-content>
 </div>
