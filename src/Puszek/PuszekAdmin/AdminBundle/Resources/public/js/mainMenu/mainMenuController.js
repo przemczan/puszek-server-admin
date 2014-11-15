@@ -1,3 +1,4 @@
 angular.module('puszekApp')
-    .controller('mainMenuController', function($scope) {
+    .controller('mainMenuController', function($scope, $animate) {
+
     });

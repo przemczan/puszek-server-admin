@@ -24,8 +24,8 @@ form {
     }
 }
 
-md-sidenav {
-    z-index: 1;
+.ng-cloak {
+    visibility: hidden;
 }
 
 md-button .md-button-inner {
@@ -38,6 +38,13 @@ md-fab md-icon {
     height: 24px;
 }
 
+.md-fab-flat, .mdfab-flat:hover {
+    box-shadow: none !important;
+    border: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+}
+
 md-input-group {
     label, md-input-group input {
         padding-left: 2px;
@@ -48,6 +55,21 @@ md-input-group {
     }
     &.long input {
         width: 350px;
+    }
+}
+
+p-popup-actions {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove.ng-hide-remove-active {
+        transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9) !important;
+    }
+
+    &.ng-hide {
+        opacity: 0;
+        transform: scale(.8);
     }
 }
 
@@ -248,8 +270,24 @@ md-backdrop {
 }
 
 md-list {
-    md-list-item {
+    md-item {
         position: relative;
+
+        md-item-content {
+            overflow: hidden;
+        }
+    }
+}
+
+.main-header {
+    z-index: 4;
+}
+
+.main-menu {
+    padding: 10px 0;
+
+    md-item {
+        padding: 12px;
 
         &[ui-sref], &[ui-sref] * {
             cursor: pointer;
@@ -276,23 +314,17 @@ md-list {
     }
 }
 
-.main-header {
-    md-button {
-        position: absolute;
-        zoom: 0.7;
-        top: 14px;
-        left: 14px;
+md-sidenav.main-sidenav {
+    width: 250px;
+    position: absolute !important;
+    z-index: 3;
+    top: 64px;
+
+    &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove.ng-hide-remove-active {
+        transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9) !important;
     }
 
-    h2 {
-        padding-left: 60px;
-    }
-}
-
-.main-menu {
-    padding: 10px 0;
-
-    md-list-item {
-        padding: 12px;
+    &.ng-hide {
+        left: -260px;
     }
 }

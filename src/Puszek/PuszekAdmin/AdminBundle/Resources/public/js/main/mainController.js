@@ -1,10 +1,10 @@
 angular.module('puszekApp')
-    .controller('mainController', function($scope, $state) {
+    .controller('mainController', function($scope, $state, $mdSidenav) {
 
         var self  =this;
-        this.menuOpen = true;
+        this.menuOpen = false;
 
-        self.menuToggle = function() {
-            self.menuOpen = !self.menuOpen;
-        }
+        self.mainMenuToggle = function(_toggle) {
+            self.menuOpen = typeof _toggle == 'boolean' ? _toggle : !self.menuOpen;
+        };
     });

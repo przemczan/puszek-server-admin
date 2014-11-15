@@ -1,21 +1,8 @@
 <div layout="vertical">
 
-    <div class="actions-menu" ng-controller="actionsMenuController as actionsMenuCtrl">
-        <!--<div class="actions-items" ng-show="actionsMenuCtrl.open">-->
-            <!--<md-button class="md-fab md-primary" md-theme="deep-orange" aria-label="New">-->
-                <!--<md-icon icon="https://google.github.io/material-design-icons/content/svg/ic_add_24px.svg" />-->
-            <!--</md-button>-->
-        <!--</div>-->
-        <md-button class="md-fab md-primary actions-button" md-theme="default" aria-label="Actions" ng-click="crudGUI.new()">
-            <p-icon class="first" src="/views/icons/ic_add_24px.svg"></p-icon>
-            <p-icon class="second" src="/views/icons/ic_create_24px.svg"></p-icon>
-            <div class="icon-mask"><md-tooltip>Create client</md-tooltip></div>
-        </md-button>
-    </div>
-
     <md-list class="main-content">
         <md-item ng-repeat="item in crudGUI.getItems()" layout-padding>
-            <md-item-content>
+            <md-item-content class="md-whiteframe-z1">
                 <!--<div class="md-tile-left">-->
 
                 <!--</div>-->
@@ -23,12 +10,30 @@
                     <h3>[[ item.name ]]</h3>
                     <h4>[[ item.privateKey ]]</h4>
                 </div>
-                <div class="md-tile-right">
-                    <md-button ng-click="crudGUI.edit(item)">Edit</md-button>
-                    <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?" class="md-warn">Delete</md-button>
-                </div>
+                <p-popup-actions>
+                    <md-button ng-click="crudGUI.edit(item)">
+                        <p-icon src="/views/icons/ic_edit_24px.svg"></p-icon>
+                    </md-button>
+                    <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?" class="md-warn">
+                        <p-icon src="/views/icons/ic_delete_24px.svg"></p-icon>
+                    </md-button>
+                </p-popup-actions>
             </md-item-content>
             <md-divider ng-if="!$last"></md-divider>
         </md-item>
     </md-list>
+
+    <div class="actions-menu" ng-controller="actionsMenuController as actionsMenuCtrl">
+        <!--<div class="actions-items" ng-show="actionsMenuCtrl.open">-->
+        <!--<md-button class="md-fab md-primary" md-theme="deep-orange" aria-label="New">-->
+        <!--<md-icon icon="https://google.github.io/material-design-icons/content/svg/ic_add_24px.svg" />-->
+        <!--</md-button>-->
+        <!--</div>-->
+        <md-button class="md-fab md-primary actions-button" md-theme="default" aria-label="Create client" ng-click="crudGUI.new()">
+            <p-icon class="first" src="/views/icons/ic_add_24px.svg"></p-icon>
+            <p-icon class="second" src="/views/icons/ic_create_24px.svg"></p-icon>
+            <div class="icon-mask"></div>
+            <md-tooltip>Create client</md-tooltip>
+        </md-button>
+    </div>
 </div>

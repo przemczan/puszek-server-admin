@@ -25,17 +25,19 @@
 
     <div layout="vertical" layout-fill md-theme="default">
         <md-toolbar class="md-whiteframe-z1 main-header">
-            <md-button class="md-fab" ng-click="main.menuToggle()">
-                <p-icon src="/views/icons/ic_menu_24px.svg"></p-icon>
-            </md-button>
-            <h2 class="md-toolbar-tools" ui-view="contentHeader"></h2>
+            <h1 class="md-toolbar-tools">
+                <md-button class="md-fab md-fab-flat md-primary" ng-click="main.mainMenuToggle()">
+                    <p-icon src="/views/icons/ic_menu_24px.svg"></p-icon>
+                </md-button>
+                <span ui-view="contentHeader"></span>
+            </h1>
         </md-toolbar>
         <section layout="horizontal" flex>
-            <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2"
-                        p-include="/views/commons/mainMenu.html" is-locked-open="main.menuOpen"
-                        component-id="mainMenu">
+            <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2 main-sidenav"
+                        p-include="/views/commons/mainMenu.html" is-locked-open="true" ng-click="mainMenu.click()"
+                        ng-show="main.menuOpen">
             </md-sidenav>
-            <md-content scroll-y flex ui-view="content"></md-content>
+            <md-content scroll-y flex ui-view="content" ng-click="main.mainMenuToggle(false)"></md-content>
         </section>
     </div>
 
@@ -58,6 +60,7 @@
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/vendor/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/app.js'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/modal/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/directives/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/auth/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/crud/*'
