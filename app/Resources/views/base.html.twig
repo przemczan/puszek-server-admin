@@ -12,7 +12,7 @@
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         {% stylesheets filter='lessphp,cssrewrite' output="assets/compiled/main.css"
-            '@PuszekPuszekAdminAdminBundle/Resources/public/css/main.less'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/css/*.less'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}

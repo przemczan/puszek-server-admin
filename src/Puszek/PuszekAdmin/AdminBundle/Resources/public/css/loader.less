@@ -1,0 +1,40 @@
+@bgcolor: #e84e40;
+@border-radius: 2px;
+@span-w-h: 15px;
+@animation: rotateX 1.2s (@counter * 0.1s) infinite cubic-bezier(0.650, 0.030, 0.735, 0.045);
+
+#ajax-loader span {
+    display: inline-block;
+    height: @span-w-h;
+    width:@span-w-h;
+    background: @bgcolor;
+    border-radius: @border-radius;
+    margin: 1px;
+}
+
+
+.loop(@counter) when (@counter > 0) {
+    #ajax-loader span:nth-child(@{counter}){
+        -webkit-animation: @animation;
+        -moz-animation: @animation;
+        -ms-animation: @animation;
+        -o-animation: @animation;
+        animation: @animation;
+    }
+    .loop((@counter - 1));
+}
+.loop(0) {};
+.loop(5);
+
+
+.rotateXFrames {
+    0%{ transform:rotateX(0deg)}
+    50%{ transform:rotateX(90deg) scale(0.5,0.5); background:lighten(@bgcolor, 30%); }
+    100%{ transform:rotateX(0deg)}
+}
+
+@-webkit-keyframes rotateX {.rotateXFrames;}
+@-moz-keyframes rotateX {.rotateXFrames;}
+@-ms-keyframes rotateX {.rotateXFrames;}
+@-o-keyframes rotateX {.rotateXFrames;}
+@keyframes rotateX {.rotateXFrames;}
