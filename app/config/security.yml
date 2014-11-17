@@ -25,6 +25,7 @@ security:
             form_login:
                 default_target_path: /login
                 always_use_default_target_path: true
+                require_previous_session: false
             logout: ~
             anonymous: true
 

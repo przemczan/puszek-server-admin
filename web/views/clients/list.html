@@ -1,7 +1,7 @@
 <div layout="vertical">
 
     <md-list class="main-content">
-        <md-item ng-repeat="item in crudGUI.getItems()" layout-padding>
+        <p-item ng-repeat="item in crudGUI.getItems()" layout-padding>
             <md-item-content class="md-whiteframe-z1">
                 <!--<div class="md-tile-left">-->
 
@@ -20,7 +20,7 @@
                 </p-popup-actions>
             </md-item-content>
             <md-divider ng-if="!$last"></md-divider>
-        </md-item>
+        </p-item>
     </md-list>
 
     <div class="actions-menu" ng-controller="actionsMenuController as actionsMenuCtrl">
