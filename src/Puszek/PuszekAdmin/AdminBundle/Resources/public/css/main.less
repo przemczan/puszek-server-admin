@@ -1,3 +1,42 @@
+/** ---------- mixins
+*/
+.statndartTransition(@duration: .25s) {
+    transition: all @duration cubic-bezier(0.7, 0.14, 0.35, 0.9) !important;
+}
+
+/** ---------- main view
+*/
+.main-view-container {
+    position: relative;
+}
+
+[ui-view="content"] {
+    .statndartTransition();
+}
+
+[ui-view="content"].ng-leave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 1;
+}
+[ui-view="content"].ng-leave-active {
+    opacity: 0;
+    transform: scale(.7);
+}
+[ui-view="content"].ng-enter {
+    opacity: 0;
+}
+[ui-view="content"].ng-enter-active {
+    opacity: 1;
+}
+
+md-content[ui-view="content"] {
+    background-color: #ececec;
+}
+
 a {
     color: #757575;
     text-decoration: none;
@@ -64,7 +103,7 @@ p-popup-actions {
     right: 2px;
 
     &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove.ng-hide-remove-active {
-        transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9) !important;
+        .statndartTransition();
     }
 
     &.ng-hide {
@@ -134,7 +173,7 @@ md-backdrop {
 
 .main-content {
     width: 95%;
-    margin: 0 auto;
+    margin: 15px auto 0 auto;
 }
 
 .page-lg {
@@ -244,13 +283,13 @@ md-backdrop {
         p-icon.first {
             opacity: 1;
             transform: rotate(0);
-            transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9);
+            .statndartTransition();
         }
 
         p-icon.second {
             opacity: 0;
             transform: rotate(270deg);
-            transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9);
+            .statndartTransition();
         }
     }
 
@@ -270,17 +309,25 @@ md-backdrop {
 }
 
 md-list {
-    md-item {
+    p-item {
+        display: block;
         position: relative;
-        transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9) !important;
+        .statndartTransition();
 
         &.ng-leave {
             opacity: 0;
             transform: scale(0.6);
         }
-        md-item-content {
-            overflow: hidden;
+
+        md-item-content[ng-click] {
+            cursor: pointer;
         }
+    }
+    md-item {
+        position: relative;
+    }
+    md-item-content {
+        background: #fff;
     }
 }
 
@@ -326,7 +373,7 @@ md-sidenav.main-sidenav {
     top: 64px;
 
     &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove.ng-hide-remove-active {
-        transition: all .25s cubic-bezier(0.7, 0.14, 0.35, 0.9) !important;
+        .statndartTransition();
     }
 
     &.ng-hide {

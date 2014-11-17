@@ -4,10 +4,12 @@ angular.module('puszekApp')
             restrict: 'E',
             scope: true,
             terminal: true,
+            priority: -1,
             link: function(scope, element, attrs) {
-                if (attrs.ngShow) {
+                if (element.data('compiled')) {
                     return;
                 }
+                element.data('compiled', true);
 
                 element.attr('ng-show', 'popupActionsShow');
                 element.parent()
@@ -20,7 +22,6 @@ angular.module('puszekApp')
                         scope.$apply();
                     });
 
-                //var children = element.children().detach();
                 $compile(element)(scope);
                 $compile(element.contents())(scope);
             }

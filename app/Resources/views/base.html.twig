@@ -37,7 +37,9 @@
                         p-include="/views/commons/mainMenu.html" is-locked-open="true" ng-click="mainMenu.click()"
                         ng-show="main.menuOpen">
             </md-sidenav>
-            <md-content scroll-y flex ui-view="content" ng-click="main.mainMenuToggle(false)"></md-content>
+            <div layout="vertical" flex class="main-view-container">
+                <md-content scroll-y flex ui-view="content" ng-click="main.mainMenuToggle(false)" ng-animate="'view'"></md-content>
+            </div>
         </section>
     </div>
 

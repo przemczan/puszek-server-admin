@@ -1,27 +1,23 @@
 <div layout="vertical">
 
-    <md-list class="main-content">
-        <p-item ng-repeat="item in crudGUI.getItems()" layout-padding>
-            <md-item-content class="md-whiteframe-z1">
-                <!--<div class="md-tile-left">-->
-
-                <!--</div>-->
-                <div class="md-tile-content">
-                    <h3>[[ item.name ]]</h3>
-                    <h4>[[ item.privateKey ]]</h4>
-                </div>
-                <p-popup-actions>
-                    <md-button ng-click="crudGUI.edit(item)">
-                        <p-icon src="/views/icons/ic_edit_24px.svg"></p-icon>
-                    </md-button>
-                    <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?" class="md-warn">
-                        <p-icon src="/views/icons/ic_delete_24px.svg"></p-icon>
-                    </md-button>
-                </p-popup-actions>
-            </md-item-content>
-            <md-divider ng-if="!$last"></md-divider>
-        </p-item>
-    </md-list>
+    <section class="main-content md-whiteframe-z1">
+        <md-list>
+            <p-item ng-repeat="item in crudGUI.getItems()">
+                <md-item-content ng-click="crudGUI.edit(item)">
+                    <div class="md-tile-content">
+                        <h3>[[ item.name ]]</h3>
+                        <h4>[[ item.privateKey ]]</h4>
+                    </div>
+                    <p-popup-actions p-stop-events="click">
+                        <md-button ng-click="$event.stopPropagation();crudGUI.delete(item, $event)" click-confirm="Realy delete this client?" class="md-warn">
+                            <p-icon src="/views/icons/ic_delete_24px.svg"></p-icon>
+                        </md-button>
+                    </p-popup-actions>
+                </md-item-content>
+                <md-divider ng-if="!$last"></md-divider>
+            </p-item>
+        </md-list>
+    </section>
 
     <div class="actions-menu" ng-controller="actionsMenuController as actionsMenuCtrl">
         <!--<div class="actions-items" ng-show="actionsMenuCtrl.open">-->
