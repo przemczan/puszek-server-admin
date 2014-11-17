@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f6a6ad6cc59e1592492c53b695bec8aa",
+    "hash": "ae6adca05da3105a82530d1c662962c6",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1687,17 +1687,17 @@
             "time": "2014-01-09 22:37:17"
         },
         {
-            "name": "przemczan/puszek-client-bundle",
+            "name": "przemczan/puszek-sdk-bundle",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/przemczan/puszek-client-bundle.git",
-                "reference": "3b379b8d4978cab5725c386cd5d512edb00c0a7a"
+                "url": "https://github.com/przemczan/puszek-sdk-bundle.git",
+                "reference": "a817c400375816a908942672667c46ca4d85a7c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/przemczan/puszek-client-bundle/zipball/3b379b8d4978cab5725c386cd5d512edb00c0a7a",
-                "reference": "3b379b8d4978cab5725c386cd5d512edb00c0a7a",
+                "url": "https://api.github.com/repos/przemczan/puszek-sdk-bundle/zipball/a817c400375816a908942672667c46ca4d85a7c2",
+                "reference": "a817c400375816a908942672667c46ca4d85a7c2",
                 "shasum": ""
             },
             "require": {
@@ -1718,8 +1718,8 @@
                     "email": "przemczan@gmail.com"
                 }
             ],
-            "description": "Puszek Client Bundle",
-            "time": "2014-11-17 12:47:22"
+            "description": "Puszek SDK sBundle",
+            "time": "2014-11-17 20:00:02"
         },
         {
             "name": "psr/log",
@@ -2573,7 +2573,7 @@
         "doctrine/mongodb-odm": 20,
         "doctrine/mongodb-odm-bundle": 20,
         "leafo/lessphp": 20,
-        "przemczan/puszek-client-bundle": 20
+        "przemczan/puszek-sdk-bundle": 20
     },
     "prefer-stable": false,
     "platform": {

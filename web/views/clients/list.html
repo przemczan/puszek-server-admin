@@ -2,14 +2,25 @@
 
     <section class="main-content">
         <md-list>
-            <p-item ng-repeat="item in crudGUI.getItems()" class="md-whiteframe-z1">
-                <md-item-content ng-click="crudGUI.edit(item)">
+            <p-item ng-repeat="item in crudGUI.getItems()" class="md-whiteframe-z1" ng-click="selectItem(item)" ng-class="{ 'md-whiteframe-z2 focused' : isSelected(item) }">
+                <md-item-content ng-click>
                     <div class="md-tile-content">
                         <h3>[[ item.name ]]</h3>
                         <h4>[[ item.privateKey ]]</h4>
+                        <div class="details" ng-if="isSelected(item)">
+                            details <br />
+                            details <br />
+                            details <br />
+                            details <br />
+                            details <br />
+                            details <br />
+                        </div>
                     </div>
                     <p-popup-actions p-stop-events="click">
-                        <md-button ng-click="$event.stopPropagation();crudGUI.delete(item, $event)" click-confirm="Realy delete this client?" class="md-warn">
+                        <md-button ng-click="crudGUI.edit(item)">
+                            <p-icon src="/views/icons/ic_edit_24px.svg"></p-icon>
+                        </md-button>
+                        <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?" class="md-warn">
                             <p-icon src="/views/icons/ic_delete_24px.svg"></p-icon>
                         </md-button>
                     </p-popup-actions>

@@ -91,7 +91,7 @@ sp_bower:
     assetic:
         nest_dependencies: false
 
-puszek_puszek_client:
+przemczan_puszek_sdk:
     server:
         api:
             host: localhost
@@ -99,4 +99,4 @@ puszek_puszek_client:
             host: localhost
     client:
         name: przemczan
-        key: 6af7f8ac5f399bfe95ae9ddb9f80ec0f2580f597
+        key: fd68011a1df70aaaac7af8690fa0365be1eafe9b

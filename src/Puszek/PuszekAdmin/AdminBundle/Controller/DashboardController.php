@@ -12,6 +12,8 @@ class DashboardController extends Controller
      */
     public function indexAction()
     {
+        //var_dump($this->get('przemczan_puszek_sdk.api')->sendMessage('przemczan', 'message', ['test']));
+        //var_dump($this->get('przemczan_puszek_sdk.socket_helper')->getSocketUrl('test', ['*', 'test'], 3600));
         return [
         ];
     }

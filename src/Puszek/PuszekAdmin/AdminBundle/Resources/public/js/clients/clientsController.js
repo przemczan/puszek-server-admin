@@ -1,7 +1,16 @@
 angular.module('puszekApp')
-    .controller('clientsController', function($scope, Singleton, RestApiCRUDFactoryGUI, Config, RestApi) {
+    .controller('clientsController', function($scope, Singleton, RestApiCRUDFactoryGUI, Config) {
 
-        RestApi.one('clients', 1);
+        $scope.selected = null;
+
+        $scope.selectItem = function(_item) {
+            $scope.selected = $scope.isSelected(_item) ? null : _item;
+        };
+
+        $scope.isSelected = function(_item) {
+            return $scope.selected === _item;
+        };
+
         $scope.crudGUI = Singleton.get('clients.crud', function() {
             return {
                 object: RestApiCRUDFactoryGUI.create({

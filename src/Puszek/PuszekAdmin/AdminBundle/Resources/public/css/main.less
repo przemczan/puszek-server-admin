@@ -1,6 +1,6 @@
 /** ---------- mixins
 */
-.statndartTransition(@duration: .25s) {
+.standardTransition(@duration: .25s) {
     transition: all @duration cubic-bezier(0.7, 0.14, 0.35, 0.9) !important;
 }
 
@@ -11,7 +11,7 @@
 }
 
 [ui-view="content"] {
-    .statndartTransition();
+    .standardTransition();
 }
 
 [ui-view="content"].ng-leave {
@@ -103,7 +103,7 @@ p-popup-actions {
     right: 2px;
 
     &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove.ng-hide-remove-active {
-        .statndartTransition();
+        .standardTransition();
     }
 
     &.ng-hide {
@@ -283,13 +283,13 @@ md-backdrop {
         p-icon.first {
             opacity: 1;
             transform: rotate(0);
-            .statndartTransition();
+            .standardTransition();
         }
 
         p-icon.second {
             opacity: 0;
             transform: rotate(270deg);
-            .statndartTransition();
+            .standardTransition();
         }
     }
 
@@ -312,7 +312,7 @@ md-list {
     p-item {
         display: block;
         position: relative;
-        .statndartTransition();
+        .standardTransition();
 
         &.ng-leave {
             opacity: 0;
@@ -323,8 +323,27 @@ md-list {
             cursor: pointer;
         }
 
-        &:hover {
-            margin: 0 -30px;
+        .details {
+            .standardTransition();
+            overflow: hidden;;
+
+            &.ng-enter {
+                max-height: 0px;
+            }
+            &.ng-leave-active {
+                max-height: 0px;
+            }
+            &.ng-enter-active, &.ng-leave {
+                max-height: 600px;
+            }
+        }
+
+        &.focused {
+            margin: 15px -25px;
+
+            .details {
+
+            }
         }
     }
     md-item {
@@ -377,7 +396,7 @@ md-sidenav.main-sidenav {
     top: 64px;
 
     &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove.ng-hide-remove-active {
-        .statndartTransition();
+        .standardTransition();
     }
 
     &.ng-hide {

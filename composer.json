@@ -5,7 +5,7 @@
     "description": "Puszek Server Admin",
     "autoload": {
         "psr-4": {
-            "Puszek\\PuszekClientBundle\\": ["../puszek-client-bundle"]
+            "Przemczan\\PuszekSDKBundle\\": ["../puszek-sdk-bundle"]
         },
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
@@ -27,7 +27,7 @@
         "friendsofsymfony/rest-bundle": "~1.4",
         "sp/bower-bundle": "~0.11",
         "leafo/lessphp": "dev-master",
-        "przemczan/puszek-client-bundle": "dev-master"
+        "przemczan/puszek-sdk-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
