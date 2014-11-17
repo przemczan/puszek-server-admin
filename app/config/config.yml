@@ -90,3 +90,13 @@ sp_bower:
     install_on_warmup: true
     assetic:
         nest_dependencies: false
+
+puszek_puszek_client:
+    server:
+        api:
+            host: localhost
+        socket:
+            host: localhost
+    client:
+        name: przemczan
+        key: 6af7f8ac5f399bfe95ae9ddb9f80ec0f2580f597

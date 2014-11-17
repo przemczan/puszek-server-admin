@@ -1,8 +1,8 @@
 <div layout="vertical">
 
-    <section class="main-content md-whiteframe-z1">
+    <section class="main-content">
         <md-list>
-            <p-item ng-repeat="item in crudGUI.getItems()">
+            <p-item ng-repeat="item in crudGUI.getItems()" class="md-whiteframe-z1">
                 <md-item-content ng-click="crudGUI.edit(item)">
                     <div class="md-tile-content">
                         <h3>[[ item.name ]]</h3>
