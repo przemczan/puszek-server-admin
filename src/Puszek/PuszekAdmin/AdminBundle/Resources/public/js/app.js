@@ -1,13 +1,17 @@
-angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial', 'ng.httpLoader', 'ngAnimate'])
+angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial', 'ng.httpLoader', 'ngAnimate', 'puszek'])
     .config(function($interpolateProvider, httpMethodInterceptorProvider){
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
         httpMethodInterceptorProvider.whitelistDomain('');
     })
-    .run(function($rootScope, AuthUser, $state, Config, $mdMedia) {
+    .run(function($rootScope, AuthUser, $state, Config, $mdMedia, $window) {
         $rootScope.Config = Config;
         $rootScope.User = AuthUser;
         $rootScope.State = $state;
         $rootScope.$mdMedia = $mdMedia;
+
+        angular.element($window).on('click', function($event) {
+            $rootScope.$broadcast('click', $event);
+        });
     })
     .directive('dynamicAttr', function() {
         return {

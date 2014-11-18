@@ -31,6 +31,17 @@
                 </md-button>
                 <span ui-view="contentHeader"></span>
             </h1>
+            <div data-ng-controller="puszekController as puszek" id="puszek-container">
+                <md-button class="md-fab md-fab-flat md-primary toggle-button" ng-click="puszek.toggle()" p-stop-events="click">
+                    <p-icon src="/views/icons/ic_chat_24px.svg"></p-icon>
+                </md-button>
+                <div class="messages md-whiteframe-z2 ng-cloak" ng-show="puszek.messagesVisible">
+                    <div data-ng-repeat="msg in puszek.messages">
+                        <div class="message">[[ msg.message ]]</div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </div>
+                </div>
+            </div>
         </md-toolbar>
         <section layout="horizontal" flex>
             <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2 main-sidenav"
@@ -70,13 +81,19 @@
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/mainMenu/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/dashboard/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/clients/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/messages/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/services/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/angular/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/*'
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <script>
             angular.module('puszekApp').constant('Config', {
                 baseUrl: '{{ app.request.baseUrl }}',
-                basePath: '{{ app.request.basePath }}'
+                basePath: '{{ app.request.basePath }}',
+                puszekSocketAddress: '{{ przemczan_puszek_socket_url('przemczan', ['przemczan']) | e('js') }}'
             });
         </script>
     {% endblock %}

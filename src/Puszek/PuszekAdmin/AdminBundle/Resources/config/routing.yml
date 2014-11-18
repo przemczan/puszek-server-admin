@@ -2,6 +2,11 @@ api:
     prefix: /api
     resource: @PuszekPuszekAdminAdminBundle/Resources/config/api_routing.yml
 
+puszek_admin_messages_send:
+    path:     /messages/send
+    defaults: { _controller: PuszekPuszekAdminAdminBundle:Messages:send }
+    requirements: { _method: POST }
+
 security_me:
     path:     /auth/me
     defaults: { _controller: PuszekPuszekAdminAdminBundle:Security:me }

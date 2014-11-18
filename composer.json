@@ -4,10 +4,13 @@
     "type": "project",
     "description": "Puszek Server Admin",
     "autoload": {
-        "psr-4": {
-            "Przemczan\\PuszekSDKBundle\\": ["../puszek-sdk-bundle"]
+        "psr-0": {
+            "": "src/",
+            "SymfonyStandard": "app/"
         },
-        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
+        "psr-4": {
+            "Przemczan\\PuszekSdkBundle\\": ["../puszek-sdk-bundle"]
+        }
     },
     "require": {
         "php": ">=5.3.3",
