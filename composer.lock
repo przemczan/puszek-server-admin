@@ -1692,12 +1692,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/przemczan/puszek-sdk-bundle.git",
-                "reference": "d25a0072b7276bb1b886f9686ddd6bc59d69da57"
+                "reference": "8ae46d4036fcddbcf4fac479f783b99110d98560"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/przemczan/puszek-sdk-bundle/zipball/d25a0072b7276bb1b886f9686ddd6bc59d69da57",
-                "reference": "d25a0072b7276bb1b886f9686ddd6bc59d69da57",
+                "url": "https://api.github.com/repos/przemczan/puszek-sdk-bundle/zipball/8ae46d4036fcddbcf4fac479f783b99110d98560",
+                "reference": "8ae46d4036fcddbcf4fac479f783b99110d98560",
                 "shasum": ""
             },
             "require": {
@@ -1725,7 +1725,7 @@
                 }
             ],
             "description": "Puszek SDK sBundle",
-            "time": "2014-11-18 18:58:16"
+            "time": "2014-11-18 19:04:29"
         },
         {
             "name": "psr/log",
