@@ -94,9 +94,13 @@ sp_bower:
 przemczan_puszek_sdk:
     server:
         api:
-            host: localhost
+            host: %przemczan_puszek_sdk_server_api_host%
+            port: %przemczan_puszek_sdk_server_api_port%
+            use_ssl: %przemczan_puszek_sdk_server_api_use_ssl%
         socket:
-            host: localhost
+            host: %przemczan_puszek_sdk_server_socket_host%
+            port: %przemczan_puszek_sdk_server_socket_port%
+            protocol: %przemczan_puszek_sdk_server_socket_protocol%
     client:
-        name: przemczan
-        key: fd68011a1df70aaaac7af8690fa0365be1eafe9b
+        name: %przemczan_puszek_sdk_client_name%
+        key: %przemczan_puszek_sdk_client_key%

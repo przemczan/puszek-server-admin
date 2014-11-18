@@ -22,3 +22,12 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    przemczan_puszek_sdk_server_api_host: localhost
+    przemczan_puszek_sdk_server_api_port: 5001
+    przemczan_puszek_sdk_server_api_use_ssl: false
+    przemczan_puszek_sdk_server_socket_host: localhost
+    przemczan_puszek_sdk_server_socket_port: 5000
+    przemczan_puszek_sdk_server_socket_protocol: ws
+    przemczan_puszek_sdk_client_name: ~
+    przemczan_puszek_sdk_client_key: ~
