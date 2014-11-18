@@ -23,7 +23,6 @@ angular.module('puszekApp')
                     $http.get(Config.baseUrl + '/logout')
                         .success(function() {
                             AuthUser.reload();
-                            $rootScope.$broadcast('auth.logout');
                             $state.go('homepage');
                         })
                 },

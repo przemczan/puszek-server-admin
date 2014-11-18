@@ -75,9 +75,20 @@ form {
     visibility: hidden;
 }
 
-md-button .md-button-inner {
-    padding-left: 15px;
-    padding-right: 15px;
+md-button {
+    .md-button-inner {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .button-mask {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
 }
 
 md-fab md-icon {
@@ -279,15 +290,6 @@ md-backdrop {
             left: 16px;
         }
 
-        .icon-mask {
-            cursor: pointer;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-
         p-icon.first {
             opacity: 1;
             transform: rotate(0);
@@ -419,15 +421,27 @@ md-sidenav.main-sidenav {
     .toggle-button {
         position: absolute;
         right: 0;
+
+        p-icon {
+            position: absolute;
+            top: 13px;
+            left: 16px;
+        }
+
+        .counter {
+            position: absolute;
+            top: 35px;
+            left: 24px;
+        }
     }
 
-    .messages {
+    .tray {
         position: absolute;
         right: 0;
         top: 64px;
-        min-width: 200px;
+        min-width: 300px;
         background: #fff;
-        padding: 10px;
+        padding: 0 12px;
         .standardTransition();
 
         &.ng-hide {
@@ -455,8 +469,12 @@ md-sidenav.main-sidenav {
             transform: skewX(-10deg);
         }
 
+        .empty-message {
+            padding: 12px 0;
+        }
+
         .message {
-            padding: 5px 3px;
+            padding: 8px 5px;
         }
     }
 }

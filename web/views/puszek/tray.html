@@ -1,0 +1,12 @@
+<md-button class="md-fab md-fab-flat md-primary toggle-button" ng-click="puszek.toggle()" p-stop-events="click">
+    <p-icon src="/views/icons/ic_chat_24px.svg"></p-icon>
+    <span class="counter">[[ puszek.messages.length ]]</span>
+    <div class="button-mask"></div>
+</md-button>
+<div class="tray md-whiteframe-z2 ng-cloak" ng-show="puszek.messagesVisible">
+    <div class="empty-message" ng-if="!puszek.messages.length">There are no messages for you</div>
+    <div data-ng-repeat="msg in puszek.messages">
+        <div class="message">[[ msg.message ]]</div>
+        <md-divider ng-if="!$last"></md-divider>
+    </div>
+</div>

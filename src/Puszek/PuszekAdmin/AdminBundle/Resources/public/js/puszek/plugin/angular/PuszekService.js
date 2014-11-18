@@ -31,21 +31,6 @@ angular.module('puszek', [])
         }
 
         /**
-         *
-         * @param source
-         */
-        function findMessageBySource(source) {
-            var found = false;
-            angular.forEach(messages, function(message) {
-                if (message.source === source) {
-                    found = message;
-                }
-            });
-
-            return found;
-        }
-
-        /**
          * Got message!
          * @asynchronous
          * @param event
@@ -98,17 +83,6 @@ angular.module('puszek', [])
         }
 
         Puszek.on('message', onMessage);
-        Puszek.on('close', onClose);
-
-        var $scope = $rootScope.$new();
-        $scope.$on('auth.login', function() {
-                Service.connect();
-            });
-        $scope.$on('auth.logout', function() {
-                Service.disconnect();
-            });
-
-
         /**
          * Public object
          * @type {Object}
@@ -143,7 +117,6 @@ angular.module('puszek', [])
             },
 
             connect: function() {
-                PuszekServiceLog.log(Puszek.getConfiguration().address);
                 Puszek.connect();
             },
 
@@ -152,9 +125,12 @@ angular.module('puszek', [])
             },
 
             configure: Puszek.configure,
+            isConnected: Puszek.isConnected,
             on: on,
             off: off
         };
+
+        Puszek.on('close', onClose);
 
         return Service;
     });

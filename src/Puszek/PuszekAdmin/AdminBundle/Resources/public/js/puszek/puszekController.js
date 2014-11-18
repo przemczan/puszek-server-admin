@@ -9,6 +9,9 @@ angular.module('puszekApp')
             self.messagesVisible = !self.messagesVisible;
         };
 
+        self.messages = PuszekService.getMessages();
+        self.isConnected = PuszekService.isConnected;
+
         // prevent from closing messages when clicking inside them
         $scope.$on('click', function(e, $event) {
             if (!$.contains($element.get(0), $event.target)) {
@@ -16,19 +19,6 @@ angular.module('puszekApp')
                 $scope.$apply();
             }
         });
-
-        // configure puszek messages
-        PuszekService.configure({
-            address: Config.puszekSocketAddress
-        });
-        PuszekService.on('message', function(e, _message) {
-            try {
-                _message.message = JSON.parse(_message.message);
-            } catch (error) {}
-        });
-        PuszekService.connect();
-
-        self.messages = PuszekService.getMessages();
 
         /**
          * Mark message as read
@@ -44,4 +34,28 @@ angular.module('puszekApp')
         self.clear = function() {
             PuszekService.clear();
         };
+    })
+    .run(function($rootScope, PuszekService, Config) {
+
+        var $scope = $rootScope.$new();
+
+        // configure puszek messages
+        PuszekService.configure({
+            address: Config.puszekSocketAddress
+        });
+
+        // parse messages
+        PuszekService.on('message', function(e, _message) {
+            try {
+                _message.message = JSON.parse(_message.message);
+            } catch (error) {}
+        });
+
+        // catch login/logout events
+        $scope.$on('auth.login', function() {
+            PuszekService.connect();
+        });
+        $scope.$on('auth.logout', function() {
+            PuszekService.disconnect();
+        });
     });

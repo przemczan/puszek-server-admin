@@ -22,7 +22,7 @@
         function onClose() {
             $self.trigger('close');
 
-            if (settings.autoReconnectRetries > 0) {
+            if (socket && settings.autoReconnectRetries > 0) {
                 if (reconnectTries--) {
                     setTimeout(
                         function() {
@@ -69,9 +69,6 @@
         this.connect = function (url) {
             socketUrl = url || socketUrl;
 
-            if (socket) {
-                socket.close();
-            }
             initializeSocket();
         };
 
@@ -80,7 +77,10 @@
          */
         this.disconnect = function () {
             if (socket) {
-                socket.close();
+                var oldSocket = socket;
+                socket = false;
+                oldSocket.close();
+                oldSocket = null;
             }
         };
 
@@ -90,6 +90,13 @@
         this.reconnect = function () {
             self.disconnect();
             self.connect();
+        };
+
+        /**
+         * socket connection status
+         */
+        this.isConnected = function () {
+            return socket && socket.readyState == 1;
         };
 
         /**

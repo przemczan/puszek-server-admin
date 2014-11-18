@@ -10,9 +10,7 @@ angular.module('puszekApp')
                     $log.log('login response:', _response);
                     if (angular.isObject(_response)) {
                         if (_response.authenticated) {
-                            AuthUser.reload().success(function() {
-                                $rootScope.$broadcast('auth.login');
-                            });
+                            AuthUser.reload();
                         } else {
                             $scope.error = _response.error;
                         }

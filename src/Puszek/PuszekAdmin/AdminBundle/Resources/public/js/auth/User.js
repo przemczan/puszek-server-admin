@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('AuthUser', function(Config, $state, $http, $log, $stateParams) {
+    .factory('AuthUser', function($rootScope, Config, $state, $http, $log, $stateParams) {
 
         var emptyUser = {
                 user: false,
@@ -40,7 +40,7 @@ angular.module('puszekApp')
                         userData.roles = _data.roles || [];
                     }
                     userData.isLoaded = true;
-                    $service.trigger('onload');
+                    $service.trigger('load');
                     if ($state.current.name !== '') {
                         $state.transitionTo($state.current.name, $stateParams, {
                             reload: true, inherit: false, notify: true
@@ -72,7 +72,7 @@ angular.module('puszekApp')
                 },
 
                 reload: function() {
-                    reload();
+                    return reload();
                 },
 
                 on: function() {

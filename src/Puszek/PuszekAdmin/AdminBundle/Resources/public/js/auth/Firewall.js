@@ -47,24 +47,30 @@ angular.module('puszekApp')
          * on state change
          */
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-            $log.log('state change started to:', toState.name);
             if (!authorize(toState.data ? toState.data.access || {} : {})) {
                 event.preventDefault();
                 $log.log('state not authorized:', toState);
                 if (!AuthUser.isLoaded() && fromState.url === '^') {
-                    $log.log('user not loaded, saving state');
-                    AuthUser.one('onload', function() {
-                        $log.log('user loaded, going to:', toState.name);
+                    AuthUser.one('load', function() {
                         $state.go(toState.name);
                     });
                 } else {
-                    $log.log('logged in status:', AuthUser.isLoggedIn());
                     if (AuthUser.isLoggedIn())
                         $state.go('homepage');
                     else {
                         $state.go('auth_login');
                     }
                 }
+            }
+        });
+
+        var lastUserStatus = AuthUser.isLoggedIn();
+
+        AuthUser.on('load', function() {
+            if (lastUserStatus !== AuthUser.isLoggedIn()) {
+                lastUserStatus = AuthUser.isLoggedIn();
+                $log.log('User event:', lastUserStatus ? 'auth.login' : 'auth.logout');
+                $rootScope.$broadcast(lastUserStatus ? 'auth.login' : 'auth.logout');
             }
         });
     });

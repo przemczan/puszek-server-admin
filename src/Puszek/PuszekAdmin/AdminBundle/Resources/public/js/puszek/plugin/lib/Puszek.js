@@ -75,9 +75,6 @@
                 return;
             }
 
-            // disconnect if we are already connected
-            self.disconnect();
-
             socket = new window.Puszek.WebSocket({
                 autoReconnectRetries: settings.autoReconnectRetries,
                 autoReconnectDelay: settings.autoReconnectDelay
@@ -110,7 +107,7 @@
          */
         this.disconnect = function() {
             if (socket) {
-                socket.close();
+                socket.disconnect();
             }
         };
 
@@ -120,9 +117,14 @@
         this.reconnect = function() {
             if (socket) {
                 socket.reconnect();
-            } else {
-                socket.connect();
             }
+        };
+
+        /**
+         * Connection status
+         */
+        this.isConnected = function() {
+            return socket && socket.isConnected();
         };
 
         /**
