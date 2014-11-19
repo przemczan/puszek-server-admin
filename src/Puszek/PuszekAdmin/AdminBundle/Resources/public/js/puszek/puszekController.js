@@ -3,10 +3,16 @@ angular.module('puszekApp')
 
         var self = this;
 
+        self.newMessagesStatus = false;
+        self.hasNewMessages = function() {
+            return self.newMessagesStatus && self.messages.length;
+        };
+
         // toggle messages
         self.messagesVisible = false;
         self.toggle = function() {
             self.messagesVisible = !self.messagesVisible;
+            self.newMessagesStatus = false;
         };
 
         self.messages = PuszekService.getMessages();
@@ -34,6 +40,10 @@ angular.module('puszekApp')
         self.clear = function() {
             PuszekService.clear();
         };
+
+        PuszekService.on('message', function(e, _message) {
+            self.newMessagesStatus = true;
+        });
     })
     .run(function($rootScope, PuszekService, Config) {
 

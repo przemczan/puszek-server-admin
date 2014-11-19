@@ -1,4 +1,4 @@
-<md-button class="md-fab md-fab-flat md-primary toggle-button" ng-click="puszek.toggle()" p-stop-events="click">
+<md-button class="md-fab md-fab-flat md-primary toggle-button" ng-click="puszek.toggle()" p-stop-events="click" ng-class="{ 'has-new-messages': puszek.hasNewMessages() }">
     <p-icon src="/views/icons/ic_chat_24px.svg"></p-icon>
     <span class="counter">[[ puszek.messages.length ]]</span>
     <div class="button-mask"></div>
