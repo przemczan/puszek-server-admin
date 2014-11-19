@@ -6,9 +6,12 @@
 <div class="tray md-whiteframe-z2 ng-cloak" ng-show="puszek.messagesVisible">
     <div class="toolbar">
         <div class="empty-info" ng-if="!puszek.messages.length">There are no messages for you</div>
-        <md-button class="clear" ng-if="puszek.messages.length" ng-click="puszek.clear()" p-stop-events="click">
-            <p-icon src="/views/icons/ic_clear_all_24px.svg"></p-icon>
-        </md-button>
+        <div ng-if="puszek.messages.length">
+            <md-button class="clear" ng-click="puszek.clear()" p-stop-events="click">
+                <p-icon src="/views/icons/ic_clear_all_24px.svg"></p-icon>
+            </md-button>
+            <md-divider ng-if="!$last"></md-divider>
+        </div>
     </div>
     <div data-ng-repeat="msg in puszek.messages" class="message">
         <div class="message-content">
