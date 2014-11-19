@@ -1,6 +1,6 @@
 (function(window, $) {
 
-    window.Puszek.WebSocketPacket.MessageIdList = {
+    window.Puszek.WebSocketRequest.MessageIdList = {
         create: function() {
             return new MessageIdList();
         }

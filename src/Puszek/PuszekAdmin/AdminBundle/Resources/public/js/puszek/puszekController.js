@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('puszekController', function($scope, PuszekService, Config, $element) {
+    .controller('puszekController', function($scope, PuszekNotificationService, Config, $element) {
 
         var self = this;
 
@@ -15,8 +15,8 @@ angular.module('puszekApp')
             self.newMessagesStatus = false;
         };
 
-        self.messages = PuszekService.getMessages();
-        self.isConnected = PuszekService.isConnected;
+        self.messages = PuszekNotificationService.getMessages();
+        self.isConnected = PuszekNotificationService.isConnected;
 
         // prevent from closing messages when clicking inside them
         $scope.$on('click', function(e, $event) {
@@ -28,44 +28,44 @@ angular.module('puszekApp')
 
         /**
          * Mark message as read
-         * @param message
+         * @param _message
          */
         self.markAsRead = function(_message) {
-            PuszekService.markAsRead([_message._id]);
+            PuszekNotificationService.markAsRead([_message._id]);
         };
 
         /**
          * Remove all messages
          */
         self.clear = function() {
-            PuszekService.clear();
+            PuszekNotificationService.clear();
         };
 
-        PuszekService.on('message', function(e, _message) {
+        PuszekNotificationService.on('message', function(e, _message) {
             self.newMessagesStatus = true;
         });
     })
-    .run(function($rootScope, PuszekService, Config) {
+    .run(function($rootScope, PuszekNotificationService, Config) {
 
         var $scope = $rootScope.$new();
 
         // configure puszek messages
-        PuszekService.configure({
+        PuszekNotificationService.configure({
             address: Config.puszekSocketAddress
         });
 
-        // parse messages
-        PuszekService.on('message', function(e, _message) {
+        // parse custom messages
+        PuszekNotificationService.on('message', function(e, _messageEvent) {
             try {
-                _message.message = JSON.parse(_message.message);
+                _messageEvent.message.message = JSON.parse(_messageEvent.message.message);
             } catch (error) {}
         });
 
         // catch login/logout events
         $scope.$on('auth.login', function() {
-            PuszekService.connect();
+            PuszekNotificationService.connect();
         });
         $scope.$on('auth.logout', function() {
-            PuszekService.disconnect();
+            PuszekNotificationService.disconnect();
         });
     });

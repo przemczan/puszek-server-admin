@@ -1,31 +1,28 @@
 angular.module('puszek', [])
-    .factory('PuszekServiceLog', function($log) {
+    .factory('PuszekNotificationServiceLog', function($log) {
         return {
             log: function() {
                 var args = [].slice.call(arguments);
-                args.unshift('Puszek:');
+                args.unshift('Puszek notification service:');
                 return $log.log.apply($log, args);
             }
         };
     })
-    .factory('PuszekService', function($rootScope, PuszekServiceLog) {
+    .factory('PuszekNotificationService', function($rootScope, PuszekNotificationServiceLog) {
 
         var $self = $(this);
+
+        /**
+         * Puszek connection
+         * @type {Window.Puszek}
+         */
+        var puszek = new Puszek();
 
         /**
          * Current messages list
          * @type {Object}
          */
         var messages = [];
-
-        /**
-         *
-         * @param _token
-         * @returns {number}
-         */
-        function getMessageIndexByToken(_token) {
-            return getMessageIndexBy('_token', _token);
-        }
 
         /**
          *
@@ -57,27 +54,29 @@ angular.module('puszek', [])
          * Got message!
          * @asynchronous
          * @param event
-         * @param messageEvent
+         * @param _packet
          */
-        function onMessage(event, messageEvent) {
+        function onPacket(event, _packet) {
             try {
-                PuszekServiceLog.log('Response received', messageEvent);
-                var response = JSON.parse(messageEvent.data);
-                PuszekServiceLog.log('Response parsed', response);
+                $self.trigger('packet', [_packet]);
 
-                if ('message' == response.type) {
-                    var message = response.data,
-                        messageIndex = getMessageIndexById(message._id);
+                if ('message' == _packet.type) {
+                    var messageEvent = {
+                            message: _packet.data,
+                            ignore: false
+                        };
 
-                    if (messageIndex < 0) {
-                        $self.trigger('message', [message]);
-                        messages.push(message);
+                    // trigger message event
+                    $self.trigger('message', [messageEvent]);
+
+                    if (!messageEvent.ignore) {
+                        if (getMessageIndexById(_packet.data._id) < 0) {
+                            messages.push(_packet.data);
+                        }
                     }
-                } else {
-                    $self.trigger('packet', [response]);
                 }
             } catch (error) {
-                PuszekServiceLog.log(error.message, messageEvent);
+                PuszekNotificationServiceLog.log(error.message, _packet);
             }
             $rootScope.$apply();
         }
@@ -111,17 +110,17 @@ angular.module('puszek', [])
             $self.off.apply($self, arguments);
         }
 
-        Puszek.on('message', onMessage);
-        Puszek.on('close', onClose);
-        Puszek.on('open', onOpen);
+        puszek.on('packet', onPacket);
+        puszek.on('close', onClose);
+        puszek.on('open', onOpen);
 
         /**
          * Public object
          * @type {Object}
          */
-        var Service = {
+        return {
             getPuszek: function() {
-                return Puszek;
+                return puszek;
             },
 
             getMessages: function() {
@@ -129,7 +128,7 @@ angular.module('puszek', [])
             },
 
             markAsRead: function(messageIds) {
-                Puszek.markAsRead(messageIds);
+                puszek.markAsRead(messageIds);
                 var index;
                 angular.forEach(messageIds, function(id) {
                     index = getMessageIndexById(id);
@@ -144,24 +143,21 @@ angular.module('puszek', [])
                 angular.forEach(messages, function(message) {
                     messageIds.push(message._id);
                 });
-                Puszek.markAsRead(messageIds);
+                puszek.markAsRead(messageIds);
                 messages.length = 0;
             },
 
             connect: function() {
-                Puszek.connect();
+                puszek.connect();
             },
 
             disconnect: function() {
-                Puszek.disconnect();
+                puszek.disconnect();
             },
 
-            configure: Puszek.configure,
-            isConnected: Puszek.isConnected,
+            configure: puszek.configure,
+            isConnected: puszek.isConnected,
             on: on,
             off: off
         };
-
-
-        return Service;
     });

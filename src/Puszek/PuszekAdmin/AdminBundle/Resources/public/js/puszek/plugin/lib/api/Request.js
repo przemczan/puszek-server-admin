@@ -1,14 +1,14 @@
 (function(window, $) {
 
-    window.Puszek.WebSocketPacket = {
+    window.Puszek.WebSocketRequest = {
         TYPE_MESSAGE_MARK_AS_READ: 'message_mark_as_read',
 
         create: function() {
-            return new WebSocketPacket();
+            return new WebSocketRequest();
         }
     };
 
-    function WebSocketPacket() {
+    function WebSocketRequest() {
 
         /**
          * Empty response object

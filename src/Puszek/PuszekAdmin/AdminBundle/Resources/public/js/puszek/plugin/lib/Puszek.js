@@ -1,5 +1,5 @@
 (function(window, $) {
-    window.Puszek = window.Puszek || new function()
+    window.Puszek = window.Puszek || function()
     {
         var $self = $(this),
             self = this,
@@ -25,10 +25,12 @@
         /**
          * Message handler
          * @param event
-         * @param messageEvent
+         * @param _messageEvent
          */
-        function onMessage(event, messageEvent) {
-            $self.trigger('message', [messageEvent]);
+        function onMessage(event, _messageEvent) {
+            try {
+                $self.trigger('packet', [JSON.parse(_messageEvent.data)]);
+            } catch (e) {}
         }
 
         /**
@@ -133,9 +135,9 @@
          */
         this.markAsRead = function(messageIds) {
             if (socket) {
-                self.WebSocketPacket.create()
-                    .type(self.WebSocketPacket.TYPE_MESSAGE_MARK_AS_READ)
-                    .data(self.WebSocketPacket.MessageIdList.create().ids(messageIds).get())
+                self.WebSocketRequest.create()
+                    .type(self.WebSocketRequest.TYPE_MESSAGE_MARK_AS_READ)
+                    .data(self.WebSocketRequest.MessageIdList.create().ids(messageIds).get())
                     .send(socket)
             }
         };
