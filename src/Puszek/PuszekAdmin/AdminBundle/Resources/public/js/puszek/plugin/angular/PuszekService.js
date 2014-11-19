@@ -18,11 +18,34 @@ angular.module('puszek', [])
          */
         var messages = [];
 
+        /**
+         *
+         * @param _token
+         * @returns {number}
+         */
+        function getMessageIndexByToken(_token) {
+            return getMessageIndexBy('_token', _token);
+        }
 
-        function getMessageIndexByToken(token) {
+        /**
+         *
+         * @param _id
+         * @returns {number}
+         */
+        function getMessageIndexById(_id) {
+            return getMessageIndexBy('_id', _id);
+        }
+
+        /**
+         *
+         * @param field
+         * @param value
+         * @returns {number}
+         */
+        function getMessageIndexBy(field, value) {
             var index = -1;
             angular.forEach(messages, function(message, key) {
-                if (message._token == token) {
+                if (message[field] == value) {
                     index = key;
                 }
             });
@@ -42,17 +65,16 @@ angular.module('puszek', [])
                 var response = JSON.parse(messageEvent.data);
                 PuszekServiceLog.log('Response parsed', response);
 
-                if ('message' != response.type) {
-                    return;
-                }
+                if ('message' == response.type) {
+                    var message = response.data,
+                        messageIndex = getMessageIndexById(message._id);
 
-                response.data._token = response.token;
-                var message = response.data,
-                    messageIndex = getMessageIndexByToken(message._token);
-
-                if (messageIndex < 0) {
-                    $self.trigger('message', [message]);
-                    messages.push(message);
+                    if (messageIndex < 0) {
+                        $self.trigger('message', [message]);
+                        messages.push(message);
+                    }
+                } else {
+                    $self.trigger('packet', [response]);
                 }
             } catch (error) {
                 PuszekServiceLog.log(error.message, messageEvent);
@@ -71,6 +93,13 @@ angular.module('puszek', [])
         }
 
         /**
+         *
+         */
+        function onOpen() {
+            $rootScope.$apply();
+        }
+
+        /**
          */
         function on() {
             $self.on.apply($self, arguments);
@@ -83,6 +112,9 @@ angular.module('puszek', [])
         }
 
         Puszek.on('message', onMessage);
+        Puszek.on('close', onClose);
+        Puszek.on('open', onOpen);
+
         /**
          * Public object
          * @type {Object}
@@ -100,7 +132,7 @@ angular.module('puszek', [])
                 Puszek.markAsRead(messageIds);
                 var index;
                 angular.forEach(messageIds, function(id) {
-                    index = getMessageIndexByToken(id);
+                    index = getMessageIndexById(id);
                     if (index >= 0) {
                         messages.splice(index, 1);
                     }
@@ -130,7 +162,6 @@ angular.module('puszek', [])
             off: off
         };
 
-        Puszek.on('close', onClose);
 
         return Service;
     });

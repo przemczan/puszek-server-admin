@@ -4,9 +4,17 @@
     <div class="button-mask"></div>
 </md-button>
 <div class="tray md-whiteframe-z2 ng-cloak" ng-show="puszek.messagesVisible">
-    <div class="empty-message" ng-if="!puszek.messages.length">There are no messages for you</div>
-    <div data-ng-repeat="msg in puszek.messages">
-        <div class="message">[[ msg.message ]]</div>
+    <div class="toolbar">
+        <div class="empty-info" ng-if="!puszek.messages.length">There are no messages for you</div>
+        <md-button class="clear" ng-if="puszek.messages.length" ng-click="puszek.clear()" p-stop-events="click">
+            <p-icon src="/views/icons/ic_clear_all_24px.svg"></p-icon>
+        </md-button>
+    </div>
+    <div data-ng-repeat="msg in puszek.messages" class="message">
+        <div class="message-content">
+            [[ msg.message ]]
+            <md-button ng-click="puszek.markAsRead(msg)" p-stop-events="click">&#x2716;</md-button>
+        </div>
         <md-divider ng-if="!$last"></md-divider>
     </div>
 </div>

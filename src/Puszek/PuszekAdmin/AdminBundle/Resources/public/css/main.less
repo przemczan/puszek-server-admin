@@ -469,12 +469,46 @@ md-sidenav.main-sidenav {
             transform: skewX(-10deg);
         }
 
-        .empty-message {
-            padding: 12px 0;
+        .toolbar {
+            overflow: hidden;
+            padding: 6px 0;
+
+            .clear {
+                float: right;
+                button {
+                    padding: 0;
+                }
+            }
+
+            .empty-info {
+                padding: 12px 0;
+            }
         }
 
         .message {
-            padding: 8px 5px;
+            .standardTransition();
+
+            &.ng-leave-active {
+            }
+            &.ng-leave-active {
+                transform: scale(.6);
+                opacity: 0;
+            }
+
+            .message-content {
+                padding: 8px 32px 8px 5px;
+                position: relative;
+
+                md-button {
+                    position: absolute;
+                    top: 3px;
+                    right: 10px;
+
+                    button {
+                        padding: 5px;
+                    }
+                }
+            }
         }
     }
 }

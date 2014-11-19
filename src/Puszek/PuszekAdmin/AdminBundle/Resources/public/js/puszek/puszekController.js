@@ -24,8 +24,8 @@ angular.module('puszekApp')
          * Mark message as read
          * @param message
          */
-        self.markAsRead = function(message) {
-            PuszekService.markAsRead([message.token]);
+        self.markAsRead = function(_message) {
+            PuszekService.markAsRead([_message._id]);
         };
 
         /**

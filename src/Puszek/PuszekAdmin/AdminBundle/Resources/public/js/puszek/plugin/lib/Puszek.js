@@ -133,7 +133,10 @@
          */
         this.markAsRead = function(messageIds) {
             if (socket) {
-                //socket.send('markReaded:' + messageIds.join(','));
+                self.WebSocketPacket.create()
+                    .type(self.WebSocketPacket.TYPE_MESSAGE_MARK_AS_READ)
+                    .data(self.WebSocketPacket.MessageIdList.create().ids(messageIds).get())
+                    .send(socket)
             }
         };
     };

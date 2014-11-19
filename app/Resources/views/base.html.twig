@@ -74,6 +74,8 @@
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/messages/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/services/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/api/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/api/message/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/angular/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/*'
         %}
@@ -83,7 +85,7 @@
             angular.module('puszekApp').constant('Config', {
                 baseUrl: '{{ app.request.baseUrl }}',
                 basePath: '{{ app.request.basePath }}',
-                puszekSocketAddress: '{{ przemczan_puszek_socket_url('przemczan', ['przemczan']) | e('js') }}'
+                puszekSocketAddress: '{{ przemczan_puszek_socket_url('przemczan', ['przemczan', '*']) | e('js') }}'
             });
         </script>
     {% endblock %}
