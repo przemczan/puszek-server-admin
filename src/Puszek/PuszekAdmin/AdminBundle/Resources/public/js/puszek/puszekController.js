@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('puszekController', function($scope, PuszekNotificationService, Config, $element) {
+    .controller('puszekController', function($scope, NotificationsProvider, Config, $element) {
 
         var self = this;
 
@@ -15,8 +15,8 @@ angular.module('puszekApp')
             self.newMessagesStatus = false;
         };
 
-        self.messages = PuszekNotificationService.getMessages();
-        self.isConnected = PuszekNotificationService.isConnected;
+        self.messages = NotificationsProvider.getMessages();
+        self.isConnected = NotificationsProvider.isConnected;
 
         // prevent from closing messages when clicking inside them
         $scope.$on('click', function(e, $event) {
@@ -31,41 +31,29 @@ angular.module('puszekApp')
          * @param _message
          */
         self.markAsRead = function(_message) {
-            PuszekNotificationService.markAsRead([_message._id]);
+            NotificationsProvider.markAsRead([_message._id]);
         };
 
         /**
          * Remove all messages
          */
         self.clear = function() {
-            PuszekNotificationService.clear();
+            NotificationsProvider.clear();
         };
 
-        PuszekNotificationService.on('message', function(e, _message) {
+        NotificationsProvider.on('packet', function(e, _packet) {
             self.newMessagesStatus = true;
         });
     })
-    .run(function($rootScope, PuszekNotificationService, Config) {
+    .run(function($rootScope, NotificationsProvider) {
 
         var $scope = $rootScope.$new();
 
-        // configure puszek messages
-        PuszekNotificationService.configure({
-            address: Config.puszekSocketAddress
-        });
-
-        // parse custom messages
-        PuszekNotificationService.on('message', function(e, _messageEvent) {
-            try {
-                _messageEvent.message.message = JSON.parse(_messageEvent.message.message);
-            } catch (error) {}
-        });
-
         // catch login/logout events
         $scope.$on('auth.login', function() {
-            PuszekNotificationService.connect();
+            NotificationsProvider.connect();
         });
         $scope.$on('auth.logout', function() {
-            PuszekNotificationService.disconnect();
+            NotificationsProvider.disconnect();
         });
     });

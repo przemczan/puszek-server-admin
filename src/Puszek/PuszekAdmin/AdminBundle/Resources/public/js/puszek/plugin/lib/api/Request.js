@@ -1,6 +1,6 @@
 (function(window, $) {
 
-    window.Puszek.WebSocketRequest = {
+    window.Puszek.SocketRequest = {
         TYPE_MESSAGE_MARK_AS_READ: 'message_mark_as_read',
 
         create: function() {
@@ -8,6 +8,16 @@
         }
     };
 
+    /**
+     * Next packet index
+     * @type {number}
+     */
+    var index = 0;
+
+    /**
+     * General request
+     * @constructor
+     */
     function WebSocketRequest() {
 
         /**
@@ -17,6 +27,7 @@
          */
         var self = this,
             packetData = {
+                id: ++index,
                 type: null,
                 data: null
             };
