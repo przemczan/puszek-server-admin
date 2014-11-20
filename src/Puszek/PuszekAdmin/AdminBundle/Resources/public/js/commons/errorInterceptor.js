@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('httpErrorInterceptor', function($q, $injector) {
+    .factory('httpErrorInterceptor', function errorInterceptorFactory($q, $injector) {
 
         return {
             'request': function(config) {

@@ -1,9 +1,9 @@
 angular.module('puszekApp')
-    .controller('NotificationController', function($scope, Notification) {
+    .controller('NotificationController', function NotificationController($scope, Notification) {
 
         $scope.Notification = Notification;
     })
-    .factory('Notification', function($rootScope, $mdToast, $timeout) {
+    .factory('Notification', function NotificationFactory($rootScope, $mdToast, $timeout) {
 
         var messages = [],
             $notificationContainer = $('#notification');

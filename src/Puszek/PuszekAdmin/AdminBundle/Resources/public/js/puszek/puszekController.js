@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('puszekController', function($scope, NotificationsProvider, Config, $element) {
+    .controller('notificationsController', function puszekController($scope, NotificationsProvider, Config, $element) {
 
         var self = this;
 

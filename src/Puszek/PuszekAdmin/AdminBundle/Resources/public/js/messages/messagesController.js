@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('messagesController', function($scope, ModalWindow, Config) {
+    .controller('messagesController', function messagesController($scope, ModalWindow, Config) {
 
         $scope['new'] = function() {
             ModalWindow.open(function($scope, $mdDialog, $http) {

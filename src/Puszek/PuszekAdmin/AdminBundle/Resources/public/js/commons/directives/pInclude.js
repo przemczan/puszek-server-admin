@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .directive('pInclude', function(Config) {
+    .directive('pInclude', function pIncludeDirective(Config) {
         return {
             restrict: 'A',
             template: '<ng-include src="getPath()"></ng-include>',

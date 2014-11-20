@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('ModalConfirm', function (Config, $mdDialog) {
+    .factory('ModalConfirm', function ModalConfirmFactory(Config, $mdDialog) {
 
         function open(_content, _title) {
             return $mdDialog.show({

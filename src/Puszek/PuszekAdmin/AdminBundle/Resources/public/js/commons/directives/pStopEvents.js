@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .directive('pStopEvents', function() {
+    .directive('pStopEvents', function pStopEventsDirective() {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {

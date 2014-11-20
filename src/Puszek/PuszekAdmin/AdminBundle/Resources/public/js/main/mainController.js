@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('mainController', function($scope, $state, $mdSidenav) {
+    .controller('mainController', function mainController($scope, $state, $mdSidenav) {
 
         var self  =this;
         this.menuOpen = false;

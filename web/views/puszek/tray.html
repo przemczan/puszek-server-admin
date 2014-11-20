@@ -1,22 +1,22 @@
-<md-button class="md-fab md-fab-flat md-primary toggle-button" ng-click="puszek.toggle()" p-stop-events="click" ng-class="{ 'has-new-messages': puszek.hasNewMessages() }">
+<md-button class="md-fab md-fab-flat md-primary toggle-button" ng-click="notifs.toggle()" p-stop-events="click" ng-class="{ 'has-new-messages': notifs.hasNewMessages() }">
     <p-icon src="/views/icons/ic_chat_24px.svg"></p-icon>
-    <span class="counter">[[ puszek.messages.length ]]</span>
+    <span class="counter">[[ notifs.messages.length ]]</span>
     <div class="button-mask"></div>
 </md-button>
-<div class="tray md-whiteframe-z2 ng-cloak" ng-show="puszek.messagesVisible">
+<div class="tray md-whiteframe-z2 ng-cloak" ng-show="notifs.messagesVisible">
     <div class="toolbar">
-        <div class="empty-info" ng-if="!puszek.messages.length">There are no messages for you</div>
-        <div ng-if="puszek.messages.length">
-            <md-button class="clear" ng-click="puszek.clear()" p-stop-events="click">
+        <div class="empty-info" ng-if="!notifs.messages.length">There are no messages for you</div>
+        <div ng-if="notifs.messages.length">
+            <md-button class="clear" ng-click="notifs.clear()" p-stop-events="click">
                 <p-icon src="/views/icons/ic_clear_all_24px.svg"></p-icon>
             </md-button>
             <md-divider ng-if="!$last"></md-divider>
         </div>
     </div>
-    <div data-ng-repeat="msg in puszek.messages" class="message">
+    <div data-ng-repeat="msg in notifs.messages" class="message">
         <div class="message-content">
             [[ msg.message ]]
-            <md-button ng-click="puszek.markAsRead(msg)" p-stop-events="click">&#x2716;</md-button>
+            <md-button ng-click="notifs.markAsRead(msg)" p-stop-events="click">&#x2716;</md-button>
         </div>
         <md-divider ng-if="!$last"></md-divider>
     </div>

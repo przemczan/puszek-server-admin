@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('ModalWindow', function (Config, $mdDialog) {
+    .factory('ModalWindow', function ModalWindowFactory(Config, $mdDialog) {
 
         function open(_controller) {
             return $mdDialog.show({

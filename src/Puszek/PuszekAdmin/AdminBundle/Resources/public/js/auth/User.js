@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('AuthUser', function($rootScope, Config, $state, $http, $log, $stateParams) {
+    .factory('AuthUser', function AuthUserFactory($rootScope, Config, $state, $http, $log, $stateParams) {
 
         var emptyUser = {
                 user: false,

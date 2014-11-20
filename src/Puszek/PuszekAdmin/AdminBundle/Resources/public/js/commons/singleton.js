@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('Singleton', function ($rootScope) {
+    .factory('Singleton', function SingletonFactory($rootScope) {
         var objects = {},
             $scope = $rootScope.$new();
 

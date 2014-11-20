@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('actionsMenuController', function($scope, $element) {
+    .controller('actionsMenuController', function actionsMenuController($scope, $element) {
 
         var self = this;
 

@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('clientsController', function($scope, Singleton, RestApiCRUDFactoryGUI, Config) {
+    .controller('clientsController', function clientsController($scope, Singleton, RestApiCrudGui, Config) {
 
         $scope.selected = null;
 
@@ -13,7 +13,7 @@ angular.module('puszekApp')
 
         $scope.crudGUI = Singleton.get('clients.crud', function() {
             return {
-                object: RestApiCRUDFactoryGUI.create({
+                object: RestApiCrudGui.create({
                     crud: {
                         elementRoute: 'clients'
                     },

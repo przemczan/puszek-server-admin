@@ -1,5 +1,5 @@
-(function(window, $) {
+(function(window) {
 
     window.Puszek = window.Puszek || {};
 
-})(window, jQuery);
+})(window);

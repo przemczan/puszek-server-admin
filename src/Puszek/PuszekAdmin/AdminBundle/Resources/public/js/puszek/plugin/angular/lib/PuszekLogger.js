@@ -1,5 +1,5 @@
 angular.module('puszek')
-    .factory('PuszekLogger', function($log) {
+    .factory('PuszekLogger', function PuszekLoggerFactory($log) {
         return {
             log: function() {
                 var args = [].slice.call(arguments);

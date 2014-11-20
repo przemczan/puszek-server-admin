@@ -31,7 +31,7 @@
                 </md-button>
                 <span ui-view="contentHeader"></span>
             </h1>
-            <div data-ng-controller="puszekController as puszek" id="puszek-container" p-include="/views/puszek/tray.html" ng-show="puszek.isConnected()"></div>
+            <div data-ng-controller="notificationsController as notifs" id="puszek-container" p-include="/views/puszek/tray.html" ng-show="notifs.isConnected()"></div>
         </md-toolbar>
         <section layout="horizontal" flex>
             <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2 main-sidenav"

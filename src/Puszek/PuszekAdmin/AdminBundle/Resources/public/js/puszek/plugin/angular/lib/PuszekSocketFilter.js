@@ -1,7 +1,7 @@
 angular.module('puszek')
-    .factory('PuszekPacketSource', function($rootScope, PuszekLogger) {
+    .factory('PuszekSocketFilter', function PuszekSocketFilterFactory($rootScope, PuszekLogger) {
 
-        function PuszekPacketSource(puszekSocket) {
+        function PuszekSocketFilter(puszekSocket) {
 
             var $self = $(this);
 
@@ -147,7 +147,7 @@ angular.module('puszek')
 
         return {
             create: function(_puszekSocket) {
-                return new PuszekPacketSource(_puszekSocket);
+                return new PuszekSocketFilter(_puszekSocket);
             }
         };
     });

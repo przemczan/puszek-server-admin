@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('RestApiCRUDFactoryGUI', function(RestApi, CRUDFactoryGUI) {
+    .factory('RestApiCrudGui', function RestApiCrudGuiFactory(RestApi, RestCrudGui) {
         return {
             create: function(_config) {
                 _config = $.extend(true, {},
@@ -12,7 +12,7 @@ angular.module('puszekApp')
                     },
                     _config
                 );
-                return CRUDFactoryGUI.create(_config);
+                return RestCrudGui.create(_config);
             }
         };
     });

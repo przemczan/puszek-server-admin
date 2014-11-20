@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .directive('clickConfirm', function (ModalConfirm) {
+    .directive('clickConfirm', function clickConfirmDirective(ModalConfirm) {
         return {
             restrict: 'A',
             priority: 1,

@@ -143,24 +143,38 @@
          * @param messageIds
          */
         this.markAsRead = function(messageIds) {
-            if (socket) {
-                Puszek.SocketRequest.create()
-                    .type(Puszek.SocketRequest.TYPE_MESSAGE_MARK_AS_READ)
-                    .data(Puszek.SocketRequest.MessageIdList.create().ids(messageIds).get())
-                    .send(socket)
-            }
+            self.send(
+                Puszek.SocketRequest.TYPE_MESSAGE_MARK_AS_READ,
+                Puszek.SocketRequest.MessageIdList.create().ids(messageIds).get()
+            );
         };
 
         /**
+         *
          */
         this.on = function() {
             $self.on.apply($self, arguments);
         };
 
         /**
+         *
          */
         this.off = function() {
             $self.off.apply($self, arguments);
+        };
+
+        /**
+         *
+         * @param _type
+         * @param _data
+         */
+        this.send = function(_type, _data) {
+            if (socket) {
+                Puszek.SocketRequest.create()
+                    .type(_type)
+                    .data(_data)
+                    .send(socket)
+            }
         };
 
 

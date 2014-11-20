@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .directive('pIcon', function(Config) {
+    .directive('pIcon', function pIconDirective(Config) {
         return {
             restrict: 'E',
             scope: {

@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('CRUDFactory', function(Config, Restangular) {
+    .factory('RestCrud', function RestCrudFactory(Config, Restangular) {
 
         function CRUDController(_config)
         {

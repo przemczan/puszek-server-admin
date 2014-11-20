@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('RestApi', function (Config, Restangular) {
+    .factory('RestApi', function RestApiFactory(Config, Restangular) {
         return Restangular.withConfig(function(RestangularConfigurer) {
             RestangularConfigurer.setBaseUrl(Config.baseUrl + '/api');
         });

@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('authController', function($rootScope, $scope, $http, Config, AuthUser, $log) {
+    .controller('authController', function authController($rootScope, $scope, $http, Config, AuthUser, $log) {
 
         $scope.loginFormData = {};
         $scope.error = '';

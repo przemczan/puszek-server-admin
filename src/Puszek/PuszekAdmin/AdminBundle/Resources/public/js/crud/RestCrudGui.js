@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('CRUDFactoryGUI', function(CRUDFactory, ModalWindow) {
+    .factory('RestCrudGui', function RestCrudGuiFactory(RestCrud, ModalWindow) {
 
         function gui(_config) {
 
@@ -13,7 +13,7 @@ angular.module('puszekApp')
             /**
              * @type {Object}
              */
-            var crud = CRUDFactory.create(_config.crud || {});
+            var crud = RestCrud.create(_config.crud || {});
 
             /**
              *

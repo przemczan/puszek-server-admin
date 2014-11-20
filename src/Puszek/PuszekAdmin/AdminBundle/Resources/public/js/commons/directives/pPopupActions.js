@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .directive('pPopupActions', function($compile) {
+    .directive('pPopupActions', function pPopupActionsDirective($compile) {
         return {
             restrict: 'E',
             scope: true,
