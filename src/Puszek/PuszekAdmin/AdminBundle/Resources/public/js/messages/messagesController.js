@@ -11,7 +11,9 @@ angular.module('puszekApp')
         };
 
         $scope.sendNotification = function() {
-            $http.post(Config.baseUrl + '/messages/send', $scope.notification);
+            $http.post(Config.baseUrl + '/messages/send', $scope.notification).then(function() {
+                $scope.notification.message.message = '';
+            });
         };
 
         $scope.chats = PuszekChat.getChats();

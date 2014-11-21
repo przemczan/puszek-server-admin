@@ -31,19 +31,6 @@ angular.module('puszekApp')
 
             /**
              *
-             * @param _packet
-             * @returns {boolean}
-             */
-            function onPacket(_packet) {
-                return
-                       'message' == _packet.type
-                    && config.receiver == _packet.data.sender
-                    && 'chat' == _packet.data.message.type;
-
-            }
-
-            /**
-             *
              * @param _message
              */
             this.send = function(_message) {
@@ -57,7 +44,10 @@ angular.module('puszekApp')
                 });
             };
 
-            socketPacketAggregator = PuszekSocketPacketsAggregator.create(config.socket, onPacket);
+            socketPacketAggregator = PuszekSocketPacketsAggregator.create(config.socket, function onPacket(_packet) {
+                return 'message' == _packet.type &&'chat' == _packet.data.message.type && config.receiver === _packet.data.sender;
+
+            });
 
             this.getMessages = socketPacketAggregator.getMessages;
             this.clear = socketPacketAggregator.clear;

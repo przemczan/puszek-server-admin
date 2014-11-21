@@ -40,10 +40,10 @@
                     <h2>Chat with: [[ chat.getReceiver() ]]</h2>
                     <div class="row">
                         <div class="cell">
-                            <md-text-float type="text" ng-model="text" label="Message" ng-keyup="$event.keyCode == 13 && text && chat.send(text)"></md-text-float>
+                            <md-text-float type="text" ng-model="text" label="Message" ng-keyup="if ($event.keyCode == 13 && text) { chat.send(text); text = ''}"></md-text-float>
                         </div>
                         <div class="cell">
-                            <md-button ng-click="text && chat.send(text)">Send</md-button>
+                            <md-button ng-click="if (text) { chat.send(text); text = '' }">Send</md-button>
                             <md-button ng-click="closeChat(chat)">close</md-button>
                         </div>
                     </div>
