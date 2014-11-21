@@ -59,7 +59,6 @@
          * @returns {*}
          */
         this.send = function (_socket) {
-            console.log(packetData);
             _socket.send(JSON.stringify(packetData));
 
             return self;

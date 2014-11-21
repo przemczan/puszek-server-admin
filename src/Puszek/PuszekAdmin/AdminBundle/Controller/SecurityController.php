@@ -22,9 +22,15 @@ class SecurityController extends AbstractController
 
         if ($this->getUser() instanceof UserInterface) {
             $securityContext = $this->get('security.context');
+            $socketHelper = $this->get('przemczan_puszek_sdk.socket_helper');
+            $user = $this->getUser();
+
             $data = [
                 'user' => [
-                    'fullName' => $this->getUser()->getUsername()
+                    'fullName' => $user->getUsername()
+                ],
+                'data' => [
+                    'puszekSocketAddress' => $socketHelper->getSocketUrl($user->getUsername(), [$user->getUsername(), '*']),
                 ],
                 'roles' => []
             ];

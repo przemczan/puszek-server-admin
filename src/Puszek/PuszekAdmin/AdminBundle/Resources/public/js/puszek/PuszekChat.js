@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('PuszekChat', function PuszekChatFactory(PuszekSocketFilter, Config, $log) {
+    .factory('PuszekChat', function PuszekChatFactory($rootScope, PuszekSocketPacketsAggregator, Config, $log, $http, AuthUser) {
 
         /**
          * Chats list
@@ -15,54 +15,62 @@ angular.module('puszekApp')
         function Chat(_config) {
 
             /**
-             * Configuration
+             * @var {{socket:{Puszek.Socket}}}
              */
             var config = $.extend(true, {
-                    address: null,
-                    chatWith: []
+                    socket: null,
+                    receiver: '',
+                    sender: ''
                 }, _config);
 
             /**
-             * Puszek socket
-             * @type {Window.Puszek.Socket}
+             * Socket packets aggregator
+             * @type {Puszek.Socket}
              */
-            var socket = new Puszek.Socket({
-                address: config.address,
-                packetFilter: function(_packet) {
-                    if ('message' == _packet.type) {
-                        try {
-                            _packet.data.message = JSON.parse(_packet.data.message);
-                        } catch (e) {
-                            $log.error('Error parsing puszek message:', e);
-                            return false;
-                        }
-                        // TODO filter packets
-                        if ('chat' == _packet.data.message.type
-                            && config.chatWith.indexOf(_packet.data.message.sender) >= 0
-                        ) {
-                            return true;
-                        }
-                    }
-
-                    return false;
-                }
-            });
+            var socketPacketAggregator;
 
             /**
-             * Socket packts filter
-             * @type {socket}
+             *
+             * @param _packet
+             * @returns {boolean}
              */
-            var socketFilter = PuszekSocketFilter.create(socket);
+            function onPacket(_packet) {
+                return
+                       'message' == _packet.type
+                    && config.receiver == _packet.data.sender
+                    && 'chat' == _packet.data.message.type;
 
+            }
+
+            /**
+             *
+             * @param _message
+             */
             this.send = function(_message) {
-                // TODO send chat message
+                $http.post(Config.baseUrl + '/messages/send', {
+                    sender: config.sender || AuthUser.getFullName(),
+                    receivers: [config.receiver, AuthUser.getFullName()],
+                    message: {
+                        type: 'chat',
+                        message: _message
+                    }
+                });
             };
 
-            this.getMessages = socketFilter.getMessages;
-            this.clear = socketFilter.clear;
-            this.getChatWith = function() {
-                return config.chatWith.join(', ');
+            socketPacketAggregator = PuszekSocketPacketsAggregator.create(config.socket, onPacket);
+
+            this.getMessages = socketPacketAggregator.getMessages;
+            this.clear = socketPacketAggregator.clear;
+            this.open = socketPacketAggregator.connect;
+            this.close = socketPacketAggregator.disconnect;
+
+            this.getReceiver = function() {
+                return config.receiver;
             };
+            this.getSender = function() {
+                return config.sender;
+            };
+
         }
 
 
@@ -81,6 +89,17 @@ angular.module('puszekApp')
 
             getChats: function() {
                 return chats;
+            },
+
+            getChat: function(_sender, _receiver) {
+                var chat = false;
+                angular.forEach(chats, function(_chat) {
+                    if (_chat.getSender() == _sender && _chat.getReceiver() == _receiver) {
+                        chat = _chat;
+                    }
+                });
+
+                return chat;
             }
         };
     });

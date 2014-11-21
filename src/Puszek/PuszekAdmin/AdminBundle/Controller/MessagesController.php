@@ -2,12 +2,9 @@
 
 namespace Puszek\PuszekAdmin\AdminBundle\Controller;
 
-use Doctrine\ORM\EntityRepository;
 use Przemczan\PuszekSdkBundle\Service\API;
-use Puszek\PuszekAdmin\AdminBundle\Document\Client;
-use Puszek\PuszekAdmin\AdminBundle\Form\Type\ClientType;
+use Przemczan\PuszekSdkBundle\Service\SocketHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,10 +18,13 @@ class MessagesController extends AbstractController
     {
         /** @var API $api */
         $api = $this->get('przemczan_puszek_sdk.api');
+        $receivers = $request->request->get('receivers');
+        $receivers = is_array($receivers) ? $receivers : explode(',', $receivers);
+
         $response = $api->sendMessage(
             $request->request->get('sender'),
             $request->request->get('message'),
-            array_map('trim', explode(',', $request->request->get('receivers')))
+            $receivers
         );
 
         return $this->restify($response);

@@ -1,7 +1,7 @@
 angular.module('puszek')
-    .factory('PuszekSocketFilter', function PuszekSocketFilterFactory($rootScope, PuszekLogger) {
+    .factory('PuszekSocketPacketsAggregator', function PuszekSocketPacketsAggregatorFactory($rootScope, PuszekLogger) {
 
-        function PuszekSocketFilter(puszekSocket) {
+        function PuszekSocketPacketsAggregator(puszekSocket, filterFn) {
 
             var $self = $(this);
 
@@ -45,17 +45,19 @@ angular.module('puszek')
              */
             function onPacket(event, _packet) {
                 try {
-                    $self.trigger('packet', [_packet]);
+                    var accepted = (filterFn || angular.noop)(_packet);
+                    if (accepted == undefined || accepted === true) {
+                        $self.trigger('packet', [_packet]);
 
-                    if ('message' == _packet.type) {
                         if (getMessageIndexById(_packet.data._id) < 0) {
                             messages.push(_packet.data);
                         }
+
+                        $rootScope.$apply();
                     }
                 } catch (error) {
                     PuszekLogger.log(error.message, _packet);
                 }
-                $rootScope.$apply();
             }
 
             /**
@@ -146,8 +148,8 @@ angular.module('puszek')
         }
 
         return {
-            create: function(_puszekSocket) {
-                return new PuszekSocketFilter(_puszekSocket);
+            create: function(_puszekSocket, _filterFn) {
+                return new PuszekSocketPacketsAggregator(_puszekSocket, _filterFn);
             }
         };
     });

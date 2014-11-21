@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('notificationsController', function puszekController($scope, NotificationsProvider, Config, $element) {
+    .controller('notificationsController', function notificationsController($scope, PuszekNotifications, Config, $element) {
 
         var self = this;
 
@@ -15,8 +15,8 @@ angular.module('puszekApp')
             self.newMessagesStatus = false;
         };
 
-        self.messages = NotificationsProvider.getMessages();
-        self.isConnected = NotificationsProvider.isConnected;
+        self.messages = PuszekNotifications.getMessages();
+        self.isConnected = PuszekNotifications.isConnected;
 
         // prevent from closing messages when clicking inside them
         $scope.$on('click', function(e, $event) {
@@ -31,29 +31,17 @@ angular.module('puszekApp')
          * @param _message
          */
         self.markAsRead = function(_message) {
-            NotificationsProvider.markAsRead([_message._id]);
+            PuszekNotifications.markAsRead([_message._id]);
         };
 
         /**
          * Remove all messages
          */
         self.clear = function() {
-            NotificationsProvider.clear();
+            PuszekNotifications.clear();
         };
 
-        NotificationsProvider.on('packet', function(e, _packet) {
+        PuszekNotifications.on('packet', function(e, _packet) {
             self.newMessagesStatus = true;
-        });
-    })
-    .run(function($rootScope, NotificationsProvider) {
-
-        var $scope = $rootScope.$new();
-
-        // catch login/logout events
-        $scope.$on('auth.login', function() {
-            NotificationsProvider.connect();
-        });
-        $scope.$on('auth.logout', function() {
-            NotificationsProvider.disconnect();
         });
     });

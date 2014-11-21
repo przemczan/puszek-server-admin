@@ -4,7 +4,8 @@ angular.module('puszekApp')
         var emptyUser = {
                 user: false,
                 roles: [],
-                isLoaded: false
+                isLoaded: false,
+                data: null
             },
             userData = {},
             systemRoles = [];
@@ -38,6 +39,7 @@ angular.module('puszekApp')
                     if (angular.isObject(_data)) {
                         userData.user = _data.user || false;
                         userData.roles = _data.roles || [];
+                        userData.data = _data.data || null;
                     }
                     userData.isLoaded = true;
                     $service.trigger('load');
@@ -85,6 +87,10 @@ angular.module('puszekApp')
 
                 off: function() {
                     return $service.off.apply($service, arguments);
+                },
+
+                getData: function() {
+                    return userData.data;
                 }
             },
             $service = $(service);

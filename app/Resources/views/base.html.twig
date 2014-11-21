@@ -85,8 +85,7 @@
         <script>
             angular.module('puszekApp').constant('Config', {
                 baseUrl: '{{ app.request.baseUrl }}',
-                basePath: '{{ app.request.basePath }}',
-                puszekNotificationsSocketAddress: '{{ przemczan_puszek_socket_url('przemczan', ['przemczan', '*']) | e('js') }}'
+                basePath: '{{ app.request.basePath }}'
             });
         </script>
     {% endblock %}

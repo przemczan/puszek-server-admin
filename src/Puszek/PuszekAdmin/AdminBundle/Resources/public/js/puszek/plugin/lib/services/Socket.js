@@ -4,13 +4,11 @@
         var $self = $(this), // jquery version of this
             self = this, // this ;)
             socket, // WebSocket instance
-            noop = function(){},
             settings = {
                 address: 'ws://localhost:5001',
                 serverProtocol: null,
                 autoReconnectRetries: 1000,
-                autoReconnectDelay: 5000,
-                packetFilter: noop
+                autoReconnectDelay: 5000
             },
             reconnectTries = settings.autoReconnectRetries;
 
@@ -42,8 +40,6 @@
          * Socket connection opened
          */
         function onClose() {
-            $self.trigger('close');
-
             if (socket && settings.autoReconnectRetries > 0) {
                 if (reconnectTries--) {
                     setTimeout(
@@ -56,6 +52,7 @@
                     reconnectTries = settings.autoReconnectRetries;
                 }
             }
+            $self.trigger('close');
         }
 
         /**
@@ -71,12 +68,10 @@
          */
         function onMessage(_message) {
             try {
-                var packet = JSON.parse(_message.data),
-                    accepted = (settings.packetFilter || noop)(packet);
-
-                if (typeof accepted == 'undefined' || accepted === true) {
-                    $self.trigger('packet', [packet]);
-                }
+                var packet = JSON.parse(_message.data);
+                $self.trigger('pre.packet', [packet]);
+                $self.trigger('packet', [packet]);
+                $self.trigger('post.packet', [packet]);
             } catch (e) {}
         }
 
@@ -99,6 +94,8 @@
             settings.address = url || settings.address;
 
             initializeSocket();
+
+            return self;
         };
 
         /**
@@ -111,6 +108,8 @@
                 oldSocket.close();
                 oldSocket = null;
             }
+
+            return self;
         };
 
         /**
@@ -119,6 +118,8 @@
         this.reconnect = function () {
             self.disconnect();
             self.connect();
+
+            return self;
         };
 
         /**
@@ -136,6 +137,8 @@
             if (socket && socket.readyState == 1) {
                 socket.send(data);
             }
+
+            return self;
         };
 
         /**
@@ -147,6 +150,8 @@
                 Puszek.SocketRequest.TYPE_MESSAGE_MARK_AS_READ,
                 Puszek.SocketRequest.MessageIdList.create().ids(messageIds).get()
             );
+
+            return self;
         };
 
         /**
@@ -154,6 +159,8 @@
          */
         this.on = function() {
             $self.on.apply($self, arguments);
+
+            return self;
         };
 
         /**
@@ -161,6 +168,8 @@
          */
         this.off = function() {
             $self.off.apply($self, arguments);
+
+            return self;
         };
 
         /**
@@ -175,6 +184,8 @@
                     .data(_data)
                     .send(socket)
             }
+
+            return self;
         };
 
 

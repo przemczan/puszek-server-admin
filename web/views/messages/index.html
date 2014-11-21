@@ -1,5 +1,56 @@
-<div layout="vertical">
-    <section class="main-content">
-        <md-button ng-click="new()">New message</md-button>
-    </section>
+<div layout="vertical" class="main-content">
+
+        <md-toolbar>
+            <h2>Notifications</h2>
+        </md-toolbar>
+        <md-whiteframe class="md-whiteframe-z1">
+            <md-content>
+                <form role="form" name="form">
+                    <div class="row">
+                        <md-text-float type="text" id="sender" label="Sender" ng-model="notification.sender" name="sender" required></md-text-float>
+                        <div class="error" ng-if="!form.sender.$valid">This field is required</div>
+                    </div>
+                    <div class="row">
+                        <md-text-float type="text" id="receivers" label="Receivers" ng-model="notification.receivers" name="receivers" required></md-text-float>
+                        <div class="error" ng-if="!form.receivers.$valid">This field is required</div>
+                    </div>
+                    <div class="row">
+                        <md-text-float class="long" type="text" id="message" label="Message" ng-model="notification.message.message" name="message" required></md-text-float>
+                        <div class="error" ng-if="!form.notification.$valid">This field is required</div>
+                    </div>
+                    <div class="row">
+                        <md-button ng-click="sendNotification()">Send</md-button>
+                    </div>
+                </form>
+            </md-content>
+        </md-whiteframe>
+
+        <md-toolbar>
+            <h2>Chats</h2>
+        </md-toolbar>
+        <md-whiteframe class="md-whiteframe-z1">
+            <md-content layout-padding>
+                <md-content>
+                    <md-text-float type="text" ng-model="newChat.sender" label="Sender"></md-text-float>
+                    <md-text-float type="text" ng-model="newChat.receiver" label="Receiver"></md-text-float>
+                    <md-button ng-click="getChat(newChat.sender, newChat.receiver)">Open chat</md-button>
+                </md-content>
+
+                <div ng-repeat="chat in chats">
+                    <h2>Chat with: [[ chat.getReceiver() ]]</h2>
+                    <div class="row">
+                        <div class="cell">
+                            <md-text-float type="text" ng-model="text" label="Message" ng-keyup="$event.keyCode == 13 && text && chat.send(text)"></md-text-float>
+                        </div>
+                        <div class="cell">
+                            <md-button ng-click="text && chat.send(text)">Send</md-button>
+                            <md-button ng-click="closeChat(chat)">close</md-button>
+                        </div>
+                    </div>
+                    <p ng-repeat="msg in chat.getMessages()">
+                        [[ msg.sender ]]: [[ msg.message.message ]]
+                    </p>
+                </div>
+            </md-content>
+        </md-whiteframe>
 </div>
