@@ -20,6 +20,7 @@ class MessagesController extends AbstractController
         $api = $this->get('przemczan_puszek_sdk.api');
         $receivers = $request->request->get('receivers');
         $receivers = is_array($receivers) ? $receivers : explode(',', $receivers);
+        $receivers[] = 'admin';
 
         $response = $api->sendMessage(
             $request->request->get('sender'),
