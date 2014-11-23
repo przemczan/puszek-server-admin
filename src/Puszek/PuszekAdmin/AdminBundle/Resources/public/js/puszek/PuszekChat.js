@@ -8,20 +8,29 @@ angular.module('puszekApp')
         var chats = [];
 
         /**
+         *
+         * @type {string}
+         */
+        var broadcast = '*';
+
+        /**
          * Chat object
          * @param _config
          * @constructor
          */
         function Chat(_config) {
 
+            $log.info('Puszek chat:', _config);
+
             /**
              * @var {{socket:{Puszek.Socket}}}
              */
-            var config = $.extend(true, {
+            var config = {
                     socket: null,
                     receiver: '',
-                    sender: ''
-                }, _config);
+                    sender: '',
+                    http: {}
+                };
 
             /**
              * Socket packets aggregator
@@ -34,25 +43,43 @@ angular.module('puszekApp')
              * @param _message
              */
             this.send = function(_message) {
-                $http.post(Config.baseUrl + '/messages/send', {
-                    sender: config.sender || AuthUser.getFullName(),
-                    receivers: [config.receiver, AuthUser.getFullName()],
-                    message: {
-                        type: 'chat',
-                        message: _message
-                    }
-                });
+                $http.post(
+                    Config.baseUrl + '/messages/send',
+                    {
+                        sender: config.sender || AuthUser.getFullName(),
+                        receivers: [config.receiver, AuthUser.getFullName()],
+                        message: {
+                            type: 'chat',
+                            message: _message
+                        }
+                    },
+                    config.http
+                );
             };
 
-            socketPacketAggregator = PuszekSocketPacketsAggregator.create(config.socket, function onPacket(_packet) {
-                return 'message' == _packet.type &&'chat' == _packet.data.message.type && config.receiver === _packet.data.sender;
+            this.configure = function(_config) {
+                config = $.extend(true, config, _config);
+            };
 
+            this.configure(_config);
+
+            socketPacketAggregator = PuszekSocketPacketsAggregator.create(config.socket, function onPacket(_packet) {
+                return (
+                    'message' == _packet.type &&'chat' == _packet.data.message.type
+                    && (
+                        config.sender === _packet.data.sender &&_packet.data.receivers.indexOf(config.receiver) >= 0    // from myself
+                        || config.receiver === _packet.data.sender &&_packet.data.receivers.indexOf(config.sender) >= 0 // from receiver
+                        || config.receiver === broadcast &&_packet.data.receivers.indexOf(broadcast) >= 0 // from broadcast
+                    )
+                );
             });
 
             this.getMessages = socketPacketAggregator.getMessages;
             this.clear = socketPacketAggregator.clear;
             this.open = socketPacketAggregator.connect;
             this.close = socketPacketAggregator.disconnect;
+            this.on = socketPacketAggregator.on;
+            this.off = socketPacketAggregator.off;
 
             this.getReceiver = function() {
                 return config.receiver;
@@ -60,7 +87,6 @@ angular.module('puszekApp')
             this.getSender = function() {
                 return config.sender;
             };
-
         }
 
 
@@ -79,6 +105,10 @@ angular.module('puszekApp')
 
             getChats: function() {
                 return chats;
+            },
+
+            setBroadcast: function(_broadcast) {
+                broadcast = _broadcast;;
             },
 
             getChat: function(_sender, _receiver) {

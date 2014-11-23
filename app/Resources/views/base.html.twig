@@ -31,11 +31,14 @@
                 </md-button>
                 <span ui-view="contentHeader"></span>
             </h1>
-            <div data-ng-controller="notificationsController as notifs" id="puszek-container" p-include="/views/puszek/tray.html" ng-show="notifs.isConnected()"></div>
+            <div id="header-buttons-container">
+                <div data-ng-controller="notificationsController as notifs" class="header-button notifications" id="puszek-container" p-include="'/views/puszek/tray.html'" ng-show="notifs.isConnected()"></div>
+                <div data-ng-controller="publicChatController as publicChat" class="header-button chat" id="chat-list-container" p-include="'/views/chat/tray.html'" ng-show="User.isLoggedIn()"></div>
+            </div>
         </md-toolbar>
         <section layout="horizontal" flex>
             <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2 main-sidenav"
-                        p-include="/views/commons/mainMenu.html" is-locked-open="true" ng-click="mainMenu.click()"
+                        p-include="'/views/commons/mainMenu.html'" is-locked-open="true" ng-click="mainMenu.click()"
                         ng-show="main.menuOpen">
             </md-sidenav>
             <div layout="vertical" flex class="main-view-container">
@@ -44,7 +47,7 @@
         </section>
     </div>
 
-    <div data-ng-http-loader data-template="{{ app.request.basePath }}/views/commons/loader.html"></div>
+    <p-http-loader data-template="'/views/commons/loader.html'"></p-http-loader>
     <div id="notification" ng-include="'{{ app.request.basePath }}/views/commons/notification.html'"></div>
 
     {% block javascripts %}
@@ -60,7 +63,6 @@
             '@restangular_js'
             '@angular_material_js'
 
-            '@PuszekPuszekAdminAdminBundle/Resources/public/js/vendor/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/app.js'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/modal/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/directives/*'
@@ -72,6 +74,7 @@
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/dashboard/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/clients/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/messages/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/chat/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/services/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/api/*'

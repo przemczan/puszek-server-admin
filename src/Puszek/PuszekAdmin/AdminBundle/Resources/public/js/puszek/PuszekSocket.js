@@ -16,15 +16,13 @@ angular.module('puszekApp')
     })
     .run(function($rootScope, PuszekSocket, AuthUser) {
 
-        var $scope = $rootScope.$new();
-
         // catch login/logout events
-        $scope.$on('auth.login', function() {
+        $rootScope.$on('auth.login', function() {
             if (AuthUser.getData().puszekSocketAddress) {
                 PuszekSocket.connect(AuthUser.getData().puszekSocketAddress);
             }
         });
-        $scope.$on('auth.logout', function() {
+        $rootScope.$on('auth.logout', function() {
             PuszekSocket.disconnect();
         });
     });

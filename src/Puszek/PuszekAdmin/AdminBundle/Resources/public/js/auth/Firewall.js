@@ -70,7 +70,7 @@ angular.module('puszekApp')
             if (lastUserStatus !== AuthUser.isLoggedIn()) {
                 lastUserStatus = AuthUser.isLoggedIn();
                 $log.log('User event:', lastUserStatus ? 'auth.login' : 'auth.logout');
-                $rootScope.$broadcast(lastUserStatus ? 'auth.login' : 'auth.logout');
+                $rootScope.$emit(lastUserStatus ? 'auth.login' : 'auth.logout');
             }
         });
     });

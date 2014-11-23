@@ -1,0 +1,20 @@
+<md-button class="md-fab md-fab-flat md-primary button" ng-click="publicChat.toggle()" p-stop-events="click" ng-class="{ 'has-new': publicChat.hasNewMessages() }">
+    <p-icon src="/views/icons/ic_chat_24px.svg"></p-icon>
+</md-button>
+<div class="tray md-whiteframe-z2 ng-cloak" ng-show="publicChat.trayVisible">
+    <div class="messages">
+        <div data-ng-repeat="msg in publicChat.chat.getMessages()" class="message">
+            <div class="message-content">
+                [[ msg.sender ]]: [[ msg.message.message ]]
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+        </div>
+    </div>
+    <p-http-loader template="'/views/commons/loader.html'" loader-id="publicChat" loader-class="local-loader"></p-http-loader>
+    <div class="toolbar">
+        <md-text-float type="text" ng-model="publicChat.message" ng-keydown="publicChat.sendMessage($event)"></md-text-float>
+        <md-button ng-click="publicChat.sendMessage()" p-stop-events="click">
+            <p-icon src="/views/icons/ic_send_24px.svg"></p-icon>
+        </md-button>
+    </div>
+</div>

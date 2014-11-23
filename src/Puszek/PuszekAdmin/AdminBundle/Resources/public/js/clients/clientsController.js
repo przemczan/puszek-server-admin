@@ -11,7 +11,7 @@ angular.module('puszekApp')
             return $scope.selected === _item;
         };
 
-        $scope.crudGUI = Singleton.get('clients.crud', function() {
+        $scope.crudGUI = Singleton.define('clients.crud', function() {
             return {
                 object: RestApiCrudGui.create({
                     crud: {
@@ -27,5 +27,5 @@ angular.module('puszekApp')
                     }
                 })
             };
-        });
+        }).get('clients.crud');
     });

@@ -1,5 +1,5 @@
-<md-button class="md-fab md-fab-flat md-primary toggle-button" ng-click="notifs.toggle()" p-stop-events="click" ng-class="{ 'has-new-messages': notifs.hasNewMessages() }">
-    <p-icon src="/views/icons/ic_chat_24px.svg"></p-icon>
+<md-button class="md-fab md-fab-flat md-primary button" ng-click="notifs.toggle()" p-stop-events="click" ng-class="{ 'has-new': notifs.hasNewMessages() }">
+    <p-icon src="/views/icons/ic_notifications_none_24px.svg"></p-icon>
     <span class="counter">[[ notifs.messages.length ]]</span>
     <div class="button-mask"></div>
 </md-button>
@@ -13,11 +13,13 @@
             <md-divider ng-if="!$last"></md-divider>
         </div>
     </div>
-    <div data-ng-repeat="msg in notifs.messages" class="message">
-        <div class="message-content">
-            [[ msg.message.message ]]
-            <md-button ng-click="notifs.markAsRead(msg)" p-stop-events="click">&#x2716;</md-button>
+    <div class="messages" ng-if="notifs.messages.length">
+        <div data-ng-repeat="msg in notifs.messages" class="message">
+            <div class="message-content">
+                [[ msg.message.message ]]
+                <md-button ng-click="notifs.markAsRead(msg)" p-stop-events="click">&#x2716;</md-button>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
         </div>
-        <md-divider ng-if="!$last"></md-divider>
     </div>
 </div>

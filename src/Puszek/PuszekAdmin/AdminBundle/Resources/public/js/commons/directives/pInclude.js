@@ -5,7 +5,7 @@ angular.module('puszekApp')
             template: '<ng-include src="getPath()"></ng-include>',
             link: function(scope, element, attributes) {
                 scope.getPath = function() {
-                    return Config.basePath + attributes.pInclude;
+                    return Config.basePath + scope.$eval(attributes.pInclude);
                 }
             }
         };
