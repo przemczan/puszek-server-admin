@@ -12,7 +12,7 @@
     </div>
     <p-http-loader template="'/views/commons/loader.html'" loader-id="publicChat" loader-class="local-loader"></p-http-loader>
     <div class="toolbar">
-        <md-text-float type="text" ng-model="publicChat.message" ng-keydown="publicChat.sendMessage($event)"></md-text-float>
+        <md-text-float type="text" ng-model="publicChat.message" label="type a message" ng-keydown="publicChat.sendMessage($event)"></md-text-float>
         <md-button ng-click="publicChat.sendMessage()" p-stop-events="click">
             <p-icon src="/views/icons/ic_send_24px.svg"></p-icon>
         </md-button>

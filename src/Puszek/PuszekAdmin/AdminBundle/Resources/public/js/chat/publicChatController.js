@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('publicChatController', function publicChatController($scope, Singleton, AuthUser, PuszekSocket, PuszekChat, Config, $element) {
+    .controller('publicChatController', function publicChatController($rootScope, $scope, Singleton, AuthUser, PuszekSocket, PuszekChat, Config, $element) {
 
         var self = this;
 
@@ -33,7 +33,7 @@ angular.module('puszekApp')
         self.message = '';
 
         // prevent from closing messages when clicking inside them
-        $scope.$on('click', function(e, $event) {
+        $rootScope.$on('click', function(e, $event) {
             if (!$.contains($element.get(0), $event.target)) {
                 self.trayVisible = false;
                 $scope.$apply();

@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('notificationsController', function notificationsController($scope, PuszekNotifications, Config, $element) {
+    .controller('notificationsController', function notificationsController($rootScope, $scope, PuszekNotifications, Config, $element) {
 
         var self = this;
 
@@ -19,7 +19,7 @@ angular.module('puszekApp')
         self.isConnected = PuszekNotifications.isConnected;
 
         // prevent from closing messages when clicking inside them
-        $scope.$on('click', function(e, $event) {
+        $rootScope.$on('click', function(e, $event) {
             if (!$.contains($element.get(0), $event.target)) {
                 self.messagesVisible = false;
                 $scope.$apply();
