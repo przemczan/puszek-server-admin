@@ -12,7 +12,7 @@
             </md-button>
         </div>
     </div>
-    <div class="messages" ng-if="notifs.messages.length">
+    <div class="messages">
         <div data-ng-repeat="msg in notifs.messages" class="message">
             <div class="message-content">
                 <span class="date">[[ msg.createdAt | date : 'short' ]]</span>
