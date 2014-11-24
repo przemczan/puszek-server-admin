@@ -32,6 +32,11 @@ class Message
     protected $message;
 
     /**
+     * @MongoDB\Date
+     */
+    protected $createdAt;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -93,5 +98,21 @@ class Message
     public function setReceivers($receivers)
     {
         $this->receivers = $receivers;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 }

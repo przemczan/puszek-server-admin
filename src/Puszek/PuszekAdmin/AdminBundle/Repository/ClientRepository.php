@@ -14,7 +14,7 @@ class ClientRepository extends AbstractRepository
     public function restFindAll(Request $request)
     {
         return $this->restifyPagination($this->knpPaginator->paginate(
-            $this->repository->createQueryBuilder('client')->getQuery(),
+            $this->repository->createQueryBuilder('client')->sort('createdAt', 'desc')->getQuery(),
             $request->query->get('page', 1),
             20
         ));

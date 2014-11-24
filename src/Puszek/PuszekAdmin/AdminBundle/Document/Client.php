@@ -28,6 +28,11 @@ class Client
     protected $privateKey;
 
     /**
+     * @MongoDB\Date
+     */
+    protected $createdAt;
+
+    /**
      * Get id
      *
      * @return id $id
@@ -79,5 +84,21 @@ class Client
     public function getPrivateKey()
     {
         return $this->privateKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 }

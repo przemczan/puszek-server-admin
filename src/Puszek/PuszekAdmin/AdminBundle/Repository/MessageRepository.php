@@ -14,7 +14,7 @@ class MessageRepository extends AbstractRepository
     public function restFindAll(Request $request)
     {
         return $this->restifyPagination($this->knpPaginator->paginate(
-            $this->repository->createQueryBuilder('message')->getQuery(),
+            $this->repository->createQueryBuilder('message')->sort('createdAt', 'desc')->getQuery(),
             $request->query->get('page', 1),
             20
         ));
