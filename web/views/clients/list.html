@@ -1,19 +1,13 @@
-<div layout="vertical">
+<div layout="vertical" class="clients">
 
     <section class="main-content">
-        <md-list>
+        <md-list class="list">
             <div ng-repeat="item in crudGUI.getItems()" class="p-item md-whiteframe-z1" ng-click="selectItem(item)" ng-class="{ 'md-whiteframe-z2 focused' : isSelected(item) }">
                 <md-item-content ng-click>
                     <div class="md-tile-content">
                         <h3>[[ item.name ]]</h3>
                         <h4>[[ item.privateKey ]]</h4>
                         <div class="details" ng-if="isSelected(item)">
-                            details <br />
-                            details <br />
-                            details <br />
-                            details <br />
-                            details <br />
-                            details <br />
                         </div>
                     </div>
                     <p-popup-actions p-stop-events="click">
@@ -31,11 +25,6 @@
     </section>
 
     <div class="actions-menu" ng-controller="actionsMenuController as actionsMenuCtrl">
-        <!--<div class="actions-items" ng-show="actionsMenuCtrl.open">-->
-        <!--<md-button class="md-fab md-primary" md-theme="deep-orange" aria-label="New">-->
-        <!--<md-icon icon="https://google.github.io/material-design-icons/content/svg/ic_add_24px.svg" />-->
-        <!--</md-button>-->
-        <!--</div>-->
         <md-button class="md-fab md-primary actions-button" md-theme="red" aria-label="Create client" ng-click="crudGUI.new()">
             <p-icon class="first" src="/views/icons/ic_add_24px.svg"></p-icon>
             <p-icon class="second" src="/views/icons/ic_create_24px.svg"></p-icon>

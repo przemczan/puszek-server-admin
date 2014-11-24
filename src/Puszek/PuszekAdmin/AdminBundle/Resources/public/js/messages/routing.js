@@ -8,7 +8,7 @@ angular.module('puszekApp')
                     contentHeader: { template: 'Messages' },
                     content: {
                         controller: 'messagesController',
-                        templateUrl: Config.basePath + '/views/messages/index.html'
+                        templateUrl: Config.basePath + '/views/messages/list.html'
                     }
                 },
                 data: {

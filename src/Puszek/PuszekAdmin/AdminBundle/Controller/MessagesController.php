@@ -5,11 +5,33 @@ namespace Puszek\PuszekAdmin\AdminBundle\Controller;
 use Przemczan\PuszekSdkBundle\Service\API;
 use Przemczan\PuszekSdkBundle\Service\SocketHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MessagesController extends AbstractController
 {
+    /**
+     * @var EntityRepository
+     */
+    protected $repository;
+
+    /**
+     * @var EntityManager
+     */
+    protected $em;
+
+
+    /**
+     * @param ContainerInterface $container
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->em = $this->get('doctrine_mongodb')->getManager();
+        $this->repository = $this->get('puszek.repository.message');
+    }
+
     /**
      * @param Request $request
      * @return Response
@@ -29,5 +51,14 @@ class MessagesController extends AbstractController
         );
 
         return $this->restify($response);
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function getMessagesAction(Request $request)
+    {
+        return $this->restify($this->repository->restFindAll($request));
     }
 }

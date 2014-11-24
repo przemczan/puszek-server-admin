@@ -1,0 +1,18 @@
+<div layout="vertical" class="messages">
+    <section class="main-content">
+        <md-list class="list">
+            <div ng-repeat="item in crudGUI.getItems()" class="p-item md-whiteframe-z1" ng-click="selectItem(item)" ng-class="{ 'md-whiteframe-z2 focused' : isSelected(item) }">
+                <md-item-content ng-click>
+                    <div class="md-tile-content">
+                        <h3>[[ item.sender ]]</h3>
+                        <h4>[[ item.receivers ]]</h4>
+                        <div class="details" ng-if="isSelected(item)">
+                            [[ item.message ]]
+                        </div>
+                    </div>
+                </md-item-content>
+                <md-divider ng-if="!$last"></md-divider>
+            </div>
+        </md-list>
+    </section>
+</div>

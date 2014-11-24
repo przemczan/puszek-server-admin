@@ -30,7 +30,8 @@
         "friendsofsymfony/rest-bundle": "~1.4",
         "sp/bower-bundle": "~0.11",
         "leafo/lessphp": "dev-master",
-        "przemczan/puszek-sdk-bundle": "dev-master"
+        "przemczan/puszek-sdk-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "~2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

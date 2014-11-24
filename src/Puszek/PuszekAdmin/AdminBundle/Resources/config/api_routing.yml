@@ -5,3 +5,7 @@ users:
 clients:
     type:     rest
     resource: Puszek\PuszekAdmin\AdminBundle\Controller\ClientsController
+
+messages:
+    type:     rest
+    resource: Puszek\PuszekAdmin\AdminBundle\Controller\MessagesController

@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('clientsController', function clientsController($scope, Singleton, RestApiCrudGui, Config) {
+    .controller('clientsController', function clientsController($rootScope, $scope, Singleton, RestApiCrudGui, Config) {
 
         $scope.selected = null;
 
@@ -10,6 +10,13 @@ angular.module('puszekApp')
         $scope.isSelected = function(_item) {
             return $scope.selected === _item;
         };
+
+        $rootScope.$on('click', function(e, _target) {
+            var selectedNode = $('.clients .list').get(0);
+            if (selectedNode && (!_target || (_target !== selectedNode && !$.contains(selectedNode, _target)))) {
+                $scope.selectItem(null);
+            }
+        });
 
         $scope.crudGUI = Singleton.define('clients.crud', function() {
             return {

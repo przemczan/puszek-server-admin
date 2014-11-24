@@ -70,7 +70,7 @@ angular.module('puszekApp')
              *
              */
             this.refresh = function(_callback) {
-                collection.getList().then(function(_records) {
+                collection.getList(self.getMeta().params).then(function(_records) {
                     records = _records;
                     (_callback || angular.noop)(_records);
                 });
@@ -113,6 +113,21 @@ angular.module('puszekApp')
                 return RestApi;
             };
 
+            /**
+             *
+             * @returns {Object}
+             */
+            this.getMeta = function() {
+                return records.meta || {
+                    page_number: 1,
+                    items_per_page: 20,
+                    total_count: 0,
+                    params: {
+                        page: 1
+                    }
+                };
+            };
+
 
             configure(_config);
         }
@@ -122,4 +137,25 @@ angular.module('puszekApp')
                 return new CRUDController(_config);
             }
         };
+    })
+    .config(function(RestangularProvider) {
+        // First let's set listTypeIsArray to false, as we have the array wrapped in some other object.
+        //RestangularProvider.setListTypeIsArray(false);
+
+        // Now let's configure the response extractor for each request
+        RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
+            var newResponse;
+            // This is a get for a list
+            if (operation === "getList") {
+                // First the newResponse will be response.objects which is actually an array
+                newResponse = response.items;
+                // Then we add to this array a special property containing the metadata for paging for example
+                newResponse.meta = response.meta;
+            } else {
+                // If it's an element, then we just return the "regular" response as there's no object wrapping it
+                newResponse = response;
+            }
+
+            return newResponse;
+        });
     });
