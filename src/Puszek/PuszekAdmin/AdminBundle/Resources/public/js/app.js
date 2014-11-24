@@ -9,8 +9,20 @@ angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial'
         $rootScope.$mdMedia = $mdMedia;
 
         angular.element($window).on('click', function($event) {
-            $rootScope.$emit('click', $event);
+            $rootScope.$emit('click', $event.target);
+            $rootScope.$apply();
         });
+
+        $rootScope.$$apply = function(callback) {
+            var phase = this.$root.$$phase;
+            if (phase == '$apply' || phase == '$digest') {
+                if (typeof(callback) === 'function') {
+                    callback();
+                }
+            } else {
+                this.$apply(callback);
+            }
+        };
     })
     .directive('dynamicAttr', function() {
         return {

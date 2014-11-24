@@ -500,6 +500,12 @@ md-sidenav.main-sidenav {
             overflow: hidden;
             padding: 6px 0;
 
+            &.top {
+                padding: 6px 0 2px 0;
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 4px;
+            }
+
             md-divider {
                 clear: both;
             }
@@ -536,6 +542,18 @@ md-sidenav.main-sidenav {
                 padding: 8px 20px 8px 5px;
                 position: relative;
 
+                span.author {
+                    color: #BBB;
+                    font-weight: bold;
+                }
+
+                span.date {
+                    display: block;
+                    margin-bottom: 2px;
+                    font-size: 10px;
+                    color: #bbb;
+                }
+
                 md-button {
                     position: absolute;
                     top: 3px;
@@ -560,7 +578,7 @@ md-sidenav.main-sidenav {
             }
             md-input-group {
                 float: left;
-                width: 220px;
+                width: 210px;
 
                 input {
                     width: 220px;
@@ -568,7 +586,7 @@ md-sidenav.main-sidenav {
             }
             md-button {
                 float: right;
-                margin: 10px 0 0 2px;
+                margin: 10px 0 0;
             }
         }
     }

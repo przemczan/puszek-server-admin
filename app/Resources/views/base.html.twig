@@ -32,7 +32,7 @@
                 <span ui-view="contentHeader"></span>
             </h1>
             <div id="header-buttons-container">
-                <div data-ng-controller="notificationsController as notifs" class="header-button notifications" id="puszek-container" p-include="'/views/puszek/tray.html'" ng-show="notifs.isConnected()"></div>
+                <div data-ng-controller="notificationsController as notifs" class="header-button notifications" id="puszek-container" p-include="'/views/notifications/tray.html'" ng-show="notifs.isConnected()"></div>
                 <div data-ng-controller="publicChatController as publicChat" class="header-button chat" id="chat-list-container" p-include="'/views/chat/tray.html'" ng-show="User.isLoggedIn()"></div>
             </div>
         </md-toolbar>
@@ -75,6 +75,7 @@
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/clients/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/messages/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/chat/*'
+            '@PuszekPuszekAdminAdminBundle/Resources/public/js/notifications/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/services/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/api/*'

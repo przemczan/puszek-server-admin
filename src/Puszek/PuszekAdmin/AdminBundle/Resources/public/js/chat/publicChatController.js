@@ -28,15 +28,15 @@ angular.module('puszekApp')
             self.trayVisible = !self.trayVisible;
             self.newMessagesStatus = false;
             setTimeout(scrollToLastMessage, 1);
+            $scope.$emit('click', $element.get(0));
         };
 
         self.message = '';
 
-        // prevent from closing messages when clicking inside them
-        $rootScope.$on('click', function(e, $event) {
-            if (!$.contains($element.get(0), $event.target)) {
+        // prevent from closing messages when clicking inside them, and close them when clicking outside
+        $rootScope.$on('click', function(e, _target) {
+            if (!_target || (_target !== $element.get(0) && !$.contains($element.get(0), _target))) {
                 self.trayVisible = false;
-                $scope.$apply();
             }
         });
 
@@ -47,13 +47,19 @@ angular.module('puszekApp')
             }
         };
 
+        self.clear = function() {
+            self.chat.clear();
+        };
+
         function scrollToLastMessage() {
             var container = $('.messages', $element.get(0));
             container.stop().animate({ scrollTop: container.get(0).scrollHeight }, 500);
         }
 
         self.chat.on('packet', function(e, _packet) {
-            self.newMessagesStatus = true;
+            if (!self.trayVisible) {
+                self.newMessagesStatus = true;
+            }
             scrollToLastMessage();
         });
     })

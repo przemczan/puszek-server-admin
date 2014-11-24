@@ -4,10 +4,12 @@ angular.module('puszekApp')
                 address: null // to be updated later
             })
             .on('pre.packet', function(e, _packet) {
-                try {
-                    _packet.data.message = JSON.parse(_packet.data.message);
-                } catch (e) {
-                    $log.error('PuszekSocket:', e, _packet);
+                if ('message' == _packet.type) {
+                    try {
+                        _packet.data.message = JSON.parse(_packet.data.message);
+                    } catch (e) {
+                        $log.error('PuszekSocket:', e, _packet);
+                    }
                 }
             })
             .on('open, close, error, packet', function() {

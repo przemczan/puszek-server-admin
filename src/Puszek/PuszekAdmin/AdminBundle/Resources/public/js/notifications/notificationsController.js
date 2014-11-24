@@ -9,20 +9,20 @@ angular.module('puszekApp')
         };
 
         // toggle messages
-        self.messagesVisible = false;
+        self.trayVisible = false;
         self.toggle = function() {
-            self.messagesVisible = !self.messagesVisible;
+            self.trayVisible = !self.trayVisible;
             self.newMessagesStatus = false;
+            $rootScope.$emit('click', $element.get(0));
         };
 
         self.messages = PuszekNotifications.getMessages();
         self.isConnected = PuszekNotifications.isConnected;
 
-        // prevent from closing messages when clicking inside them
-        $rootScope.$on('click', function(e, $event) {
-            if (!$.contains($element.get(0), $event.target)) {
-                self.messagesVisible = false;
-                $scope.$apply();
+        // prevent from closing messages when clicking inside them, and close them when clicking outside
+        $rootScope.$on('click', function(e, _target) {
+            if (!_target || (_target !== $element.get(0) && !$.contains($element.get(0), _target))) {
+                self.trayVisible = false;
             }
         });
 
@@ -42,6 +42,8 @@ angular.module('puszekApp')
         };
 
         PuszekNotifications.on('packet', function(e, _packet) {
-            self.newMessagesStatus = true;
+            if (!self.trayVisible) {
+                self.newMessagesStatus = true;
+            }
         });
     });

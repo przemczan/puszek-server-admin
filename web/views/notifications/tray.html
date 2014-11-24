@@ -3,19 +3,19 @@
     <span class="counter">[[ notifs.messages.length ]]</span>
     <div class="button-mask"></div>
 </md-button>
-<div class="tray md-whiteframe-z2 ng-cloak" ng-show="notifs.messagesVisible">
-    <div class="toolbar">
+<div class="tray md-whiteframe-z2 ng-cloak" ng-show="notifs.trayVisible">
+    <div class="toolbar top">
         <div class="empty-info" ng-if="!notifs.messages.length">There are no messages for you</div>
         <div ng-if="notifs.messages.length">
             <md-button class="clear" ng-click="notifs.clear()" p-stop-events="click">
                 <p-icon src="/views/icons/ic_clear_all_24px.svg"></p-icon>
             </md-button>
-            <md-divider ng-if="!$last"></md-divider>
         </div>
     </div>
     <div class="messages" ng-if="notifs.messages.length">
         <div data-ng-repeat="msg in notifs.messages" class="message">
             <div class="message-content">
+                <span class="date">[[ msg.createdAt | date : 'short' ]]</span>
                 [[ msg.message.message ]]
                 <md-button ng-click="notifs.markAsRead(msg)" p-stop-events="click">&#x2716;</md-button>
             </div>
