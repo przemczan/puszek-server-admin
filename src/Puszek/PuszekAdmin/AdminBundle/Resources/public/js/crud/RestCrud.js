@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('RestCrud', function RestCrudFactory(Config, Restangular) {
+    .factory('RestCrud', function RestCrudFactory($rootScope, Config, Restangular) {
 
         function CRUDController(_config)
         {
@@ -71,7 +71,14 @@ angular.module('puszekApp')
              */
             this.refresh = function(_callback) {
                 collection.getList(self.getMeta().params).then(function(_records) {
-                    records = _records;
+                    var index;
+                    for (index in records) {
+                        delete records[index];
+                    }
+                    for (index in _records) {
+                        records[index] = _records[index];
+                    }
+                    records.meta.pages_count = Math.ceil(records.meta.total_count / records.meta.items_per_page);
                     (_callback || angular.noop)(_records);
                 });
             };
@@ -119,9 +126,10 @@ angular.module('puszekApp')
              */
             this.getMeta = function() {
                 return records.meta || {
-                    page_number: 1,
+                    page_number: 0,
                     items_per_page: 20,
                     total_count: 0,
+                    pages_count: 0,
                     params: {
                         page: 1
                     }

@@ -81,7 +81,9 @@ angular.module('puszekApp')
 
             this.getItems = function() {
                 return crud.getItems();
-            }
+            };
+
+            this.getMeta = crud.getMeta;
         }
 
         return {
