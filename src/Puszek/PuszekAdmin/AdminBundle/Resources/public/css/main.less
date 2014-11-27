@@ -351,7 +351,7 @@ md-list {
 
         &.focused {
             .standardTransition();
-            margin: 15px -25px;
+            margin: 15px -5px;
 
             .details {
 
@@ -363,6 +363,16 @@ md-list {
     }
     md-item-content {
         background: #fff;
+    }
+}
+
+.page-lg, .page-md {
+    md-list {
+        .p-item {
+            &.focused {
+                margin: 15px -25px;
+            }
+        }
     }
 }
 
