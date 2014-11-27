@@ -84,6 +84,7 @@ angular.module('puszekApp')
             };
 
             this.getMeta = crud.getMeta;
+            this.setPage = crud.setPage;
         }
 
         return {

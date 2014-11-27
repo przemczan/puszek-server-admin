@@ -1,7 +1,9 @@
 <div layout="vertical" class="messages">
     <section class="main-content">
         <md-list class="list">
-            <div ng-repeat="item in crudGUI.getItems()" class="p-item md-whiteframe-z1" ng-click="selectItem(item)" ng-class="{ 'md-whiteframe-z2 focused' : isSelected(item) }">
+            <div dir-paginate="item in crudGUI.getItems() | crudIsItem | itemsPerPage:crudGUI.getMeta().items_per_page:'messages' track by item.id"
+                 pagination-id="messages" total-items="crudGUI.getMeta().total_count"
+                 class="p-item md-whiteframe-z1" ng-click="selectItem(item)" ng-class="{ 'md-whiteframe-z2 focused' : isSelected(item) }">
                 <md-item-content ng-click>
                     <div class="md-tile-content">
                         <h3>[[ item.sender ]]</h3>
@@ -14,6 +16,6 @@
                 <md-divider ng-if="!$last"></md-divider>
             </div>
         </md-list>
-        <p-crud-paging crud="crudGUI"></p-crud-paging>
+        <dir-pagination-controls pagination-id="messages" on-page-change="crudGUI.setPage(newPageNumber)"></dir-pagination-controls>
     </section>
 </div>

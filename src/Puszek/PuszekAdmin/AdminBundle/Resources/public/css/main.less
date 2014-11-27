@@ -327,7 +327,7 @@ md-list {
     .p-item {
         display: block;
         position: relative;
-        .standardTransition(.2s);
+        .standardTransition(.05s);
 
         &.ng-leave {
             display: none;
@@ -350,6 +350,7 @@ md-list {
         }
 
         &.focused {
+            .standardTransition();
             margin: 15px -25px;
 
             .details {
@@ -586,6 +587,30 @@ md-sidenav.main-sidenav {
                 float: right;
                 margin: 10px 0 0;
             }
+        }
+    }
+}
+
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    overflow: hidden;
+    background: #fff;
+
+    li {
+        float: left;
+        position: relative;
+        overflow: hidden;
+
+        a {
+            display: block;
+            padding: 15px 20px;
+        }
+
+        &:hover, &.active {
+            background: #eee;
         }
     }
 }

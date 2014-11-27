@@ -136,6 +136,17 @@ angular.module('puszekApp')
                 };
             };
 
+            /**
+             * Loads a page
+             * @param _page
+             */
+            this.setPage = function(_page) {
+                if (records.meta.params.page != _page) {
+                    records.meta.params.page = _page;
+                    self.refresh();
+                }
+            };
+
 
             configure(_config);
         }
@@ -147,9 +158,6 @@ angular.module('puszekApp')
         };
     })
     .config(function(RestangularProvider) {
-        // First let's set listTypeIsArray to false, as we have the array wrapped in some other object.
-        //RestangularProvider.setListTypeIsArray(false);
-
         // Now let's configure the response extractor for each request
         RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
             var newResponse;
@@ -166,4 +174,11 @@ angular.module('puszekApp')
 
             return newResponse;
         });
+    })
+    .filter('crudIsItem', function() {
+        return function(_items) {
+            return _items.filter(function(_item) {
+                return typeof _item == 'object' && typeof _item.addRestangularMethod == 'function';
+            });
+        };
     });
