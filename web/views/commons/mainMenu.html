@@ -1,4 +1,4 @@
-<div ng-controller="mainMenuController as mainMenu" ng-click="main.mainMenuToggle(false)">
+<div ng-controller="mainMenuController as mainMenu" ng-click="main.mainMenuClose()">
     <md-content layout="column" class="main-menu">
         <md-list layout="column" ng-if="User.isLoggedIn()">
             <md-item ink-ripple ui-sref="homepage" ui-sref-active="active">

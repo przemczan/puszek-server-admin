@@ -39,10 +39,10 @@
         <section layout="row" flex>
             <md-sidenav layout="column" role="navigation" class="md-sidenav-left md-whiteframe-z2 main-sidenav"
                         p-include="'/views/commons/mainMenu.html'" is-locked-open="true" ng-click="mainMenu.click()"
-                        ng-show="main.menuOpen">
+                        md-component-id="mainMenu">
             </md-sidenav>
             <div layout="column" flex class="main-view-container">
-                <md-content scroll-y flex ui-view="content" ng-click="main.mainMenuToggle(false)" ng-animate="'view'"></md-content>
+                <md-content scroll-y flex ui-view="content" ng-click="main.mainMenuClose()" ng-animate="'view'"></md-content>
             </div>
         </section>
     </div>

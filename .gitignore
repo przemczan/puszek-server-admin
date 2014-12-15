@@ -15,4 +15,4 @@
 /web/fonts/*
 /web/assets/*
 /web/assetic/*
-/src/Puszek/PuszekAdmin/AdminBundle/Resources/public/components/*
+/src/Puszek/PuszekAdmin/AdminBundle/Resources/js/components/*

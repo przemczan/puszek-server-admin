@@ -4,6 +4,22 @@
     transition: all @duration cubic-bezier(0.7, 0.14, 0.35, 0.9) !important;
 }
 
+@background-color: #ececec;
+
+
+/** ---------- commons
+*/
+body {
+    background-color: @background-color !important;
+}
+md-content {
+    background: none !important;
+}
+md-content[ui-view="content"] {
+    background-color: @background-color !important;
+    padding: 10px 0;
+}
+
 /** ---------- main view
 */
 .main-view-container {
@@ -33,18 +49,10 @@
     opacity: 1;
 }
 
-md-content {
-    background: none !important;
-}
-
 md-whiteframe {
     background: #fff;
     padding: 20px;
     margin: 20px;
-}
-
-md-content[ui-view="content"] {
-    background-color: #ececec !important;
 }
 
 a {
@@ -180,12 +188,13 @@ p-popup-actions {
 }
 
 md-backdrop {
-    z-index: 999990;
+//    z-index: 999990 !important;
     transition: none !important;
+    position: fixed !important;
 }
 
 .md-dialog-container {
-    z-index: 999991;
+//    z-index: 999991;
 
     md-dialog.modal {
         width: 95%;
@@ -268,7 +277,7 @@ md-backdrop {
     position: fixed;
     right: 35px;
     bottom: 20px;
-    z-index: 10000;
+//    z-index: 10000;
 
     .actions-button {
 
@@ -415,17 +424,8 @@ md-list {
 
 md-sidenav.main-sidenav {
     width: 250px;
-    position: absolute !important;
-    z-index: 3;
-    top: 64px;
-
-    &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove.ng-hide-remove-active {
-        .standardTransition();
-    }
-
-    &.ng-hide {
-        left: -260px;
-    }
+    position: fixed !important;
+//    z-index: 999991;
 }
 
 #header-buttons-container {
