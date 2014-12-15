@@ -86,7 +86,9 @@ doctrine_mongodb:
 
 sp_bower:
     bundles:
-        PuszekPuszekAdminAdminBundle: ~
+        PuszekPuszekAdminAdminBundle:
+            config_dir: @PuszekPuszekAdminAdminBundle/Resources/config
+            asset_dir: @PuszekPuszekAdminAdminBundle/Resources/js/components
     install_on_warmup: true
     assetic:
         nest_dependencies: false

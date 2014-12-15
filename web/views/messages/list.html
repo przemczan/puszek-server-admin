@@ -1,4 +1,4 @@
-<div layout="vertical" class="messages">
+<div layout="row" class="messages">
     <section class="main-content">
         <md-list class="list">
             <div dir-paginate="item in crudGUI.getItems() | crudIsItem | itemsPerPage:crudGUI.getMeta().items_per_page:'messages' track by item.id"

@@ -20,10 +20,10 @@
 
 </head>
 
-<body data-ng-app="puszekApp" data-ng-controller="mainController as main" layout="horizontal"
+<body data-ng-app="puszekApp" data-ng-controller="mainController as main"
       ng-class="{ 'page-lg': $mdMedia('lg'), 'page-md': $mdMedia('md') && !$mdMedia('lg'), 'page-sm': $mdMedia('sm') && !$mdMedia('md') && !$mdMedia('lg') }">
 
-    <div layout="vertical" layout-fill md-theme="default">
+    <div layout="column" md-theme="default">
         <md-toolbar class="md-whiteframe-z1 main-header">
             <h1 class="md-toolbar-tools">
                 <md-button class="md-fab md-fab-flat md-primary" ng-click="main.mainMenuToggle()">
@@ -36,12 +36,12 @@
                 <div data-ng-controller="publicChatController as publicChat" class="header-button chat" id="chat-list-container" p-include="'/views/chat/tray.html'" ng-show="User.isLoggedIn()"></div>
             </div>
         </md-toolbar>
-        <section layout="horizontal" flex>
-            <md-sidenav layout="vertical" role="navigation" class="md-sidenav-left md-whiteframe-z2 main-sidenav"
+        <section layout="row" flex>
+            <md-sidenav layout="column" role="navigation" class="md-sidenav-left md-whiteframe-z2 main-sidenav"
                         p-include="'/views/commons/mainMenu.html'" is-locked-open="true" ng-click="mainMenu.click()"
                         ng-show="main.menuOpen">
             </md-sidenav>
-            <div layout="vertical" flex class="main-view-container">
+            <div layout="column" flex class="main-view-container">
                 <md-content scroll-y flex ui-view="content" ng-click="main.mainMenuToggle(false)" ng-animate="'view'"></md-content>
             </div>
         </section>

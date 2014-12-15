@@ -2,7 +2,7 @@
     <md-toolbar>
         <h2 class="md-toolbar-tools">Login</h2>
     </md-toolbar>
-    <md-whiteframe class="md-whiteframe-z1" layout="horizontal" layout-padding layout-align="center">
+    <md-whiteframe class="md-whiteframe-z1" layout="column" layout-padding layout-align="center">
         <div class="alert alert-danger" ng-if="error">[[ error ]]</div>
         <form role="form" ng-submit="loginForm.$valid && doLogin()" name="loginForm">
             <div class="row">

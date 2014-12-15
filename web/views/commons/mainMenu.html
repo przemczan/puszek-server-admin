@@ -1,6 +1,6 @@
 <div ng-controller="mainMenuController as mainMenu" ng-click="main.mainMenuToggle(false)">
-    <md-content layout="vertical" class="main-menu">
-        <md-list layout="vertical" ng-if="User.isLoggedIn()">
+    <md-content layout="column" class="main-menu">
+        <md-list layout="column" ng-if="User.isLoggedIn()">
             <md-item ink-ripple ui-sref="homepage" ui-sref-active="active">
                 <p-icon src="/views/icons/ic_dashboard_24px.svg"></p-icon>
                 <label>Dashboard</label>
@@ -21,7 +21,7 @@
 
         <md-divider></md-divider>
 
-        <md-list layout="vertical">
+        <md-list layout="column">
             <md-item ink-ripple ui-sref="auth_logout" ui-sref-active="active" ng-if="User.isLoggedIn()">
                 <p-icon src="/views/icons/ic_settings_power_24px.svg"></p-icon>
                 <label>Logout</label>
