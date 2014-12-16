@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .controller('mainController', function mainController($scope, $state, $mdSidenav) {
+    .controller('mainController', function mainController($scope, $state, $mdSidenav, $mdMedia) {
 
         var self = this;
 
@@ -9,5 +9,13 @@ angular.module('puszekApp')
 
         self.mainMenuClose = function() {
             $mdSidenav('mainMenu').close();
+        };
+
+        self.getBodyClass = function() {
+            return {
+                'page-lg': $mdMedia('gt-md'),
+                'page-md': $mdMedia('md'),
+                'page-sm': $mdMedia('sm')
+            }
         };
     });

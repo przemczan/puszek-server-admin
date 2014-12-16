@@ -1,1 +1,1 @@
-php app/console assets:install & php app/console assetic:watch --force
+rm -rf app/cache/* & php app/console assets:install & php app/console assetic:watch --force

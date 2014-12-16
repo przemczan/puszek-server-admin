@@ -7,7 +7,7 @@
     {% block stylesheets %}
         {% stylesheets filter='cssrewrite' output="assets/compiled/vendors.css"
             '@angular_material_css'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/components/angular-material/themes/*.css'
+            '@PuszekPuszekAdminAdminBundle/Resources/js/components/angular-material/themes/*.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -20,8 +20,7 @@
 
 </head>
 
-<body data-ng-app="puszekApp" data-ng-controller="mainController as main"
-      ng-class="{ 'page-lg': $mdMedia('lg'), 'page-md': $mdMedia('md') && !$mdMedia('lg'), 'page-sm': $mdMedia('sm') && !$mdMedia('md') && !$mdMedia('lg') }">
+<body data-ng-app="puszekApp" data-ng-controller="mainController as main" ng-class="main.getBodyClass()">
 
     <div layout="column" md-theme="default">
         <md-toolbar class="md-whiteframe-z1 main-header">
