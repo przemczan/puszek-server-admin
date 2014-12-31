@@ -23,7 +23,7 @@
 <body data-ng-app="puszekApp" data-ng-controller="mainController as main" ng-class="main.getBodyClass()">
 
     <div layout="column" md-theme="default">
-        <md-toolbar class="md-whiteframe-z1 main-header">
+        <md-toolbar class="md-whiteframe-z1 main-header" p-sticky>
             <h1 class="md-toolbar-tools">
                 <md-button class="md-fab md-fab-flat md-primary" ng-click="main.mainMenuToggle()">
                     <p-icon src="/views/icons/ic_menu_24px.svg"></p-icon>
@@ -34,6 +34,9 @@
                 <div data-ng-controller="notificationsController as notifs" class="header-button notifications" id="puszek-container" p-include="'/views/notifications/tray.html'" ng-show="notifs.isConnected()"></div>
                 <div data-ng-controller="publicChatController as publicChat" class="header-button chat" id="chat-list-container" p-include="'/views/chat/tray.html'" ng-show="User.isLoggedIn()"></div>
             </div>
+        </md-toolbar>
+        <md-toolbar class="md-whiteframe-z1 main-header" p-sticky>
+            TEST TOOLBAR
         </md-toolbar>
         <section layout="row" flex>
             <md-sidenav layout="column" role="navigation" class="md-sidenav-left md-whiteframe-z2 main-sidenav"
