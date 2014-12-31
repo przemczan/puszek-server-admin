@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <p-popup-actions p-stop-events="click">
-                        <md-button ng-click="crudGUI.edit(item)">
+                        <md-button ng-click="crudGUI.edit(item, $event)">
                             <p-icon src="/views/icons/ic_edit_24px.svg"></p-icon>
                         </md-button>
                         <md-button ng-click="crudGUI.delete(item)" click-confirm="Realy delete this client?" class="md-warn">
@@ -29,7 +29,7 @@
     </section>
 
     <div class="actions-menu" ng-controller="actionsMenuController as actionsMenuCtrl">
-        <md-button class="md-fab md-primary actions-button" md-theme="red" aria-label="Create client" ng-click="crudGUI.new()">
+        <md-button class="md-fab md-primary actions-button" md-theme="red" aria-label="Create client" ng-click="crudGUI.new($event)">
             <p-icon class="first" src="/views/icons/ic_add_24px.svg"></p-icon>
             <p-icon class="second" src="/views/icons/ic_create_24px.svg"></p-icon>
             <div class="button-mask"></div>

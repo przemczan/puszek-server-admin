@@ -15,7 +15,7 @@ angular.module('puszekApp')
                     element.off('click');
                     element.bind('click', function (e) {
                         e.preventDefault();
-                        ModalConfirm.open(message, title).then(function () {
+                        ModalConfirm.open(message, title, e).then(function () {
                             if (click) {
                                 scope.$eval(click);
                             }

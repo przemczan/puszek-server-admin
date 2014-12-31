@@ -19,7 +19,7 @@ angular.module('puszekApp')
              *
              * @param _item
              */
-            function openItemForm(_item) {
+            function openItemForm(_item, event) {
                 var _model = _item.fromServer ? crud.getRestApi().copy(_item) : _item,
                     actionConfig = _config[_item.fromServer ? 'edit' : 'new'];
 
@@ -44,21 +44,21 @@ angular.module('puszekApp')
                     };
 
                     $scope.cancel = self.cancel;
-                });
+                }, event);
             }
 
             /**
              * create new item
              */
-            this.new = function() {
-                openItemForm({});
+            this.new = function(event) {
+                openItemForm({}, event);
             };
 
             /**
              * edit item
              */
-            this.edit = function(_item) {
-                openItemForm(_item);
+            this.edit = function(_item, event) {
+                openItemForm(_item, event);
             };
 
             /**
@@ -69,7 +69,7 @@ angular.module('puszekApp')
             };
 
             /**
-             * save item
+             * delete item
              */
             this.delete = function(_item) {
                 return crud.delete(_item);
