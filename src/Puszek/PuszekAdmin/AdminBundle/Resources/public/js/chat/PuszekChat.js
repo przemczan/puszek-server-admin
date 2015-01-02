@@ -80,6 +80,7 @@ angular.module('puszekApp')
             this.close = socketPacketAggregator.disconnect;
             this.on = socketPacketAggregator.on;
             this.off = socketPacketAggregator.off;
+            this.isConnected = socketPacketAggregator.isConnected;
 
             this.getReceiver = function() {
                 return config.receiver;
