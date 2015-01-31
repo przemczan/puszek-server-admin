@@ -88,7 +88,8 @@ sp_bower:
     bundles:
         PuszekPuszekAdminAdminBundle:
             config_dir: @PuszekPuszekAdminAdminBundle/Resources/config
-            asset_dir: @PuszekPuszekAdminAdminBundle/Resources/js/components
+            asset_dir: @PuszekPuszekAdminAdminBundle/Resources/bower/components
+            cache: @PuszekPuszekAdminAdminBundle/Resources/bower/cache
     install_on_warmup: true
     assetic:
         nest_dependencies: false

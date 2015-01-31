@@ -15,4 +15,5 @@
 /web/fonts/*
 /web/assets/*
 /web/assetic/*
-/src/Puszek/PuszekAdmin/AdminBundle/Resources/js/components/*
+/src/Puszek/PuszekAdmin/AdminBundle/Resources/bower/
+/node_modules/

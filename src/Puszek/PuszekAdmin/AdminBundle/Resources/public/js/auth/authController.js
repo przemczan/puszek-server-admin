@@ -2,7 +2,7 @@ angular.module('puszekApp')
     .controller('authController', function authController($rootScope, $scope, $http, Config, AuthUser, $log) {
 
         $scope.loginFormData = {};
-        $scope.error = '';
+        $scope.error = null;
 
         $scope.doLogin = function() {
             $http.post(Config.baseUrl + '/login_check', $scope.loginFormData)

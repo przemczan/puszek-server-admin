@@ -1,0 +1,24 @@
+{
+  "name": "puszek-server-admin",
+  "version": "0.0.0",
+  "description": "Puszek Server admin",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "karma": "^0.12.31",
+    "karma-jasmine": "^0.3.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/przemczan/puszek-server-admin.git"
+  },
+  "author": "Przemysław Telążka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/przemczan/puszek-server-admin/issues"
+  },
+  "homepage": "https://github.com/przemczan/puszek-server-admin"
+}

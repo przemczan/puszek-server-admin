@@ -7,7 +7,6 @@
     {% block stylesheets %}
         {% stylesheets filter='cssrewrite' output="assets/compiled/vendors.css"
             '@angular_material_css'
-            '@PuszekPuszekAdminAdminBundle/Resources/js/components/angular-material/themes/*.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -17,7 +16,6 @@
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
     {% endblock %}
-
 </head>
 
 <body data-ng-app="puszekApp" data-ng-controller="mainController as main" ng-class="main.getBodyClass()">
@@ -62,6 +60,7 @@
             '@restangular_js'
             '@angular_material_js'
             '@angular_utils_pagination_js'
+            '@puszek_js_client_js'
 
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/app.js'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/modal/*'
@@ -76,10 +75,6 @@
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/messages/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/chat/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/notifications/*'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/*'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/services/*'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/api/*'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/lib/api/message/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/angular/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/angular/lib/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/*'
