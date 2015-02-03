@@ -1,8 +1,10 @@
 var users = {
-    'admin': {
+    admin: {
         user: { fullName: 'Administrator'},
         roles: { ROLE_ADMIN: true, ROLE_USER: true },
-        data: null
+        data: {
+            puszekSocketAddress: ''
+        }
     }
 };
 
@@ -10,7 +12,7 @@ describe('puszekApp.authController', function() {
 
     var $controller, $httpBackend, AuthUser;
 
-    function flushInitialAuthRequests()
+    function flushInitialRequests()
     {
         $httpBackend.when('POST', '/auth/me').respond(200, null);
         $httpBackend.when('GET', '/views/auth/login.html').respond(200);
@@ -41,7 +43,7 @@ describe('puszekApp.authController', function() {
         it('should reload AuthUser on successfull login', function() {
             var $scope = {};
 
-            flushInitialAuthRequests();
+            flushInitialRequests();
 
             $controller('authController', { $scope: $scope });
             $scope.loginFormData = { login: 'login', 'password' : 'password' };
@@ -58,7 +60,7 @@ describe('puszekApp.authController', function() {
         it('should not reload AuthUser on login failure', function() {
             var $scope = {};
 
-            flushInitialAuthRequests();
+            flushInitialRequests();
 
             $controller('authController', { $scope: $scope });
             $scope.loginFormData = {};
