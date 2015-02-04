@@ -95,7 +95,7 @@ sp_bower:
         nest_dependencies: false
 
 przemczan_puszek_sdk:
-    server:
+    servers:
         api:
             host: %przemczan_puszek_sdk_server_api_host%
             port: %przemczan_puszek_sdk_server_api_port%
