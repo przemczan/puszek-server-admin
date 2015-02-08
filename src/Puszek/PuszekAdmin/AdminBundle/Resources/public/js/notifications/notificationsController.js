@@ -38,7 +38,7 @@ angular.module('puszekApp')
          * Remove all messages
          */
         self.clear = function() {
-            PuszekNotifications.markAsReadAll();
+            PuszekNotifications.markAllAsRead();
         };
 
         PuszekNotifications.on('packet', function(e, _packet) {

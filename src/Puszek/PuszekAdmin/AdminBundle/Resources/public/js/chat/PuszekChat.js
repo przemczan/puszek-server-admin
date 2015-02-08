@@ -75,7 +75,7 @@ angular.module('puszekApp')
             });
 
             this.getMessages = socketPacketAggregator.getMessages;
-            this.clear = socketPacketAggregator.clear;
+            this.clear = socketPacketAggregator.markAllAsRead;
             this.open = socketPacketAggregator.connect;
             this.close = socketPacketAggregator.disconnect;
             this.on = socketPacketAggregator.on;
