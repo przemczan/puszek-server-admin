@@ -1,1 +1,1 @@
-rm -rf app/cache/* & php app/console assets:install & php app/console assetic:watch --force
+php app/console cache:clear --env=dev & php app/console cache:clear --env=prod & php app/console assets:install & php app/console assetic:watch --force

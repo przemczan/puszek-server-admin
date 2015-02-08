@@ -1,6 +1,7 @@
 angular.module('puszekApp')
-    .factory('PuszekSocket', function PuszekSocketFactory($rootScope, $log) {
-        return new Puszek.Socket({
+    .factory('PuszekMessagesSocket', function PuszekMessagesSocketFactory($rootScope, $log, PrzemczanPuszekSocket) {
+
+        return PrzemczanPuszekSocket.create({
                 address: null // to be updated later
             })
             .on('pre.packet', function(e, _packet) {
@@ -11,20 +12,17 @@ angular.module('puszekApp')
                         $log.error('PuszekSocket:', e, _packet);
                     }
                 }
-            })
-            .on('open, close, error, packet', function() {
-                $rootScope.$apply();
             });
     })
-    .run(function($rootScope, PuszekSocket, AuthUser) {
+    .run(function($rootScope, PuszekMessagesSocket, AuthUser) {
 
         // catch login/logout events
         $rootScope.$on('auth.login', function() {
             if (AuthUser.getData().puszekSocketAddress) {
-                PuszekSocket.connect(AuthUser.getData().puszekSocketAddress);
+                PuszekMessagesSocket.connect(AuthUser.getData().puszekSocketAddress);
             }
         });
         $rootScope.$on('auth.logout', function() {
-            PuszekSocket.disconnect();
+            PuszekMessagesSocket.disconnect();
         });
     });

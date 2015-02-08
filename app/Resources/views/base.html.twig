@@ -60,7 +60,8 @@
             '@restangular_js'
             '@angular_material_js'
             '@angular_utils_pagination_js'
-            '@puszek_js_client_js'
+
+
 
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/app.js'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/commons/modal/*'
@@ -75,12 +76,12 @@
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/messages/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/chat/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/notifications/*'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/angular/*'
-            '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/plugin/angular/lib/*'
             '@PuszekPuszekAdminAdminBundle/Resources/public/js/puszek/*'
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        <script src="{{ '/../../puszek-js-client/dist/puszek-js-client.js' }}"></script>
+        <script src="{{ '/../../puszek-js-client/dist/puszek-angular-js-client.js' }}"></script>
         <script>
             angular.module('puszekApp').constant('Config', {
                 baseUrl: '{{ app.request.baseUrl }}',

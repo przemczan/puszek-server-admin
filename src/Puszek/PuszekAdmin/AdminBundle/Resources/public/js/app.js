@@ -1,4 +1,4 @@
-angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial', 'ngAnimate', 'puszek', 'angularUtils.directives.dirPagination'])
+angular.module('puszekApp', ['ngRoute', 'restangular', 'ui.router', 'ngMaterial', 'ngAnimate', 'angularUtils.directives.dirPagination', 'przemczan.puszek'])
     .config(function($interpolateProvider, paginationTemplateProvider, Config, $mdThemingProvider){
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
         paginationTemplateProvider.setPath(Config.basePath + '/views/crud/paging.html');

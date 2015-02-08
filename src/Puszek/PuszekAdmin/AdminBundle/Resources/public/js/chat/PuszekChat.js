@@ -1,5 +1,5 @@
 angular.module('puszekApp')
-    .factory('PuszekChat', function PuszekChatFactory($rootScope, PuszekSocketPacketsAggregator, Config, $log, $http, AuthUser) {
+    .factory('PuszekChat', function PuszekChatFactory($rootScope, PrzemczanPuszekMessageChannel, Config, $log, $http, AuthUser) {
 
         /**
          * Chats list
@@ -63,7 +63,7 @@ angular.module('puszekApp')
 
             this.configure(_config);
 
-            socketPacketAggregator = PuszekSocketPacketsAggregator.create(config.socket, function onPacket(_packet) {
+            socketPacketAggregator = PrzemczanPuszekMessageChannel.create(config.socket, function onPacket(_packet) {
                 return (
                     'message' == _packet.type &&'chat' == _packet.data.message.type
                     && (

@@ -1926,16 +1926,16 @@
         },
         {
             "name": "przemczan/puszek-sdk-bundle",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/przemczan/puszek-sdk-bundle.git",
-                "reference": "61bc2e2c418ba4f3282f690fcefeb8c8270e70ed"
+                "reference": "c7f60951e37ff6615716feaffe2b4ac437d65c82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/przemczan/puszek-sdk-bundle/zipball/61bc2e2c418ba4f3282f690fcefeb8c8270e70ed",
-                "reference": "61bc2e2c418ba4f3282f690fcefeb8c8270e70ed",
+                "url": "https://api.github.com/repos/przemczan/puszek-sdk-bundle/zipball/c7f60951e37ff6615716feaffe2b4ac437d65c82",
+                "reference": "c7f60951e37ff6615716feaffe2b4ac437d65c82",
                 "shasum": ""
             },
             "require": {
@@ -1947,7 +1947,7 @@
                 "twig/extensions": "~1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.4.*"
+                "phpunit/phpunit": "4.3.*"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -1966,7 +1966,7 @@
                 }
             ],
             "description": "Puszek SDK sBundle",
-            "time": "2015-02-04 20:22:38"
+            "time": "2015-02-05 17:17:58"
         },
         {
             "name": "psr/log",

@@ -1,12 +1,12 @@
 angular.module('puszekApp')
-    .controller('publicChatController', function publicChatController($rootScope, $scope, Singleton, AuthUser, PuszekSocket, PuszekChat, Config, $element) {
+    .controller('publicChatController', function publicChatController($rootScope, $scope, Singleton, AuthUser, PuszekMessagesSocket, PuszekChat, Config, $element) {
 
         var self = this;
 
         self.chat = Singleton.define('chat.public', function() {
                 return {
                     object: PuszekChat.create({
-                        socket: PuszekSocket,
+                        socket: PuszekMessagesSocket,
                         sender: AuthUser.getFullName(),
                         receiver: '*',
                         http: {
@@ -63,7 +63,7 @@ angular.module('puszekApp')
             scrollToLastMessage();
         });
     })
-    .run(function($rootScope, Singleton, PuszekSocket, AuthUser) {
+    .run(function($rootScope, Singleton, PuszekMessagesSocket, AuthUser) {
 
         // catch login/logout events
         $rootScope.$on('auth.login', function() {
